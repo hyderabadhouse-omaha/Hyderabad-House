@@ -352,19 +352,28 @@ function WideItem({ item }) {
   useLayoutEffect(() => {
     const container = pillsRef.current
     if (!container) return
+    let frame = 0
     const mark = () => {
-      const pills = container.querySelectorAll('.menu-item__pill')
-      let lastTop = null
-      pills.forEach(p => {
-        const t = p.offsetTop
-        p.classList.toggle('is-row-first', t !== lastTop)
-        lastTop = t
+      cancelAnimationFrame(frame)
+      frame = requestAnimationFrame(() => {
+        const pills = container.querySelectorAll('.menu-item__pill')
+        let lastTop = null
+        pills.forEach(p => {
+          const t = p.offsetTop
+          p.classList.toggle('is-row-first', t !== lastTop)
+          lastTop = t
+        })
       })
     }
     mark()
     const ro = new ResizeObserver(mark)
     ro.observe(container)
-    return () => ro.disconnect()
+    // Also re-mark once fonts load so measurements settle
+    if (document.fonts?.ready) document.fonts.ready.then(mark)
+    return () => {
+      ro.disconnect()
+      cancelAnimationFrame(frame)
+    }
   }, [item.prices])
 
   return (

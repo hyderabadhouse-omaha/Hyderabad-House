@@ -301,13 +301,21 @@
 .menu-item--full {
   grid-column: 1 / -1;
   padding: 22px 0;
+  min-width: 0;
 }
 .menu-item--full .menu-item__pills {
   flex-wrap: nowrap;
   overflow-x: auto;
   scrollbar-width: none;
+  max-width: 100%;
 }
 .menu-item--full .menu-item__pills::-webkit-scrollbar { display: none; }
+@media (max-width: 900px) {
+  .menu-item--full .menu-item__pills {
+    flex-wrap: wrap;
+    overflow-x: visible;
+  }
+}
 .menu-item__pills {
   display: flex;
   flex-wrap: wrap;
