@@ -1,0 +1,21 @@
+# robots.txt for Hyderabad House Omaha
+# https://www.hhoma.com
+
+User-agent: *
+Allow: /
+
+# Block crawler-noise paths
+Disallow: /api/
+Disallow: /*.json$
+
+# Explicit welcome for major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+Sitemap: https://www.hhoma.com/sitemap.xml

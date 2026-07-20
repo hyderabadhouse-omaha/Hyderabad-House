@@ -1,7 +1,19 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import useScrollReveal from '../hooks/useScrollReveal'
+import SEO from '../components/SEO'
 import './Home.css'
+
+const homeJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Dum Biryani', url: 'https://www.hhoma.com/menu#biryani' },
+    { '@type': 'ListItem', position: 2, name: 'Tandoori Grill', url: 'https://www.hhoma.com/menu#tandoori' },
+    { '@type': 'ListItem', position: 3, name: 'Andhra Specials', url: 'https://www.hhoma.com/menu#andhra' },
+    { '@type': 'ListItem', position: 4, name: 'Vegetarian', url: 'https://www.hhoma.com/menu#vegetarian' },
+  ],
+}
 
 const slides = [
   {
@@ -273,6 +285,15 @@ export default function Home() {
 
   return (
     <main className="home">
+      <SEO
+        title="Hyderabad House Omaha | Authentic Hyderabadi Biryani, Curries & Kebabs"
+        description="Slow-cooked dum biryani, tandoori kebabs, and Andhra specials in the heart of Omaha, NE. Happy Hour 3–6 PM Mon–Fri. Open daily 11 AM – 9 PM. Dine-in, takeout & private party hall."
+        path="/"
+        image="/images/dishes.png"
+        type="restaurant.restaurant"
+        keywords="Indian restaurant Omaha, Hyderabadi biryani Omaha, dum biryani, tandoori kebab, chicken tikka masala, halal Indian food Omaha, Andhra curry, party hall Omaha, Indian catering Omaha"
+        jsonLd={homeJsonLd}
+      />
       <HeroSlider />
 
       {/* ── About ─────────────────────────── */}
