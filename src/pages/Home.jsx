@@ -378,7 +378,7 @@ export default function Home() {
           ))}
         </div>
         <div className="container home-happy__grid reveal">
-          <div className="home-happy__text">
+          <div className="home-happy__head">
             <span className="home-happy__eyebrow">
               <span className="home-happy__pulse" />
               Limited Time · Dine-in Only
@@ -386,6 +386,9 @@ export default function Home() {
             <h2 className="heading home-happy__title">
               Happy Hours are<br /><em>Here.</em>
             </h2>
+          </div>
+
+          <div className="home-happy__body">
             <p className="home-happy__lead">
               Flat <strong>20% off</strong> on all appetizers &amp; drinks. Every weekday from <strong>3 – 6 PM</strong>.
             </p>

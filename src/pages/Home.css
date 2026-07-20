@@ -853,9 +853,16 @@
   z-index: 1;
   display: grid;
   grid-template-columns: 1fr 0.9fr;
-  gap: 56px;
+  grid-template-areas:
+    "head visual"
+    "body visual";
+  column-gap: 56px;
+  row-gap: 20px;
   align-items: center;
 }
+.home-happy__head { grid-area: head; align-self: end; }
+.home-happy__body { grid-area: body; align-self: start; }
+.home-happy__visual { grid-area: visual; }
 
 /* ── Text side ── */
 .home-happy__eyebrow {
@@ -1077,20 +1084,86 @@
 .home-happy__visual:hover .home-happy__ico--chili { transform: rotate(16deg) translateX(10px); }
 
 @media (max-width: 900px) {
-  .home-happy__grid { grid-template-columns: 1fr; gap: 40px; }
-  .home-happy__visual { max-width: 380px; margin: 0 auto; }
+  .home-happy__grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "head"
+      "visual"
+      "body";
+    column-gap: 0;
+    row-gap: 24px;
+    text-align: center;
+  }
+  .home-happy__head { align-self: auto; align-items: center; display: flex; flex-direction: column; }
+  .home-happy__body { align-self: auto; display: flex; flex-direction: column; align-items: center; }
+  .home-happy__lead { max-width: 100%; }
+  .home-happy__meta { justify-content: center; }
+  .home-happy__actions { justify-content: center; }
+  .home-happy__visual {
+    max-width: 380px;
+    width: 100%;
+    margin: 0 auto;
+    aspect-ratio: 4/3;
+  }
 }
 @media (max-width: 640px) {
-  .home-happy { padding: 56px 0; }
-  .home-happy__title { font-size: 1.7rem; }
-  .home-happy__lead { font-size: 15px; }
-  .home-happy__burst { width: 100px; height: 100px; top: -4px; right: -4px; }
-  .home-happy__burst-num { font-size: 26px; }
-  .home-happy__burst-off { font-size: 11px; }
-  .home-happy__actions { width: 100%; }
+  .home-happy { padding: 44px 0 48px; }
+  .home-happy__eyebrow { font-size: 10px; padding: 6px 12px; }
+  .home-happy__title {
+    font-size: clamp(1.6rem, 6vw, 2rem);
+    margin-bottom: 12px;
+  }
+  .home-happy__lead {
+    font-size: 14.5px;
+    margin-bottom: 20px;
+    padding: 0 4px;
+  }
+  .home-happy__meta { gap: 8px; margin-bottom: 22px; }
+  .home-happy__meta-item { padding: 7px 12px; font-size: 12px; }
+
+  /* Reset visual: edge-to-edge photo, no rotation, badge pinned top-right */
+  .home-happy__visual {
+    aspect-ratio: 4/3;
+    padding: 0;
+    margin: 0;
+  }
+  .home-happy__photo {
+    position: absolute;
+    inset: 0;
+    transform: none;
+    border-radius: 18px;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+  }
+  .home-happy__visual:hover .home-happy__photo { transform: none; }
+  .home-happy__photo-tint {
+    background: linear-gradient(180deg, transparent 30%, rgba(10,6,2,0.5) 100%);
+  }
+
+  .home-happy__burst {
+    width: 80px; height: 80px;
+    top: 12px; right: 12px;
+  }
+  .home-happy__burst-inner { inset: 8px; }
+  .home-happy__burst-num { font-size: 21px; }
+  .home-happy__burst-num em { font-size: 13px; }
+  .home-happy__burst-off { font-size: 10px; letter-spacing: 0.1em; }
+
+  /* Keep the cocktail glass swaying in the bottom-left corner; hide others */
+  .home-happy__ico { display: none; }
+  .home-happy__ico--drink {
+    display: block;
+    width: 44px; height: 44px;
+    left: 14px; bottom: 14px;
+    top: auto; right: auto;
+    color: #FFCB84;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
+  }
+
+  .home-happy__actions {
+    width: 100%;
+    flex-direction: column;
+  }
   .home-happy__actions .btn { width: 100%; justify-content: center; }
-  .home-happy__ico--drink { width: 48px; height: 48px; }
-  .home-happy__ico--chili { width: 42px; height: 42px; }
 }
 
 /* ════════════════════════════════════════════

@@ -24,9 +24,9 @@ const contactInfo = [
   },
   {
     label: 'Email Us',
-    line: 'info@hyderabadhouse.com',
+    line: 'hhbiryani.oma@gmail.com',
     sub: "We'll reply within 24 hours",
-    href: 'mailto:info@hyderabadhouse.com',
+    href: 'mailto:hhbiryani.oma@gmail.com',
     action: 'Send Email',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">

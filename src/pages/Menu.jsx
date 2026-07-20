@@ -388,6 +388,90 @@ function WideItem({ item }) {
   )
 }
 
+function CategoryFab({ sections, active, onJump, catIcons }) {
+  const [open, setOpen] = useState(false)
+  const panelRef = useRef(null)
+
+  // Close on Escape
+  useEffect(() => {
+    if (!open) return
+    const onKey = e => { if (e.key === 'Escape') setOpen(false) }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [open])
+
+  // Lock body scroll while open (mobile-friendly overlay)
+  useEffect(() => {
+    if (!open) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => { document.body.style.overflow = prev }
+  }, [open])
+
+  return (
+    <>
+      <button
+        className={`menu-fab${open ? ' menu-fab--open' : ''}`}
+        onClick={() => setOpen(o => !o)}
+        aria-label={open ? 'Close menu categories' : 'Open menu categories'}
+        aria-expanded={open}
+      >
+        <span className="menu-fab__icon" aria-hidden="true">
+          {open ? (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" />
+              <path d="M7 2v20" />
+              <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7" />
+            </svg>
+          )}
+        </span>
+        <span className="menu-fab__label">{open ? 'Close' : 'Menu'}</span>
+      </button>
+
+      {open && (
+        <div className="menu-fab-backdrop" onClick={() => setOpen(false)} aria-hidden="true" />
+      )}
+
+      <div
+        ref={panelRef}
+        className={`menu-fab-panel${open ? ' open' : ''}`}
+        role="dialog"
+        aria-label="Menu categories"
+        aria-hidden={!open}
+      >
+        <div className="menu-fab-panel__head">
+          <span className="menu-fab-panel__title">Jump to</span>
+          <button
+            className="menu-fab-panel__close"
+            onClick={() => setOpen(false)}
+            aria-label="Close"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="18" height="18">
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <div className="menu-fab-panel__grid">
+          {sections.map(s => (
+            <button
+              key={s.id}
+              className={`menu-fab-item${active === s.id ? ' active' : ''}`}
+              onClick={() => { onJump(s.id); setOpen(false) }}
+            >
+              <span className="menu-fab-item__ic" aria-hidden="true">{catIcons[s.id]}</span>
+              <span className="menu-fab-item__label">{s.label}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+    </>
+  )
+}
+
 function Item({ item }) {
   const multi = item.prices && item.prices.length > 0
   const hasPrice = item.price != null
@@ -424,7 +508,6 @@ function Item({ item }) {
 
 export default function Menu() {
   const [active, setActive] = useState(sections[0].id)
-  const navRef = useRef(null)
   useScrollReveal()
 
   useEffect(() => {
@@ -442,18 +525,10 @@ export default function Menu() {
     return () => obs.disconnect()
   }, [])
 
-  useEffect(() => {
-    const scroll = navRef.current?.querySelector('.menu-nav__scroll')
-    const chip = scroll?.querySelector(`[data-id="${active}"]`)
-    if (!scroll || !chip) return
-    const target = chip.offsetLeft - scroll.clientWidth / 2 + chip.clientWidth / 2
-    scroll.scrollTo({ left: target, behavior: 'smooth' })
-  }, [active])
-
   const jump = id => {
     const el = document.getElementById(id)
     if (!el) return
-    const y = el.getBoundingClientRect().top + window.scrollY - 140
+    const y = el.getBoundingClientRect().top + window.scrollY - 100
     window.scrollTo({ top: y, behavior: 'smooth' })
   }
 
@@ -465,23 +540,7 @@ export default function Menu() {
         bgImage="/images/dishes.png"
       />
 
-      <nav className="menu-nav" ref={navRef} aria-label="Menu categories">
-        <div className="container menu-nav__inner">
-          <div className="menu-nav__scroll">
-            {sections.map(s => (
-              <button
-                key={s.id}
-                data-id={s.id}
-                className={`menu-nav__chip${active === s.id ? ' active' : ''}`}
-                onClick={() => jump(s.id)}
-              >
-                <span className="menu-nav__ic" aria-hidden="true">{catIcons[s.id]}</span>
-                <span>{s.label}</span>
-              </button>
-            ))}
-          </div>
-        </div>
-      </nav>
+      <CategoryFab sections={sections} active={active} onJump={jump} catIcons={catIcons} />
 
 <div className="container">
         <div className="menu-card">
