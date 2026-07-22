@@ -7,7 +7,7 @@
 //     title="Menu | Hyderabad House Omaha"
 //     description="Explore our full menu..."
 //     path="/menu"
-//     image="/images/biryani.png"
+//     image="/images/biryani.webp"
 //     type="restaurant.menu"
 //     keywords="Indian menu Omaha, biryani, curries"
 //     jsonLd={{ '@context': 'https://schema.org', ... }}
@@ -17,7 +17,7 @@ import { useEffect } from 'react'
 
 const SITE_URL = 'https://www.hhoma.com'
 const SITE_NAME = 'Hyderabad House Omaha'
-const DEFAULT_IMAGE = '/images/dishes.png'
+const DEFAULT_IMAGE = '/images/dishes.webp'
 
 export default function SEO({
   title,

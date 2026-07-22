@@ -175,7 +175,7 @@
 .tp-stats__bg {
   position: absolute;
   inset: -30% 0;
-  background: url('/images/interior.png') center/cover no-repeat;
+  background: url('/images/interior.webp') center/cover no-repeat;
   z-index: 0;
 }
 .tp-stats::after {

@@ -20,29 +20,29 @@ const slides = [
     eyebrow: 'Flavors of Heritage',
     title: 'Authentic\nHyderabadi\nCuisine',
     desc: "Discover the bold, aromatic flavors of authentic Hyderabadi cuisine — a royal culinary tradition now served in the heart of Omaha.",
-    bg: '/images/biryani.png',
+    bg: '/images/biryani.webp',
     bgPos: 'right center',
   },
   {
     eyebrow: 'Royal Experience',
     title: 'Rich Flavors,\nRoyal Tradition',
     desc: 'From smoky Chicken Tikka Masala to earthy Dal Tadka — paired with warm naan & fragrant basmati rice for the perfect Hyderabadi meal.',
-    bg: '/images/dishes.png',
+    bg: '/images/dishes.webp',
     bgPos: 'center center',
   },
   {
     eyebrow: 'Family & Friends',
     title: 'A Meal Worth\nCelebrating',
     desc: 'Fresh ingredients, generous portions, and warm hospitality — gather family for an unforgettable Indian dining experience at Hyderabad House, Omaha.',
-    bg: '/images/flavors.png',
+    bg: '/images/flavors.webp',
     bgPos: 'center center',
   },
 ]
 
 const testimonials = [
-  { quote: 'Amazing flavors and generous portions!', body: 'The Dum Biryani here is incredible — perfectly spiced. Definitely one of the best spots for Indian food in Omaha!', name: 'Rahul Patel', date: 'Feb 2026', face: '/images/face-1.jpg' },
-  { quote: 'Authentic taste, amazing hospitality.', body: "You can tell they put heart into their cooking. Hyderabad House will be our family's go-to spot for celebrations.", name: 'Paul Trueman', date: 'Feb 2026', face: '/images/face-2.jpg' },
-  { quote: 'Feels like home every time.', body: 'From the warm welcome to the perfectly cooked curries, everything reminds me of my trips to Hyderabad.', name: 'Aryaan Khan', date: 'Dec 2025', face: '/images/face-3.jpg' },
+  { quote: 'Amazing flavors and generous portions!', body: 'The Dum Biryani here is incredible — perfectly spiced. Definitely one of the best spots for Indian food in Omaha!', name: 'Rahul Patel', date: 'Feb 2026', face: '/images/face-1.webp' },
+  { quote: 'Authentic taste, amazing hospitality.', body: "You can tell they put heart into their cooking. Hyderabad House will be our family's go-to spot for celebrations.", name: 'Paul Trueman', date: 'Feb 2026', face: '/images/face-2.webp' },
+  { quote: 'Feels like home every time.', body: 'From the warm welcome to the perfectly cooked curries, everything reminds me of my trips to Hyderabad.', name: 'Aryaan Khan', date: 'Dec 2025', face: '/images/face-3.webp' },
   { quote: 'Best biryani in Omaha, hands down.', body: "I've tried many Indian restaurants in the area but nothing comes close. The Kodi Pulav and the Haleem are out of this world.", name: 'Samira Hussain', date: 'Jan 2026', face: null },
   { quote: "An experience you won't forget.", body: 'The decor is beautiful, the food is authentic, and the staff is incredibly friendly. My friends and I had a wonderful time.', name: 'Michael Torres', date: 'Mar 2026', face: null },
   { quote: 'Perfect for family celebrations!', body: 'We celebrated a special occasion here and the staff made it memorable. Every dish was fresh and bursting with authentic Hyderabadi flavour.', name: 'Priya Sharma', date: 'Apr 2026', face: null },
@@ -107,13 +107,13 @@ const features = [
 ]
 
 const gallery = [
-  '/images/gallery1.jpg',
-  '/images/gallery6.png',
-  '/images/gallery2.jpg',
-  '/images/gallery3.jpg',
-  '/images/gallery4.jpg',
-  '/images/gallery5.png',
-  '/images/gallery7.png',
+  '/images/gallery1.webp',
+  '/images/gallery6.webp',
+  '/images/gallery2.webp',
+  '/images/gallery3.webp',
+  '/images/gallery4.webp',
+  '/images/gallery5.webp',
+  '/images/gallery7.webp',
 ]
 
 function CountUp({ to, suffix = '', decimals = 0, duration = 1600 }) {
@@ -289,7 +289,7 @@ export default function Home() {
         title="Hyderabad House Omaha | Authentic Hyderabadi Biryani, Curries & Kebabs"
         description="Slow-cooked dum biryani, tandoori kebabs, and Andhra specials in the heart of Omaha, NE. Happy Hour 3–6 PM Mon–Fri. Open daily 11 AM – 9 PM. Dine-in, takeout & private party hall."
         path="/"
-        image="/images/dishes.png"
+        image="/images/dishes.webp"
         type="restaurant.restaurant"
         keywords="Indian restaurant Omaha, Hyderabadi biryani Omaha, dum biryani, tandoori kebab, chicken tikka masala, halal Indian food Omaha, Andhra curry, party hall Omaha, Indian catering Omaha"
         jsonLd={homeJsonLd}
@@ -301,7 +301,7 @@ export default function Home() {
         <div className="container home-about__grid">
           <div className="home-about__img-wrap reveal from-left">
             <div className="home-about__img-frame">
-              <img src="/images/interior.png" alt="Hyderabad House Omaha restaurant interior" className="home-about__img" />
+              <img src="/images/interior.webp" alt="Hyderabad House Omaha restaurant interior" className="home-about__img" />
             </div>
           </div>
           <div className="home-about__text reveal from-right">
@@ -423,7 +423,7 @@ export default function Home() {
 
           <div className="home-happy__visual">
             <div className="home-happy__photo">
-              <img src="/images/flavors.png" alt="Signature appetizers and drinks at Hyderabad House" />
+              <img src="/images/flavors.webp" alt="Signature appetizers and drinks at Hyderabad House" />
               <div className="home-happy__photo-tint" />
             </div>
 

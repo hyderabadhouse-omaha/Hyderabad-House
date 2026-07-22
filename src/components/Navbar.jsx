@@ -54,7 +54,7 @@ export default function Navbar() {
         <div className="navbar__inner">
 
           <Link to="/" className="navbar__logo">
-            <img src="/images/logo.png" alt="Hyderabad House Omaha" />
+            <img src="/images/logo.webp" alt="Hyderabad House Omaha" />
           </Link>
 
           <nav className="navbar__nav" aria-label="Main navigation">

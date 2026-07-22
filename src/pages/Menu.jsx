@@ -546,7 +546,7 @@ export default function Menu() {
       <PageHero
         title="Our Menu"
         subtitle="From slow-cooked biryani to smoky kebabs — every dish crafted with authentic Hyderabadi soul."
-        bgImage="/images/dishes.png"
+        bgImage="/images/dishes.webp"
       />
 
       <CategoryFab sections={sections} active={active} onJump={jump} catIcons={catIcons} />

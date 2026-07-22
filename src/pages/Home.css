@@ -238,7 +238,7 @@
 .home-stats__bg {
   position: absolute;
   inset: -30% 0;          /* extra height so it can shift without gaps */
-  background-image: url('/images/interior.png');
+  background-image: url('/images/interior.webp');
   background-size: cover;
   background-position: center;
   will-change: transform;
@@ -1176,7 +1176,7 @@
 .home-hours__bg {
   position: absolute;
   inset: 0;
-  background: url('/images/hero-bg.png') center/cover no-repeat;
+  background: url('/images/hero-bg.webp') center/cover no-repeat;
 }
 .home-hours__bg-overlay {
   position: absolute;

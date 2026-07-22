@@ -62,7 +62,7 @@ export default function FAQ() {
       <PageHero
         title="Frequently Asked Questions"
         subtitle="Everything you need to know before you visit, book, or order."
-        bgImage="/images/dishes.png"
+        bgImage="/images/dishes.webp"
       />
 
       <section className="section faq-section">

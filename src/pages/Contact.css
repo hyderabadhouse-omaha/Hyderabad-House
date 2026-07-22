@@ -288,7 +288,7 @@
 .contact-location__bg {
   position: absolute;
   inset: -20% 0;
-  background: url('/images/storefront.png') center/cover no-repeat;
+  background: url('/images/storefront.webp') center/cover no-repeat;
   z-index: 0;
 }
 .contact-location__overlay {

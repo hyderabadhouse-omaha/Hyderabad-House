@@ -86,7 +86,7 @@ export default function Contact() {
       <PageHero
         title="Let's Talk"
         subtitle="Questions, party hall bookings, catering — we'd love to hear from you."
-        bgImage="/images/dishes.png"
+        bgImage="/images/dishes.webp"
       />
 
       {/* ── Info Cards ─────────────────────── */}

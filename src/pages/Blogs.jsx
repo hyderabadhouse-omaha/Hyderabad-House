@@ -25,7 +25,7 @@ export default function Blogs() {
       <PageHero
         title="Tips & Recipes from Our Chefs"
         subtitle="Stories, culture, and culinary wisdom from the heart of our kitchen."
-        bgImage="/images/dishes.png"
+        bgImage="/images/dishes.webp"
       />
 
       <section className="section blogs-section">

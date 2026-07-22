@@ -17,7 +17,7 @@ export default function Footer() {
 
         {/* Brand */}
         <div className="footer__brand">
-          <Link to="/"><img src="/images/logo.png" alt="Hyderabad House Omaha" /></Link>
+          <Link to="/"><img src="/images/logo.webp" alt="Hyderabad House Omaha" /></Link>
           <p>Authentic Hyderabadi cuisine in the heart of Omaha. Every meal tells a royal story.</p>
           <span className="footer__halal">100% Halal Certified</span>
           <div className="footer__socials">

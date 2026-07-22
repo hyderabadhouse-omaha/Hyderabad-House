@@ -9,7 +9,7 @@ export const posts = [
     readTime: '6 min read',
     cat: 'Recipes',
     author: 'Chef Sudarsan',
-    img: '/images/biryani.png',
+    img: '/images/biryani.webp',
     excerpt: 'Discover the ancient Hyderabadi technique of slow-cooking biryani in a sealed pot, letting the steam and aromatics work their magic over hours.',
     body: [
       { type: 'p', text: "Ask any Hyderabadi to describe the perfect biryani and they'll close their eyes for a moment. What follows is never a recipe. It's a memory — of long weekend afternoons, of a heavy pot sealed with dough, of the moment the lid finally lifts and the whole room fills with saffron, cardamom, and slow-cooked promise." },
@@ -37,7 +37,7 @@ export const posts = [
     readTime: '5 min read',
     cat: 'Culture',
     author: 'Chef Sudarsan',
-    img: '/images/flavors.png',
+    img: '/images/flavors.webp',
     excerpt: 'From star anise to saffron, we explore the iconic spices that give Hyderabadi food its distinctive golden color and bold flavor profile.',
     body: [
       { type: 'p', text: "Hyderabadi food doesn't rely on any one spice. It relies on how a small handful of them are layered — some bloomed in oil, some added late, some left whole so you find them like little surprises. Here are the ones we reach for most, and why." },
@@ -64,7 +64,7 @@ export const posts = [
     readTime: '4 min read',
     cat: 'Guide',
     author: 'The Hyderabad House Kitchen',
-    img: '/images/dishes.png',
+    img: '/images/dishes.webp',
     excerpt: "Naan, roti, paratha, kulcha — the world of Indian breads is rich and varied. Here's how to enjoy each one to the fullest alongside your meal.",
     body: [
       { type: 'p', text: 'Indian meals are built around a shared bowl of curry and a stack of fresh breads. But which bread goes with what? Here\'s a quick, useful field guide the next time you\'re at our table.' },
@@ -93,7 +93,7 @@ export const posts = [
     readTime: '4 min read',
     cat: 'Culture',
     author: 'Chef Sudarsan',
-    img: '/images/gallery3.jpg',
+    img: '/images/gallery3.webp',
     excerpt: 'Once a royal meal reserved for kings, haleem is now a beloved dish across the world. Here\'s the centuries-old story behind that first spoonful.',
     body: [
       { type: 'p', text: 'Every year during Ramadan, giant copper pots start bubbling on the streets of Hyderabad long before sunset. Wheat, meat, and dozens of spices simmer for hours, hand-pounded until the whole thing turns into something between a stew and a memory. This is haleem.' },
@@ -114,7 +114,7 @@ export const posts = [
     readTime: '3 min read',
     cat: 'Events',
     author: 'Hyderabad House Team',
-    img: '/images/interior.png',
+    img: '/images/interior.webp',
     excerpt: 'Birthdays, anniversaries, engagement parties, corporate lunches — our private hall in Omaha can hold up to 60 guests. Here\'s what you need to know.',
     body: [
       { type: 'p', text: 'For years, our regulars have been asking us the same question: "Can we book the whole place for our party?" We\'re now finally set up to say yes — properly, comfortably, and with a menu built around what your group actually wants to eat.' },
@@ -139,7 +139,7 @@ export const posts = [
     readTime: '5 min read',
     cat: 'Recipes',
     author: 'Chef Sudarsan',
-    img: '/images/gallery5.png',
+    img: '/images/gallery5.webp',
     excerpt: 'India has one of the richest vegetarian food traditions in the world. Here are the dishes to try if you\'ve ever thought "vegetarian" meant "boring."',
     body: [
       { type: 'p', text: 'A big part of Indian food never needed meat to be great. Long before "plant-based" became a marketing word, home cooks in India were building meals around lentils, paneer, root vegetables, and clever spice work. Here are a few dishes that show what vegetarian Indian food can really do.' },

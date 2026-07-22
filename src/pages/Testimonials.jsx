@@ -5,9 +5,9 @@ import useScrollReveal from '../hooks/useScrollReveal'
 import './Testimonials.css'
 
 const testimonials = [
-  { quote: 'Amazing flavors and generous portions!', body: 'The Dum Biryani here is incredible, perfectly spiced and packed with flavor. We also tried the Butter Chicken and everything was delicious. One of the best spots for Indian food in Omaha.', name: 'Rahul Patel', date: 'Feb 2026', face: '/images/face-1.jpg' },
-  { quote: 'Authentic taste, amazing hospitality.', body: "You can tell they put heart into their cooking. Hyderabad House will be our family's go-to spot for celebrations and comfort food alike.", name: 'Paul Trueman', date: 'Feb 2026', face: '/images/face-2.jpg' },
-  { quote: 'Feels like home every time.', body: 'From the warm welcome to the perfectly cooked curries, everything reminds me of my trips to Hyderabad. Their goat dum biryani is a must-try.', name: 'Aryaan Khan', date: 'Dec 2025', face: '/images/face-3.jpg' },
+  { quote: 'Amazing flavors and generous portions!', body: 'The Dum Biryani here is incredible, perfectly spiced and packed with flavor. We also tried the Butter Chicken and everything was delicious. One of the best spots for Indian food in Omaha.', name: 'Rahul Patel', date: 'Feb 2026', face: '/images/face-1.webp' },
+  { quote: 'Authentic taste, amazing hospitality.', body: "You can tell they put heart into their cooking. Hyderabad House will be our family's go-to spot for celebrations and comfort food alike.", name: 'Paul Trueman', date: 'Feb 2026', face: '/images/face-2.webp' },
+  { quote: 'Feels like home every time.', body: 'From the warm welcome to the perfectly cooked curries, everything reminds me of my trips to Hyderabad. Their goat dum biryani is a must-try.', name: 'Aryaan Khan', date: 'Dec 2025', face: '/images/face-3.webp' },
   { quote: 'Best biryani in Omaha, hands down.', body: "I've tried many Indian restaurants in the area but nothing comes close. The Kodi Pulav and the Haleem are out of this world. Will definitely be back.", name: 'Samira Hussain', date: 'Jan 2026', face: null },
   { quote: "An experience you won't forget.", body: 'The decor is beautiful, the food is authentic, and the staff is incredibly friendly. My friends and I had a wonderful time.', name: 'Michael Torres', date: 'Mar 2026', face: null },
   { quote: 'Spices, aromas, and soul food.', body: 'Every dish is bursting with authentic Hyderabadi flavors. The ambiance is warm and the service is top-notch. Highly recommend the chicken haleem.', name: 'Priya Sharma', date: 'Nov 2025', face: null },
@@ -98,7 +98,7 @@ export default function Testimonials() {
       <PageHero
         title="What Our Guests Say"
         subtitle="Real experiences from our valued guests — straight from the heart."
-        bgImage="/images/dishes.png"
+        bgImage="/images/dishes.webp"
       />
 
       <section className="section tp-section">
