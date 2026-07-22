@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { Link, NavLink, useLocation } from 'react-router-dom'
+import liquidGlass from '../lib/liquidGlass'
 import './Navbar.css'
 
 const links = [
@@ -15,11 +16,28 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen]         = useState(false)
   const { pathname }            = useLocation()
+  const navRef                  = useRef(null)
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 60)
     window.addEventListener('scroll', fn, { passive: true })
     return () => window.removeEventListener('scroll', fn)
+  }, [])
+
+  // Apply liquid-glass refraction filter to the navbar element (Chromium only —
+  // Safari/Firefox get the CSS backdrop-filter fallback automatically).
+  useEffect(() => {
+    if (!navRef.current) return
+    const glass = liquidGlass(navRef.current, {
+      scale: -90,
+      chroma: 5,
+      border: 0.08,
+      mapBlur: 14,
+      blur: 6,
+      saturate: 1.6,
+      fallbackBlur: 22,
+    })
+    return () => glass.destroy()
   }, [])
 
   useEffect(() => { setOpen(false); window.scrollTo(0, 0) }, [pathname])
@@ -32,7 +50,7 @@ export default function Navbar() {
 
   return (
     <>
-      <header className={`navbar${scrolled ? ' scrolled' : ''}`}>
+      <header ref={navRef} className={`navbar${scrolled ? ' scrolled' : ''}`}>
         <div className="navbar__inner">
 
           <Link to="/" className="navbar__logo">

@@ -1,4 +1,4 @@
-/* ─── Floating island navbar ─────────────────────────── */
+/* ─── Floating "liquid glass" navbar ─────────────────── */
 .navbar {
   position: fixed;
   top: 18px;
@@ -8,35 +8,84 @@
   margin: 0 auto;
   z-index: 300;
 
-  background: rgba(20, 12, 4, 0.35);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 14px;
+  /* Layered translucent tint — top edge lighter, base deeper for depth */
+  background: linear-gradient(
+    180deg,
+    rgba(30, 20, 8, 0.22) 0%,
+    rgba(14, 8, 2, 0.38) 100%
+  );
+
+  /* backdrop-filter is applied by liquidGlass() at runtime — see Navbar.jsx */
+
+  border: none;
+  border-radius: 22px;
+
+  /* Multi-layer shadow stack:
+     - deep outer shadow (floating lift)
+     - inset top hairline (light rim, glass edge)
+     - inset bottom sheen (subtle depth)
+     - inset full border (glass boundary) */
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.4),
+    0 2px 8px rgba(0, 0, 0, 0.18),
+    inset 0 1px 1px rgba(255, 255, 255, 0.35),
+    inset 0 -8px 20px rgba(255, 255, 255, 0.04),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.16);
 
   transition:
     background   0.5s cubic-bezier(0.16, 1, 0.3, 1),
     box-shadow   0.5s cubic-bezier(0.16, 1, 0.3, 1),
-    border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
     top          0.45s cubic-bezier(0.16, 1, 0.3, 1);
 
-  will-change: background, box-shadow;
+  will-change: background, box-shadow, backdrop-filter;
   animation: navSlideDown 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
+
+/* Subtle top-highlight sweep — the "wet" glass gleam */
+.navbar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.10) 0%,
+    rgba(255, 255, 255, 0) 40%
+  );
+  pointer-events: none;
+  opacity: 0.7;
+  z-index: 0;
+}
+
+.navbar > * { position: relative; z-index: 1; }
 
 @keyframes navSlideDown {
   from { opacity: 0; transform: translateY(-20px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Scrolled state → cream island */
+/* Scrolled state → light liquid glass, always readable over page content */
 .navbar.scrolled {
   top: 12px;
-  background: rgba(251, 248, 240, 0.97);
-  border-color: rgba(224, 123, 24, 0.14);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 251, 244, 0.72) 0%,
+    rgba(251, 246, 232, 0.62) 100%
+  );
   box-shadow:
-    0 8px 40px rgba(28, 18, 8, 0.13),
-    0 1px 0 rgba(224, 123, 24, 0.08) inset;
+    0 14px 44px rgba(28, 18, 8, 0.16),
+    0 2px 8px rgba(28, 18, 8, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 0.9),
+    inset 0 -6px 18px rgba(224, 123, 24, 0.05),
+    inset 0 0 0 1px rgba(224, 123, 24, 0.16);
+}
+.navbar.scrolled::before {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 0) 45%
+  );
+  opacity: 1;
 }
 
 /* ─── Inner layout ───────────────────────────────────── */
@@ -56,7 +105,7 @@
   margin-right: auto;
 }
 .navbar__logo img {
-  height: 48px;
+  height: 74px;
   width: auto;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -307,5 +356,5 @@
   .navbar { top: 10px; left: 12px; right: 12px; border-radius: 12px; }
   .navbar.scrolled { top: 6px; }
   .navbar__inner { height: 56px; padding: 0 12px; }
-  .navbar__logo img { height: 40px; }
+  .navbar__logo img { height: 52px; }
 }

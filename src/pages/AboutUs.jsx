@@ -91,7 +91,7 @@ export default function AboutUs() {
 
           <div className="about-invite__visual reveal from-right">
             <div className="about-invite__img-main">
-              <img src="/images/interior.png" alt="Hyderabad House Omaha restaurant interior" />
+              <img src="/images/storefront.png" alt="Hyderabad House Omaha storefront" />
               <div className="about-invite__img-glow" />
             </div>
             <div className="about-invite__badge">

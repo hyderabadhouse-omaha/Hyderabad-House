@@ -301,7 +301,7 @@ export default function Home() {
         <div className="container home-about__grid">
           <div className="home-about__img-wrap reveal from-left">
             <div className="home-about__img-frame">
-              <img src="/images/storefront.png" alt="Hyderabad House storefront" className="home-about__img" />
+              <img src="/images/interior.png" alt="Hyderabad House Omaha restaurant interior" className="home-about__img" />
             </div>
           </div>
           <div className="home-about__text reveal from-right">
