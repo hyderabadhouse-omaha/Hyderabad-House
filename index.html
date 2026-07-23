@@ -75,8 +75,10 @@
     <link rel="dns-prefetch" href="https://www.toasttab.com" />
     <link rel="preload" as="image" href="/images/biryani.webp" type="image/webp" fetchpriority="high" />
 
-    <!-- ─── Fonts ────────────────────────────── -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <!-- ─── Fonts (async, non-render-blocking) ─── -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400;1,600&family=Inter:wght@400;500;600&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400;1,600&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400;1,600&family=Inter:wght@400;500;600&display=swap" /></noscript>
 
     <!-- ─── Structured Data: Restaurant ──────── -->
     <script type="application/ld+json">
