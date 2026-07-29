@@ -238,9 +238,9 @@ const sections = [
       title: 'Choice of Protein',
       prices: [
         { l: 'Veg', v: 15 },
-        { l: 'Egg', v: 16 },
-        { l: 'Tofu', v: 16 },
         { l: 'Paneer', v: 16 },
+        { l: 'Tofu', v: 16 },
+        { l: 'Egg', v: 16 },
         { l: 'Chicken', v: 17 },
         { l: 'Fish / Lamb', v: 18 },
         { l: 'Goat', v: 19 },
@@ -307,8 +307,10 @@ const sections = [
     options: {
       title: 'Choice of Protein',
       prices: [
-        { l: 'Veg', v: 16 }, { l: 'Chicken', v: 18 },
-        { l: 'Egg / Tofu', v: 17 }, { l: 'Shrimp', v: 21 },
+        { l: 'Veg', v: 16 },
+        { l: 'Egg / Tofu', v: 17 },
+        { l: 'Chicken', v: 18 },
+        { l: 'Shrimp', v: 21 },
       ],
     },
   },
@@ -423,10 +425,7 @@ function WideItem({ item }) {
   return (
     <div className={`menu-item menu-item--wide${item.full ? ' menu-item--full' : ''}`}>
       <div className="menu-item__row">
-        <span className="menu-item__name">
-          {item.name}
-          <TagBadges tags={item.tags} />
-        </span>
+        <span className="menu-item__name">{item.name}</span>
       </div>
       {item.desc && <p className="menu-item__desc">{item.desc}</p>}
       <div className="menu-item__pills" ref={pillsRef}>

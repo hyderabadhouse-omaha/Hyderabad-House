@@ -152,7 +152,7 @@ export default function AboutUs() {
               <img src="/images/chef-sudarsan.webp" alt="Chef Sudarsan" />
             </div>
             <div className="about-chef__stat-badge">
-              <span className="about-chef__stat-num">10<em>+</em></span>
+              <span className="about-chef__stat-num">20<em>+</em></span>
               <span className="about-chef__stat-lbl">Years<br/>Experience</span>
             </div>
             <div className="about-chef__accent" aria-hidden="true">
@@ -165,7 +165,7 @@ export default function AboutUs() {
 
           <div className="about-chef__body reveal from-right">
             <p className="about-chef__quote">"Great food carries the soul of the person cooking it."</p>
-            <p className="about-chef__para">With 10+ years leading kitchens at India's top restaurants and now in the U.S., Chef Sudarsan brings traditional Hyderabadi technique to every dish he creates. From slow-cooked biryani to hand-charred kebabs, each plate reflects the depth of his craft and the flavors he grew up loving.</p>
+            <p className="about-chef__para">With over 20 years in professional kitchens and 15+ years dedicated to Indian cuisine, Chef Sudarsan has led kitchens at India's top restaurants and now in the U.S., bringing traditional Hyderabadi technique to every dish he creates. From slow-cooked biryani to hand-charred kebabs, each plate reflects the depth of his craft and the flavors he grew up loving.</p>
 
             <div className="about-chef__creds">
               <div className="about-chef__cred">
@@ -174,7 +174,18 @@ export default function AboutUs() {
                     <path d="M12 2l3 6 6 1-4.5 4.5 1 6-5.5-3-5.5 3 1-6L3 9l6-1z" fill="currentColor" fillOpacity="0.18" />
                   </svg>
                 </div>
-                <span className="about-chef__cred-t">10+ Years Experience</span>
+                <span className="about-chef__cred-t">20+ Years Experience</span>
+              </div>
+              <div className="about-chef__cred">
+                <div className="about-chef__cred-ic">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M3 12h18a9 9 0 0 1-9 9 9 9 0 0 1-9-9z" fill="currentColor" fillOpacity="0.18" />
+                    <path d="M2 12h20" />
+                    <path d="M8 8c0-1 1-1.5 1-2.5S8 4 8 3" strokeOpacity="0.7" />
+                    <path d="M12 8c0-1 1-1.5 1-2.5S12 4 12 3" strokeOpacity="0.7" />
+                  </svg>
+                </div>
+                <span className="about-chef__cred-t">15+ Years in Indian Cuisine</span>
               </div>
               <div className="about-chef__cred">
                 <div className="about-chef__cred-ic">
