@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import PageHero from '../components/PageHero'
+import SEO from '../components/SEO'
 import useScrollReveal from '../hooks/useScrollReveal'
 import './Menu.css'
 
@@ -599,6 +600,13 @@ export default function Menu() {
 
   return (
     <main className="menu-page">
+      <SEO
+        title="Menu | Best Biryani & Indian Food in Omaha"
+        description="Explore our full menu — dum biryani, tandoori kebabs, Andhra specials, curries, tandoori grill, vegetarian dishes, Indo-Chinese, breads, desserts and drinks. Halal Indian food in West Omaha, Nebraska."
+        path="/menu"
+        image="/images/biryani.webp"
+        keywords="Indian menu Omaha, biryani menu Omaha, dum biryani, chicken biryani Omaha, goat biryani, tandoori chicken Omaha, chicken tikka masala, chicken 65, butter chicken Omaha, mango lassi, Andhra curry, Gongura curry, halal Indian food Omaha, vegetarian Indian menu, naan bread Omaha, order Indian food online Omaha"
+      />
       <PageHero
         title="Our Menu"
         subtitle="From slow-cooked biryani to smoky kebabs — every dish crafted with authentic Hyderabadi soul."

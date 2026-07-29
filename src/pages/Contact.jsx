@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import PageHero from '../components/PageHero'
+import SEO from '../components/SEO'
 import useScrollReveal from '../hooks/useScrollReveal'
 import './Contact.css'
 
@@ -83,6 +84,13 @@ export default function Contact() {
 
   return (
     <main className="contact-page">
+      <SEO
+        title="Contact Us | Hyderabad House Omaha — Catering, Party Hall, Reservations"
+        description="Get in touch for Indian catering in Omaha, private party hall bookings, wedding catering, corporate lunches, or a table for tonight. Serving West Omaha, Elkhorn, Papillion, Bellevue, Millard, La Vista and Council Bluffs."
+        path="/contact"
+        image="/images/storefront.webp"
+        keywords="contact Hyderabad House Omaha, Indian catering Omaha, party hall Omaha, private dining Omaha, wedding catering Omaha Indian, corporate lunch catering Omaha, birthday party venue Omaha, baby shower venue Omaha, private event space Omaha, Indian restaurant Elkhorn, Indian restaurant Papillion, Indian restaurant Bellevue, Indian restaurant Millard, Indian restaurant La Vista, Indian restaurant Council Bluffs"
+      />
       <PageHero
         title="Let's Talk"
         subtitle="Questions, party hall bookings, catering — we'd love to hear from you."

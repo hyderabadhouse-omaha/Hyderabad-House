@@ -319,7 +319,7 @@ export default function Home() {
         <div className="container home-about__grid">
           <div className="home-about__img-wrap reveal from-left">
             <div className="home-about__img-frame">
-              <img loading="lazy" decoding="async" src="/images/interior.webp" alt="Hyderabad House Omaha restaurant interior" className="home-about__img" />
+              <img loading="lazy" decoding="async" src="/images/interior.webp" alt="Hyderabad House — an authentic Hyderabadi Indian restaurant in West Omaha, Nebraska" className="home-about__img" />
             </div>
           </div>
           <div className="home-about__text reveal from-right">
@@ -441,7 +441,7 @@ export default function Home() {
 
           <div className="home-happy__visual">
             <div className="home-happy__photo">
-              <img loading="lazy" decoding="async" src="/images/flavors.webp" alt="Signature appetizers and drinks at Hyderabad House" />
+              <img loading="lazy" decoding="async" src="/images/flavors.webp" alt="Happy hour appetizers and drinks — 20% off Mon–Fri at Hyderabad House Omaha" />
               <div className="home-happy__photo-tint" />
             </div>
 
@@ -513,7 +513,7 @@ export default function Home() {
         <div className="home-gallery__grid">
           {gallery.map((src, i) => (
             <div key={i} className={`home-gallery__cell reveal delay-${(i % 3) + 1}`}>
-              <img loading="lazy" decoding="async" src={src} alt={`Gallery ${i + 1}`} />
+              <img loading="lazy" decoding="async" src={src} alt={`Authentic Hyderabadi dishes and moments at Hyderabad House Omaha — gallery photo ${i + 1}`} />
               <div className="home-gallery__overlay" />
             </div>
           ))}

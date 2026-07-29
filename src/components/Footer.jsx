@@ -90,6 +90,15 @@ export default function Footer() {
 
       </div>
 
+      <div className="footer__areas">
+        <div className="container footer__areas-inner">
+          <span className="footer__areas-lbl">Proudly serving</span>
+          <span className="footer__areas-list">
+            West Omaha · Elkhorn · Papillion · Bellevue · Millard · La Vista · Council Bluffs
+          </span>
+        </div>
+      </div>
+
       <div className="footer__bottom">
         <div className="container footer__bottom-inner">
           <span>© {new Date().getFullYear()} Hyderabad House. All rights reserved.</span>

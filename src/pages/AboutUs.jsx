@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import PageHero from '../components/PageHero'
+import SEO from '../components/SEO'
 import useScrollReveal from '../hooks/useScrollReveal'
 import './AboutUs.css'
 
@@ -73,6 +74,13 @@ export default function AboutUs() {
 
   return (
     <main className="about-page">
+      <SEO
+        title="About Hyderabad House Omaha | Authentic Hyderabadi Restaurant"
+        description="Meet the team behind West Omaha's favorite authentic Hyderabadi restaurant. Chef Sudarsan brings 20+ years of Indian culinary experience to every plate — from dum biryani to tandoori kebabs. Family-friendly, halal, and rooted in Deccan heritage."
+        path="/about-us"
+        image="/images/interior.webp"
+        keywords="about Hyderabad House, Hyderabadi restaurant Omaha, Chef Sudarsan, authentic Indian food Omaha, family Indian restaurant Omaha, Deccan cuisine, Nizami cuisine, halal Indian restaurant, Indian restaurant West Omaha, Hyderabadi cuisine story"
+      />
       <PageHero
         title="Story of Our Restaurant"
         subtitle="Discover why Hyderabad House is Omaha's favorite destination for authentic Hyderabadi flavors."
@@ -149,7 +157,7 @@ export default function AboutUs() {
 
           <div className="about-chef__portrait reveal from-left">
             <div className="about-chef__frame">
-              <img loading="lazy" decoding="async" src="/images/chef-sudarsan.webp" alt="Chef Sudarsan" />
+              <img loading="lazy" decoding="async" src="/images/chef-sudarsan.webp" alt="Chef Sudarsan, Head Chef at Hyderabad House Omaha, with 20+ years of Indian culinary experience" />
             </div>
             <div className="about-chef__stat-badge">
               <span className="about-chef__stat-num">20<em>+</em></span>

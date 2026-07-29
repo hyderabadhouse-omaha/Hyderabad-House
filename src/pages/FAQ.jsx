@@ -1,18 +1,24 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import PageHero from '../components/PageHero'
+import SEO from '../components/SEO'
 import useScrollReveal from '../hooks/useScrollReveal'
 import './FAQ.css'
 
 const faqs = [
+  { cat: 'Visit', q: 'Where is Hyderabad House Omaha located?', a: "We are located at 2537 S 174th Plz, Omaha, NE 68130 in West Omaha, with easy access from Dodge and Center Street. Free parking is available in the plaza." },
   { cat: 'Visit', q: 'Do you accept walk-ins?', a: "Yes! Walk-ins are always welcome. No reservation is needed — just stop by during our operating hours and we'll be happy to seat you." },
-  { cat: 'Menu', q: 'Do you offer vegetarian and vegan options?', a: 'Absolutely. We have a wide selection of vegetarian dishes including Paneer Tikka Masala, Dal Makhani, Veg Biryani and more. Let your server know about any dietary preferences.' },
   { cat: 'Visit', q: 'What are your opening hours?', a: 'We are open Monday through Sunday, 11:00 AM to 9:00 PM. Hours may vary on public holidays — please call ahead to confirm.' },
-  { cat: 'Events', q: 'Do you offer catering services?', a: "Yes. We cater events of all sizes, from intimate family gatherings to large corporate events. Contact us to build a custom menu for your event." },
-  { cat: 'Events', q: 'Do you have a party hall?', a: "Yes. Our private party hall is perfect for small gatherings, birthday celebrations, meetings and private events. Contact us to check availability." },
-  { cat: 'Menu', q: 'Is your food halal?', a: 'Yes, all our meat and poultry are halal-certified. We take great care to ensure our food meets the highest standards of quality.' },
   { cat: 'Visit', q: 'Do you have parking available?', a: 'Yes, there is ample free parking available in our plaza with easy access from major roads in Omaha.' },
-  { cat: 'Order', q: 'Can I order online for delivery?', a: 'Yes. Place orders online through our Order Now link. We partner with delivery platforms for your convenience.' },
+  { cat: 'Menu', q: 'Where can I find the best biryani in Omaha?', a: "Right here! Our Hyderabadi Dum Biryani is slow-cooked in the traditional dum style with fragrant basmati, marinated meats and hand-ground spices. Locals consistently rate it among the best Indian food in Omaha. Try our HH Signature Biryani for our chef's take on the classic." },
+  { cat: 'Menu', q: 'Is your food halal?', a: 'Yes, all our meat and poultry are halal-certified. We take great care to ensure our food meets the highest standards of quality, making us one of the top halal Indian restaurants in Omaha.' },
+  { cat: 'Menu', q: 'Do you offer vegetarian, vegan, and gluten-free options?', a: 'Absolutely. Our menu features a wide selection of vegetarian dishes including Paneer Tikka Masala, Dal Makhani, Chana Masala, Aloo Gobi, Malai Kofta and Veg Biryani. Many dishes can be prepared vegan or gluten-free on request — let your server know about any dietary preferences and our team will guide you.' },
+  { cat: 'Menu', q: 'Is Hyderabad House kids and family-friendly?', a: "Yes, we're a family Indian restaurant with a warm, welcoming atmosphere. Spice levels can be adjusted for kids, and we have milder dishes like butter chicken, dal makhani, mango lassi and naan that little ones love." },
+  { cat: 'Menu', q: 'Do you have a happy hour?', a: 'Yes! Happy Hour runs Monday through Friday from 3 PM to 6 PM with a flat 20% off on appetizers and drinks. Dine-in only.' },
+  { cat: 'Events', q: 'Do you offer catering services in Omaha?', a: "Yes. We cater events of all sizes, from intimate family gatherings to large corporate lunches, weddings and celebrations across Omaha and surrounding areas. Contact us to build a custom menu for your event." },
+  { cat: 'Events', q: 'Do you have a party hall for private events?', a: "Yes. Our private party hall in West Omaha is perfect for birthday parties, baby showers, engagement parties, corporate lunches, meetings and private events. Contact us to check availability and reserve." },
+  { cat: 'Order', q: 'Can I order online for takeout or delivery in Omaha?', a: 'Yes. Place orders online through our Order Now link. We offer Indian takeout in Omaha and partner with major delivery platforms so you can enjoy authentic Hyderabadi food at home.' },
+  { cat: 'Order', q: 'Do you deliver to Elkhorn, Papillion, Bellevue, Millard, La Vista, or Council Bluffs?', a: 'Yes — delivery to Elkhorn, Papillion, Bellevue, Millard, La Vista and Council Bluffs is available through our delivery partners. Delivery time and fees vary by distance. You can also pick up your order for the fastest turnaround.' },
 ]
 
 const categories = ['All', 'Visit', 'Menu', 'Events', 'Order']
@@ -59,6 +65,22 @@ export default function FAQ() {
 
   return (
     <main className="faq-page">
+      <SEO
+        title="FAQ | Halal, Catering, Delivery — Hyderabad House Omaha"
+        description="Answers about our menu, halal certification, vegan and gluten-free options, catering, private party hall bookings, happy hour, and delivery to Omaha, Elkhorn, Papillion, Bellevue, Millard, La Vista and Council Bluffs."
+        path="/faq"
+        image="/images/dishes.webp"
+        keywords="halal Indian restaurant Omaha FAQ, Indian catering Omaha FAQ, party hall Omaha, Indian food delivery Omaha, vegan Indian food Omaha, gluten-free Indian food, Indian happy hour Omaha, Indian restaurant open now Omaha, Indian restaurant Elkhorn, Indian restaurant Papillion, Indian restaurant Bellevue"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: faqs.map(f => ({
+            '@type': 'Question',
+            name: f.q,
+            acceptedAnswer: { '@type': 'Answer', text: f.a },
+          })),
+        }}
+      />
       <PageHero
         title="Frequently Asked Questions"
         subtitle="Everything you need to know before you visit, book, or order."

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import PageHero from '../components/PageHero'
+import SEO from '../components/SEO'
 import useScrollReveal from '../hooks/useScrollReveal'
 import { posts } from '../data/posts'
 import './Blogs.css'
@@ -22,6 +23,13 @@ export default function Blogs() {
 
   return (
     <main className="blogs-page">
+      <SEO
+        title="Blog | Recipes, Culture & Stories from Hyderabad House Omaha"
+        description="Stories, recipes and culinary wisdom from our Omaha kitchen — the art of dum biryani, Hyderabadi spice secrets, guides to Indian breads, event planning tips and more from Chef Sudarsan and the team."
+        path="/blogs"
+        image="/images/dishes.webp"
+        keywords="Indian food blog Omaha, Hyderabadi recipes, dum biryani recipe, Indian catering blog, Indian cooking tips, halal Indian recipes, Chef Sudarsan blog, Hyderabad House stories"
+      />
       <PageHero
         title="Tips & Recipes from Our Chefs"
         subtitle="Stories, culture, and culinary wisdom from the heart of our kitchen."
