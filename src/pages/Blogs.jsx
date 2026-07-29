@@ -78,7 +78,7 @@ export default function Blogs() {
           <p className="body-lg blogs-cta__text">Follow us on social media for the latest updates, recipes, and behind-the-scenes moments.</p>
           <div className="blogs-cta__btns">
             <Link to="/menu" className="btn btn-primary">Explore Our Menu</Link>
-            <a href="https://www.toasttab.com/nawabis-hyderabad-house" target="_blank" rel="noreferrer" className="btn btn-outline-light">Order Online</a>
+            <a href="https://hyderabadhouse.hungerrush.com/Order/OrderType" target="_blank" rel="noreferrer" className="btn btn-outline-light">Order Online</a>
           </div>
         </div>
       </section>

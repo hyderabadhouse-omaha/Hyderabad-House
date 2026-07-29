@@ -67,7 +67,7 @@ export default function Navbar() {
           </nav>
 
           <div className="navbar__right">
-            <a href="https://www.toasttab.com/nawabis-hyderabad-house"
+            <a href="https://hyderabadhouse.hungerrush.com/Order/OrderType"
               target="_blank" rel="noreferrer"
               className="navbar__order btn btn-primary">
               Order Now
@@ -108,7 +108,7 @@ export default function Navbar() {
             ))}
           </nav>
 
-          <a href="https://www.toasttab.com/nawabis-hyderabad-house"
+          <a href="https://hyderabadhouse.hungerrush.com/Order/OrderType"
             target="_blank" rel="noreferrer"
             className="btn btn-primary navbar__drawer-cta">
             Order Online

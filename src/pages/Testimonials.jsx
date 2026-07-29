@@ -171,7 +171,7 @@ export default function Testimonials() {
           <p className="body-lg tp-cta__text">Join thousands of guests who've made Hyderabad House their favorite spot in Omaha.</p>
           <div className="tp-cta__btns">
             <Link to="/menu" className="btn btn-primary">View Our Menu</Link>
-            <a href="https://www.toasttab.com/nawabis-hyderabad-house" target="_blank" rel="noreferrer" className="btn btn-outline">Order Online</a>
+            <a href="https://hyderabadhouse.hungerrush.com/Order/OrderType" target="_blank" rel="noreferrer" className="btn btn-outline">Order Online</a>
           </div>
         </div>
       </section>

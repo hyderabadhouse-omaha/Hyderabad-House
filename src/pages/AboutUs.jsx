@@ -179,17 +179,6 @@ export default function AboutUs() {
               <div className="about-chef__cred">
                 <div className="about-chef__cred-ic">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M3 12h18a9 9 0 0 1-9 9 9 9 0 0 1-9-9z" fill="currentColor" fillOpacity="0.18" />
-                    <path d="M2 12h20" />
-                    <path d="M8 8c0-1 1-1.5 1-2.5S8 4 8 3" strokeOpacity="0.7" />
-                    <path d="M12 8c0-1 1-1.5 1-2.5S12 4 12 3" strokeOpacity="0.7" />
-                  </svg>
-                </div>
-                <span className="about-chef__cred-t">15+ Years in Indian Cuisine</span>
-              </div>
-              <div className="about-chef__cred">
-                <div className="about-chef__cred-ic">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
                     <circle cx="12" cy="12" r="10" fill="currentColor" fillOpacity="0.18" />
                     <path d="M2 12h20" />
                     <path d="M12 2a15 15 0 0 1 0 20" />

@@ -17,18 +17,18 @@ const homeJsonLd = {
 
 const slides = [
   {
-    eyebrow: 'Flavors of Heritage',
-    title: 'Authentic\nHyderabadi\nCuisine',
-    desc: "Discover the bold, aromatic flavors of authentic Hyderabadi cuisine — a royal culinary tradition now served in the heart of Omaha.",
-    bg: '/images/biryani.webp',
-    bgPos: 'right center',
-  },
-  {
     eyebrow: 'Royal Experience',
     title: 'Rich Flavors,\nRoyal Tradition',
     desc: 'From smoky Chicken Tikka Masala to earthy Dal Tadka — paired with warm naan & fragrant basmati rice for the perfect Hyderabadi meal.',
     bg: '/images/dishes.webp',
     bgPos: 'center center',
+  },
+  {
+    eyebrow: 'Flavors of Heritage',
+    title: 'Authentic\nHyderabadi\nCuisine',
+    desc: "Discover the bold, aromatic flavors of authentic Hyderabadi cuisine — a royal culinary tradition now served in the heart of Omaha.",
+    bg: '/images/biryani.webp',
+    bgPos: 'right center',
   },
   {
     eyebrow: 'Family & Friends',
@@ -200,7 +200,7 @@ function HeroSlider() {
             <p className="body-lg on-dark hero__desc">{s.desc}</p>
             <div className="hero__cta">
               <Link to="/menu" className="btn btn-primary">Explore Menu</Link>
-              <a href="https://www.toasttab.com/nawabis-hyderabad-house" target="_blank" rel="noreferrer"
+              <a href="https://hyderabadhouse.hungerrush.com/Order/OrderType" target="_blank" rel="noreferrer"
                 className="btn btn-outline-light">Order Online</a>
             </div>
           </div>
@@ -527,7 +527,7 @@ export default function Home() {
             </div>
             <div className="home-hours__actions">
               <a href="tel:+14025059209" className="btn btn-primary">Call to Reserve</a>
-              <a href="https://www.toasttab.com/nawabis-hyderabad-house" target="_blank" rel="noreferrer"
+              <a href="https://hyderabadhouse.hungerrush.com/Order/OrderType" target="_blank" rel="noreferrer"
                 className="btn btn-outline-light">Order Online</a>
             </div>
           </div>
@@ -602,7 +602,7 @@ export default function Home() {
           {/* Buttons */}
           <div className="home-hours__m-btns">
             <a href="tel:+14025059209" className="btn btn-primary">Call to Reserve</a>
-            <a href="https://www.toasttab.com/nawabis-hyderabad-house" target="_blank" rel="noreferrer" className="btn btn-outline-light">Order Online</a>
+            <a href="https://hyderabadhouse.hungerrush.com/Order/OrderType" target="_blank" rel="noreferrer" className="btn btn-outline-light">Order Online</a>
           </div>
         </div>
 

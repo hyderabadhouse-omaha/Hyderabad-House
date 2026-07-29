@@ -661,7 +661,7 @@ export default function Menu() {
           <h2 className="heading menu-cta__title">Ready to Order?</h2>
           <p className="menu-cta__text">Reserve our party hall, place a takeout order, or drop by — walk-ins are always welcome.</p>
           <div className="menu-cta__btns">
-            <a href="https://www.toasttab.com/nawabis-hyderabad-house" target="_blank" rel="noreferrer" className="btn btn-primary">Order Online</a>
+            <a href="https://hyderabadhouse.hungerrush.com/Order/OrderType" target="_blank" rel="noreferrer" className="btn btn-primary">Order Online</a>
             <Link to="/contact" className="btn btn-outline-light">Contact Us</Link>
           </div>
         </div>
