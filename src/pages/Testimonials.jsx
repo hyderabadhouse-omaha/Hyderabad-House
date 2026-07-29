@@ -97,7 +97,7 @@ export default function Testimonials() {
     <main className="testimonials-page">
       <PageHero
         title="What Our Guests Say"
-        subtitle="Real experiences from our valued guests — straight from the heart."
+        subtitle="Real experiences from our valued guests, straight from the heart."
         bgImage="/images/dishes.webp"
       />
 

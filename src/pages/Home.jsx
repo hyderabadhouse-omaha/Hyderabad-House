@@ -19,7 +19,7 @@ const slides = [
   {
     eyebrow: 'Royal Experience',
     title: 'Rich Flavors,\nRoyal Tradition',
-    desc: 'From smoky Chicken Tikka Masala to earthy Dal Tadka — paired with warm naan & fragrant basmati rice for the perfect Hyderabadi meal.',
+    desc: 'From smoky Chicken Tikka Masala to earthy Dal Tadka, paired with warm naan & fragrant basmati rice for the perfect Hyderabadi meal.',
     bg: '/images/dishes.webp',
     bgSm: '/images/dishes-sm.webp',
     bgPos: 'center center',
@@ -27,7 +27,7 @@ const slides = [
   {
     eyebrow: 'Flavors of Heritage',
     title: 'Authentic\nHyderabadi\nCuisine',
-    desc: "Discover the bold, aromatic flavors of authentic Hyderabadi cuisine — a royal culinary tradition now served in the heart of Omaha.",
+    desc: "Discover the bold, aromatic flavors of authentic Hyderabadi cuisine, a royal culinary tradition now served in the heart of Omaha.",
     bg: '/images/biryani.webp',
     bgSm: '/images/biryani-sm.webp',
     bgPos: 'right center',
@@ -35,7 +35,7 @@ const slides = [
   {
     eyebrow: 'Family & Friends',
     title: 'A Meal Worth\nCelebrating',
-    desc: 'Fresh ingredients, generous portions, and warm hospitality — gather family for an unforgettable Indian dining experience at Hyderabad House, Omaha.',
+    desc: 'Fresh ingredients, generous portions, and warm hospitality, gather family for an unforgettable Indian dining experience at Hyderabad House, Omaha.',
     bg: '/images/flavors.webp',
     bgSm: '/images/flavors-sm.webp',
     bgPos: 'center center',
@@ -43,7 +43,7 @@ const slides = [
 ]
 
 const testimonials = [
-  { quote: 'Amazing flavors and generous portions!', body: 'The Dum Biryani here is incredible — perfectly spiced. Definitely one of the best spots for Indian food in Omaha!', name: 'Rahul Patel', date: 'Feb 2026', face: '/images/face-1.webp' },
+  { quote: 'Amazing flavors and generous portions!', body: 'The Dum Biryani here is incredible, perfectly spiced. Definitely one of the best spots for Indian food in Omaha!', name: 'Rahul Patel', date: 'Feb 2026', face: '/images/face-1.webp' },
   { quote: 'Authentic taste, amazing hospitality.', body: "You can tell they put heart into their cooking. Hyderabad House will be our family's go-to spot for celebrations.", name: 'Paul Trueman', date: 'Feb 2026', face: '/images/face-2.webp' },
   { quote: 'Feels like home every time.', body: 'From the warm welcome to the perfectly cooked curries, everything reminds me of my trips to Hyderabad.', name: 'Aryaan Khan', date: 'Dec 2025', face: '/images/face-3.webp' },
   { quote: 'Best biryani in Omaha, hands down.', body: "I've tried many Indian restaurants in the area but nothing comes close. The Kodi Pulav and the Haleem are out of this world.", name: 'Samira Hussain', date: 'Jan 2026', face: null },
@@ -55,7 +55,7 @@ const features = [
   {
     num: '01',
     title: 'Menu for Every Taste',
-    desc: 'From spicy biryanis and rich curries to comforting vegetarian delights — our extensive menu caters to every craving.',
+    desc: 'From spicy biryanis and rich curries to comforting vegetarian delights, our extensive menu caters to every craving.',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M3 12h18a9 9 0 0 1-9 9 9 9 0 0 1-9-9z" fill="currentColor" fillOpacity="0.18" />
@@ -170,7 +170,7 @@ function HeroSlider() {
     }
   }, [])
 
-  // (Re)start the auto-advance clock — called on mount and after every manual action
+  // (Re)start the auto-advance clock, called on mount and after every manual action
   const startTimer = () => {
     clearInterval(timerRef.current)
     timerRef.current = setInterval(() => setCurrent(c => (c + 1) % slides.length), 7000)
@@ -183,7 +183,7 @@ function HeroSlider() {
 
   useEffect(() => {
     startTimer()
-    // Pause autoplay in background tabs — animations can't run on hidden pages
+    // Pause autoplay in background tabs, animations can't run on hidden pages
     const onVis = () => document.hidden ? clearInterval(timerRef.current) : startTimer()
     document.addEventListener('visibilitychange', onVis)
     return () => {
@@ -194,7 +194,7 @@ function HeroSlider() {
 
   return (
     <section className="hero">
-      {/* All slides stay mounted — active one crossfades in */}
+      {/* All slides stay mounted, active one crossfades in */}
       {slides.map((s, i) => (
         <div key={i}
           className={`hero__bg${i === current ? ' active' : ''}`}
@@ -202,7 +202,7 @@ function HeroSlider() {
       ))}
       <div className="hero__overlay" />
 
-      {/* All slide contents stacked & crossfaded — the active one animates in
+      {/* All slide contents stacked & crossfaded, the active one animates in
           over the outgoing one, matching the background crossfade */}
       <div className="container hero__content-wrap">
         {slides.map((s, i) => (
@@ -319,7 +319,7 @@ export default function Home() {
         <div className="container home-about__grid">
           <div className="home-about__img-wrap reveal from-left">
             <div className="home-about__img-frame">
-              <img loading="lazy" decoding="async" src="/images/interior.webp" alt="Hyderabad House — an authentic Hyderabadi Indian restaurant in West Omaha, Nebraska" className="home-about__img" />
+              <img loading="lazy" decoding="async" src="/images/interior.webp" alt="Hyderabad House, an authentic Hyderabadi Indian restaurant in West Omaha, Nebraska" className="home-about__img" />
             </div>
           </div>
           <div className="home-about__text reveal from-right">
@@ -327,7 +327,7 @@ export default function Home() {
             <span className="label">About Us</span>
             <h2 className="heading home-about__heading">Taste of Hyderabad<br />in the Heart of Omaha</h2>
             <p className="body-lg">Step into Hyderabad House, where every meal tells a royal story. From fragrant biryanis to sizzling kebabs, we bring the timeless flavors of Hyderabad to your table.</p>
-            <p className="home-about__sub">Crafted with tradition, passion, and genuine hospitality — whether you're craving a comforting family dinner or planning a grand feast.</p>
+            <p className="home-about__sub">Crafted with tradition, passion, and genuine hospitality, whether you're craving a comforting family dinner or planning a grand feast.</p>
             <div className="home-about__highlights">
               {[
                 {
@@ -441,7 +441,7 @@ export default function Home() {
 
           <div className="home-happy__visual">
             <div className="home-happy__photo">
-              <img loading="lazy" decoding="async" src="/images/flavors.webp" alt="Happy hour appetizers and drinks — 20% off Mon–Fri at Hyderabad House Omaha" />
+              <img loading="lazy" decoding="async" src="/images/flavors.webp" alt="Happy hour appetizers and drinks, 20% off Mon–Fri at Hyderabad House Omaha" />
               <div className="home-happy__photo-tint" />
             </div>
 
@@ -513,7 +513,7 @@ export default function Home() {
         <div className="home-gallery__grid">
           {gallery.map((src, i) => (
             <div key={i} className={`home-gallery__cell reveal delay-${(i % 3) + 1}`}>
-              <img loading="lazy" decoding="async" src={src} alt={`Authentic Hyderabadi dishes and moments at Hyderabad House Omaha — gallery photo ${i + 1}`} />
+              <img loading="lazy" decoding="async" src={src} alt={`Authentic Hyderabadi dishes and moments at Hyderabad House Omaha, gallery photo ${i + 1}`} />
               <div className="home-gallery__overlay" />
             </div>
           ))}
@@ -529,7 +529,7 @@ export default function Home() {
             <span className="accent-bar" />
             <span className="label on-dark">Visit Us</span>
             <h2 className="heading on-dark home-hours__heading">Come Dine With Us</h2>
-            <p className="body-lg on-dark">Walk in any day of the week or call ahead to let us know you're coming — we'd love to have you.</p>
+            <p className="body-lg on-dark">Walk in any day of the week or call ahead to let us know you're coming, we'd love to have you.</p>
             <div className="home-hours__visit-list">
               {[
                 { icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>, text: 'Walk-ins Always Welcome' },

@@ -5,7 +5,7 @@ export default function PageHero({ title, subtitle, bgImage }) {
     <section className="page-hero" style={bgImage ? { '--hero-img': `url(${bgImage})` } : {}}>
       <div className="page-hero__overlay" />
       <div className="page-hero__content container">
-        <span className="page-hero__eyebrow label">Hyderabad House — Omaha</span>
+        <span className="page-hero__eyebrow label">Hyderabad House, Omaha</span>
         <h1 className="display page-hero__title">{title}</h1>
         {subtitle && <p className="body-lg page-hero__sub">{subtitle}</p>}
       </div>

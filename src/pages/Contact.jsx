@@ -85,7 +85,7 @@ export default function Contact() {
   return (
     <main className="contact-page">
       <SEO
-        title="Contact Us | Hyderabad House Omaha — Catering, Party Hall, Reservations"
+        title="Contact Us | Hyderabad House Omaha, Catering, Party Hall, Reservations"
         description="Get in touch for Indian catering in Omaha, private party hall bookings, wedding catering, corporate lunches, or a table for tonight. Serving West Omaha, Elkhorn, Papillion, Bellevue, Millard, La Vista and Council Bluffs."
         path="/contact"
         image="/images/storefront.webp"
@@ -93,7 +93,7 @@ export default function Contact() {
       />
       <PageHero
         title="Let's Talk"
-        subtitle="Questions, party hall bookings, catering — we'd love to hear from you."
+        subtitle="Questions, party hall bookings, catering, we'd love to hear from you."
         bgImage="/images/dishes.webp"
       />
 

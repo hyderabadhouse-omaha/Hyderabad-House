@@ -7,7 +7,7 @@ import './Menu.css'
 
 const SPICY = 'spicy', VEG = 'veg', SIG = 'signature'
 
-// Category icons — small SVG glyph shown above each section title
+// Category icons, small SVG glyph shown above each section title
 const catIcons = {
   soups: (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
@@ -154,7 +154,7 @@ const sections = [
   {
     id: 'appetizers',
     label: 'Appetizers',
-    intro: 'Signature preparations — pick a style, then choose your protein',
+    intro: 'Signature preparations, pick a style, then choose your protein',
     items: [
       { name: 'Pachi Mirchi', desc: 'Tossed with fresh green chilies, garlic & spices for a spicy flavor', tags: [SPICY] },
       { name: 'Karam Podi', desc: 'Coated with South Indian spices, garlic & curry leaves for a fiery kick', tags: [SPICY] },
@@ -222,7 +222,7 @@ const sections = [
   {
     id: 'curries',
     label: 'Curries',
-    intro: 'Classic curry preparations — pick a style, then choose your protein',
+    intro: 'Classic curry preparations, pick a style, then choose your protein',
     items: [
       { name: 'Butter', desc: 'Rich buttery tomato sauce with cream & spices', tags: [SIG] },
       { name: 'Tikka Masala', desc: 'Creamy tomato sauce with warm spices and a bold, savory taste', tags: [SIG] },
@@ -298,7 +298,7 @@ const sections = [
   {
     id: 'rice-noodles',
     label: 'Rice & Noodles',
-    intro: 'Indo-Chinese fried rice and noodles — pick a style, then choose your protein',
+    intro: 'Indo-Chinese fried rice and noodles, pick a style, then choose your protein',
     columns: 3,
     items: [
       { name: 'Hakka Style', desc: 'Stir-fried with light sauces & mild spices' },
@@ -318,7 +318,7 @@ const sections = [
   {
     id: 'desserts',
     label: 'Desserts',
-    intro: 'A sweet finish — all $7',
+    intro: 'A sweet finish, all $7',
     items: [
       { name: 'Gulab Jamun', price: 7, tags: [VEG] },
       { name: 'Rice Kheer', price: 7, tags: [VEG] },
@@ -330,7 +330,7 @@ const sections = [
   {
     id: 'shakes',
     label: 'Summer Shakes',
-    intro: 'Chilled and creamy — all $8',
+    intro: 'Chilled and creamy, all $8',
     items: [
       { name: 'Chikoo Shake', price: 8, tags: [VEG] },
       { name: 'Sitaphal Shake', price: 8, tags: [VEG] },
@@ -602,14 +602,14 @@ export default function Menu() {
     <main className="menu-page">
       <SEO
         title="Menu | Best Biryani & Indian Food in Omaha"
-        description="Explore our full menu — dum biryani, tandoori kebabs, Andhra specials, curries, tandoori grill, vegetarian dishes, Indo-Chinese, breads, desserts and drinks. Halal Indian food in West Omaha, Nebraska."
+        description="Explore our full menu, dum biryani, tandoori kebabs, Andhra specials, curries, tandoori grill, vegetarian dishes, Indo-Chinese, breads, desserts and drinks. Halal Indian food in West Omaha, Nebraska."
         path="/menu"
         image="/images/biryani.webp"
         keywords="Indian menu Omaha, biryani menu Omaha, dum biryani, chicken biryani Omaha, goat biryani, tandoori chicken Omaha, chicken tikka masala, chicken 65, butter chicken Omaha, mango lassi, Andhra curry, Gongura curry, halal Indian food Omaha, vegetarian Indian menu, naan bread Omaha, order Indian food online Omaha"
       />
       <PageHero
         title="Our Menu"
-        subtitle="From slow-cooked biryani to smoky kebabs — every dish crafted with authentic Hyderabadi soul."
+        subtitle="From slow-cooked biryani to smoky kebabs, every dish crafted with authentic Hyderabadi soul."
         bgImage="/images/dishes.webp"
       />
 
@@ -653,7 +653,7 @@ export default function Menu() {
           </div>
           <div className="menu-note">
             <h4>Custom Spice Level</h4>
-            <p>Most dishes can be customized — no spice, mild, medium, hot, or extra hot. Just ask.</p>
+            <p>Most dishes can be customized, no spice, mild, medium, hot, or extra hot. Just ask.</p>
           </div>
           <div className="menu-note">
             <h4>Large Parties</h4>
@@ -667,7 +667,7 @@ export default function Menu() {
         <div className="container menu-cta__inner reveal">
           <span className="accent-bar center" />
           <h2 className="heading menu-cta__title">Ready to Order?</h2>
-          <p className="menu-cta__text">Reserve our party hall, place a takeout order, or drop by — walk-ins are always welcome.</p>
+          <p className="menu-cta__text">Reserve our party hall, place a takeout order, or drop by, walk-ins are always welcome.</p>
           <div className="menu-cta__btns">
             <a href="https://hyderabadhouse.hungerrush.com/Order/OrderType" target="_blank" rel="noreferrer" className="btn btn-primary">Order Online</a>
             <Link to="/contact" className="btn btn-outline-light">Contact Us</Link>

@@ -25,7 +25,7 @@ export default function Blogs() {
     <main className="blogs-page">
       <SEO
         title="Blog | Recipes, Culture & Stories from Hyderabad House Omaha"
-        description="Stories, recipes and culinary wisdom from our Omaha kitchen — the art of dum biryani, Hyderabadi spice secrets, guides to Indian breads, event planning tips and more from Chef Sudarsan and the team."
+        description="Stories, recipes and culinary wisdom from our Omaha kitchen, the art of dum biryani, Hyderabadi spice secrets, guides to Indian breads, event planning tips and more from Chef Sudarsan and the team."
         path="/blogs"
         image="/images/dishes.webp"
         keywords="Indian food blog Omaha, Hyderabadi recipes, dum biryani recipe, Indian catering blog, Indian cooking tips, halal Indian recipes, Chef Sudarsan blog, Hyderabad House stories"

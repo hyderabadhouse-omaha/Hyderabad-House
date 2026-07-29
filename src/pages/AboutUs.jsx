@@ -76,7 +76,7 @@ export default function AboutUs() {
     <main className="about-page">
       <SEO
         title="About Hyderabad House Omaha | Authentic Hyderabadi Restaurant"
-        description="Meet the team behind West Omaha's favorite authentic Hyderabadi restaurant. Chef Sudarsan brings 20+ years of Indian culinary experience to every plate — from dum biryani to tandoori kebabs. Family-friendly, halal, and rooted in Deccan heritage."
+        description="Meet the team behind West Omaha's favorite authentic Hyderabadi restaurant. Chef Sudarsan brings 20+ years of Indian culinary experience to every plate, from dum biryani to tandoori kebabs. Family-friendly, halal, and rooted in Deccan heritage."
         path="/about-us"
         image="/images/interior.webp"
         keywords="about Hyderabad House, Hyderabadi restaurant Omaha, Chef Sudarsan, authentic Indian food Omaha, family Indian restaurant Omaha, Deccan cuisine, Nizami cuisine, halal Indian restaurant, Indian restaurant West Omaha, Hyderabadi cuisine story"
