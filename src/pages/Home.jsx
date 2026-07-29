@@ -21,6 +21,7 @@ const slides = [
     title: 'Rich Flavors,\nRoyal Tradition',
     desc: 'From smoky Chicken Tikka Masala to earthy Dal Tadka — paired with warm naan & fragrant basmati rice for the perfect Hyderabadi meal.',
     bg: '/images/dishes.webp',
+    bgSm: '/images/dishes-sm.webp',
     bgPos: 'center center',
   },
   {
@@ -28,6 +29,7 @@ const slides = [
     title: 'Authentic\nHyderabadi\nCuisine',
     desc: "Discover the bold, aromatic flavors of authentic Hyderabadi cuisine — a royal culinary tradition now served in the heart of Omaha.",
     bg: '/images/biryani.webp',
+    bgSm: '/images/biryani-sm.webp',
     bgPos: 'right center',
   },
   {
@@ -35,6 +37,7 @@ const slides = [
     title: 'A Meal Worth\nCelebrating',
     desc: 'Fresh ingredients, generous portions, and warm hospitality — gather family for an unforgettable Indian dining experience at Hyderabad House, Omaha.',
     bg: '/images/flavors.webp',
+    bgSm: '/images/flavors-sm.webp',
     bgPos: 'center center',
   },
 ]
@@ -150,7 +153,22 @@ function CountUp({ to, suffix = '', decimals = 0, duration = 1600 }) {
 
 function HeroSlider() {
   const [current, setCurrent] = useState(0)
+  // Only slide 0 has its background loaded immediately for a fast LCP.
+  // The other slides get their backgrounds after LCP so they don't fight
+  // the hero image for bandwidth on slow mobile networks.
+  const [loaded, setLoaded] = useState(() => new Set([0]))
   const timerRef = useRef(null)
+
+  useEffect(() => {
+    const load = () => setLoaded(new Set([0, 1, 2]))
+    const id = 'requestIdleCallback' in window
+      ? requestIdleCallback(load, { timeout: 2500 })
+      : setTimeout(load, 1800)
+    return () => {
+      if ('requestIdleCallback' in window) cancelIdleCallback(id)
+      else clearTimeout(id)
+    }
+  }, [])
 
   // (Re)start the auto-advance clock — called on mount and after every manual action
   const startTimer = () => {
@@ -180,7 +198,7 @@ function HeroSlider() {
       {slides.map((s, i) => (
         <div key={i}
           className={`hero__bg${i === current ? ' active' : ''}`}
-          style={{ backgroundImage: `url(${s.bg})`, backgroundPosition: s.bgPos }} />
+          style={loaded.has(i) ? { '--bg': `url(${s.bg})`, '--bg-sm': `url(${s.bgSm})`, backgroundPosition: s.bgPos } : { backgroundPosition: s.bgPos }} />
       ))}
       <div className="hero__overlay" />
 
@@ -301,7 +319,7 @@ export default function Home() {
         <div className="container home-about__grid">
           <div className="home-about__img-wrap reveal from-left">
             <div className="home-about__img-frame">
-              <img src="/images/interior.webp" alt="Hyderabad House Omaha restaurant interior" className="home-about__img" />
+              <img loading="lazy" decoding="async" src="/images/interior.webp" alt="Hyderabad House Omaha restaurant interior" className="home-about__img" />
             </div>
           </div>
           <div className="home-about__text reveal from-right">
@@ -423,7 +441,7 @@ export default function Home() {
 
           <div className="home-happy__visual">
             <div className="home-happy__photo">
-              <img src="/images/flavors.webp" alt="Signature appetizers and drinks at Hyderabad House" />
+              <img loading="lazy" decoding="async" src="/images/flavors.webp" alt="Signature appetizers and drinks at Hyderabad House" />
               <div className="home-happy__photo-tint" />
             </div>
 
@@ -495,7 +513,7 @@ export default function Home() {
         <div className="home-gallery__grid">
           {gallery.map((src, i) => (
             <div key={i} className={`home-gallery__cell reveal delay-${(i % 3) + 1}`}>
-              <img src={src} alt={`Gallery ${i + 1}`} />
+              <img loading="lazy" decoding="async" src={src} alt={`Gallery ${i + 1}`} />
               <div className="home-gallery__overlay" />
             </div>
           ))}

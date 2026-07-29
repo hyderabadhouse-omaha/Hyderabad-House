@@ -39,7 +39,7 @@ export default function Blogs() {
           {/* Featured first post */}
           <Link to={`/blogs/${featured.slug}`} className="blog-featured reveal">
             <div className="blog-featured__img-wrap">
-              <img src={featured.img} alt={featured.title} className="blog-featured__img" />
+              <img loading="lazy" decoding="async" src={featured.img} alt={featured.title} className="blog-featured__img" />
               <span className="blog-card__cat label">{featured.cat}</span>
             </div>
             <div className="blog-featured__body">
@@ -55,7 +55,7 @@ export default function Blogs() {
             {rest.map((p, i) => (
               <Link key={p.slug} to={`/blogs/${p.slug}`} className={`blog-card reveal delay-${(i % 3) + 1}`}>
                 <div className="blog-card__img-wrap">
-                  <img src={p.img} alt={p.title} className="blog-card__img" />
+                  <img loading="lazy" decoding="async" src={p.img} alt={p.title} className="blog-card__img" />
                   <span className="blog-card__cat label">{p.cat}</span>
                 </div>
                 <div className="blog-card__body">

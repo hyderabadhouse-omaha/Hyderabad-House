@@ -28,16 +28,29 @@ export default function Navbar() {
   // Safari/Firefox get the CSS backdrop-filter fallback automatically).
   useEffect(() => {
     if (!navRef.current) return
-    const glass = liquidGlass(navRef.current, {
-      scale: -90,
-      chroma: 5,
-      border: 0.08,
-      mapBlur: 14,
-      blur: 6,
-      saturate: 1.6,
-      fallbackBlur: 22,
-    })
-    return () => glass.destroy()
+    // Defer the SVG-filter build until the browser is idle so it never
+    // competes with the hero LCP paint on slow mobile networks.
+    let glass = null
+    const init = () => {
+      if (!navRef.current) return
+      glass = liquidGlass(navRef.current, {
+        scale: -90,
+        chroma: 5,
+        border: 0.08,
+        mapBlur: 14,
+        blur: 6,
+        saturate: 1.6,
+        fallbackBlur: 22,
+      })
+    }
+    const id = 'requestIdleCallback' in window
+      ? requestIdleCallback(init, { timeout: 2000 })
+      : setTimeout(init, 1200)
+    return () => {
+      if ('requestIdleCallback' in window) cancelIdleCallback(id)
+      else clearTimeout(id)
+      if (glass) glass.destroy()
+    }
   }, [])
 
   useEffect(() => { setOpen(false); window.scrollTo(0, 0) }, [pathname])

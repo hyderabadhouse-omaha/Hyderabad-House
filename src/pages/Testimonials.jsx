@@ -121,7 +121,7 @@ export default function Testimonials() {
                 <p className="tp-card__body">{t.body}</p>
                 <div className="tp-card__meta">
                   {t.face
-                    ? <img src={t.face} alt={t.name} className="tp-card__face" />
+                    ? <img loading="lazy" decoding="async" src={t.face} alt={t.name} className="tp-card__face" />
                     : <div className="tp-card__face tp-card__face--init">{t.name[0]}</div>}
                   <div>
                     <span className="tp-card__name">{t.name}</span>

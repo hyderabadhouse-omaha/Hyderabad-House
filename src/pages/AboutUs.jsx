@@ -91,7 +91,7 @@ export default function AboutUs() {
 
           <div className="about-invite__visual reveal from-right">
             <div className="about-invite__img-main">
-              <img src="/images/storefront.webp" alt="Hyderabad House Omaha storefront" />
+              <img loading="lazy" decoding="async" src="/images/storefront.webp" alt="Hyderabad House Omaha storefront" />
               <div className="about-invite__img-glow" />
             </div>
             <div className="about-invite__badge">
@@ -149,7 +149,7 @@ export default function AboutUs() {
 
           <div className="about-chef__portrait reveal from-left">
             <div className="about-chef__frame">
-              <img src="/images/chef-sudarsan.webp" alt="Chef Sudarsan" />
+              <img loading="lazy" decoding="async" src="/images/chef-sudarsan.webp" alt="Chef Sudarsan" />
             </div>
             <div className="about-chef__stat-badge">
               <span className="about-chef__stat-num">20<em>+</em></span>
@@ -232,7 +232,7 @@ export default function AboutUs() {
         <div className="container">
           <div className="about-visit__panel reveal">
             <div className="about-visit__media">
-              <img src="/images/flavors.webp" alt="Signature Hyderabadi dishes at Hyderabad House" />
+              <img loading="lazy" decoding="async" src="/images/flavors.webp" alt="Signature Hyderabadi dishes at Hyderabad House" />
               <div className="about-visit__media-tint" />
               <div className="about-visit__pin">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
