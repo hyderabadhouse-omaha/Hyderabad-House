@@ -108,6 +108,22 @@ const catIcons = {
       <circle cx="11" cy="15" r="0.6" fill="currentColor" />
     </svg>
   ),
+  hotdrinks: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 10h13v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z" fill="currentColor" fillOpacity="0.15" />
+      <path d="M17 12h1a3 3 0 0 1 0 6h-1" />
+      <path d="M7 6c0-1 1-1.5 1-2.5S7 2 7 1" strokeOpacity="0.7" />
+      <path d="M11 6c0-1 1-1.5 1-2.5S11 2 11 1" strokeOpacity="0.7" />
+    </svg>
+  ),
+  colddrinks: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M6 4h12l-1.5 15a2 2 0 0 1-2 1.8h-5a2 2 0 0 1-2-1.8z" fill="currentColor" fillOpacity="0.15" />
+      <path d="M5 4h14" />
+      <line x1="10" y1="11" x2="10" y2="15" strokeOpacity="0.6" />
+      <line x1="14" y1="11" x2="14" y2="15" strokeOpacity="0.6" />
+    </svg>
+  ),
 }
 
 const sections = [
@@ -139,23 +155,26 @@ const sections = [
     label: 'Appetizers',
     intro: 'Signature preparations — pick a style, then choose your protein',
     items: [
-      { name: 'Pachi Mirchi', desc: 'Green chilies, garlic & spices for a spicy kick', tags: [SPICY] },
-      { name: 'Karam Podi', desc: 'South Indian spices, garlic & curry leaves', tags: [SPICY] },
-      { name: 'Monagadi', desc: 'Green chilies, garlic & bold South Indian spices', tags: [SPICY] },
-      { name: 'Pepper', desc: 'Black pepper, garlic & spices for a peppery finish' },
-      { name: 'Chef Special', desc: "The chef's signature blend of spices & herbs", tags: [SIG] },
-      { name: 'Bang Bang', desc: 'Creamy sweet chili sauce — sweet & spicy' },
-      { name: 'Hyderabadi 65', desc: 'Yogurt, red chilies & spices for a spicy taste', tags: [SPICY, SIG] },
-      { name: 'Manchurian', desc: 'Savory Chinese sauce with garlic, soy & seasoning' },
-      { name: 'Chili Style', desc: 'Onions, peppers & chili sauce — bold and spicy', tags: [SPICY] },
-      { name: 'Dragon', desc: 'Fiery garlic chili sauce with bold Indo-Chinese flavors', tags: [SPICY] },
+      { name: 'Pachi Mirchi', desc: 'Tossed with fresh green chilies, garlic & spices for a spicy flavor', tags: [SPICY] },
+      { name: 'Karam Podi', desc: 'Coated with South Indian spices, garlic & curry leaves for a fiery kick', tags: [SPICY] },
+      { name: 'Monagadi', desc: 'Tossed with green chilies, garlic & bold South Indian spices', tags: [SPICY] },
+      { name: 'Pepper', desc: 'Tossed with black pepper, garlic & spices for a peppery flavor' },
+      { name: 'Chef Special', desc: "Tossed in the chef's signature blend of spices & herbs", tags: [SIG] },
+      { name: 'Bang Bang', desc: 'Coated in a creamy sweet chili sauce for a sweet & spicy flavor' },
+      { name: 'Hyderabadi 65', desc: 'Tossed with yogurt, red chilies & spices for a spicy taste', tags: [SPICY, SIG] },
+      { name: 'Manchurian', desc: 'Tossed in a savory Chinese sauce with garlic, soy & seasoning' },
+      { name: 'Chili Style', desc: 'Cooked with onions, peppers & chili sauce for a bold, spicy flavor', tags: [SPICY] },
+      { name: 'Dragon', desc: 'Tossed in a fiery garlic chili sauce with bold Indo-Chinese flavors', tags: [SPICY] },
     ],
     options: {
       title: 'Choice of Protein',
       prices: [
-        { l: 'Baby Corn', v: 14 }, { l: 'Chicken', v: 15 },
-        { l: 'Gobi', v: 14 }, { l: 'Fish', v: 17 },
-        { l: 'Tofu / Paneer', v: 15 }, { l: 'Shrimp', v: 17 },
+        { l: 'Baby Corn', v: 14 },
+        { l: 'Gobi', v: 14 },
+        { l: 'Tofu / Paneer', v: 15 },
+        { l: 'Chicken', v: 15 },
+        { l: 'Fish', v: 17 },
+        { l: 'Shrimp', v: 17 },
       ],
     },
   },
@@ -177,11 +196,11 @@ const sections = [
     intro: 'Slow-cooked in the traditional dum style',
     items: [
       { name: 'Dum Biryani', desc: 'Fragrant basmati slow-cooked with herbs & aromatic spices', prices: [{ l: 'Veg', v: 14 }, { l: 'Egg', v: 15 }, { l: 'Chicken', v: 16 }], tags: [SIG] },
-      { name: 'Vijayawada Biryani', desc: 'Spicy Andhra-style biryani packed with bold chilies', prices: [{ l: 'Gobi', v: 16 }, { l: 'Egg', v: 16 }, { l: 'Paneer', v: 17 }, { l: 'Chicken', v: 17 }, { l: 'Shrimp', v: 19 }], tags: [SPICY] },
-      { name: 'Fry Biryani', desc: 'Biryani rice stir-fried with spices, herbs & traditional seasonings', prices: [{ l: 'Paneer', v: 17 }, { l: 'Chicken (Bhimavaram)', v: 17 }, { l: 'Goat', v: 19 }, { l: 'Fish', v: 19 }, { l: 'Lamb', v: 19 }, { l: 'Shrimp', v: 19 }] },
-      { name: 'Beach Style Biryani', desc: 'Coastal-style biryani with fenugreek leaves & aromatic spices', prices: [{ l: 'Paneer', v: 17 }, { l: 'Chicken', v: 17 }, { l: 'Goat', v: 19 }, { l: 'Lamb', v: 19 }, { l: 'Fish', v: 19 }, { l: 'Shrimp', v: 19 }] },
-      { name: 'Satti Babu Pulav', desc: 'Andhra-style pulav with traditional spices & robust flavors', prices: [{ l: 'Paneer', v: 17 }, { l: 'Chicken', v: 17 }, { l: 'Fish', v: 19 }, { l: 'Goat', v: 19 }, { l: 'Shrimp', v: 19 }, { l: 'Lamb', v: 19 }, { l: 'Goat Kheema', v: 19 }] },
-      { name: 'HH Signature Biryani', desc: 'Our signature biryani prepared with aromatic spices and herbs', prices: [{ l: 'Veg', v: 15 }, { l: 'Paneer', v: 17 }, { l: 'Egg', v: 17 }, { l: 'Chicken', v: 17 }, { l: 'Fish', v: 19 }, { l: 'Goat', v: 19 }, { l: 'Shrimp', v: 19 }, { l: 'Lamb', v: 19 }, { l: 'Goat Kheema', v: 20 }], tags: [SIG] },
+      { name: 'Vijayawada Biryani', desc: 'Spicy Andhra-style biryani packed with bold chilies', prices: [{ l: 'Gobi', v: 16 }, { l: 'Paneer', v: 17 }, { l: 'Egg', v: 16 }, { l: 'Chicken', v: 17 }, { l: 'Shrimp', v: 19 }], tags: [SPICY] },
+      { name: 'Fry Biryani', desc: 'Biryani rice stir-fried with spices, herbs & traditional seasonings', prices: [{ l: 'Paneer', v: 17 }, { l: 'Chicken (Bhimavaram)', v: 17 }, { l: 'Fish', v: 19 }, { l: 'Goat', v: 19 }, { l: 'Lamb', v: 19 }, { l: 'Shrimp', v: 19 }] },
+      { name: 'Beach Style Biryani', desc: 'Coastal-style biryani with fenugreek leaves & aromatic spices', prices: [{ l: 'Paneer', v: 17 }, { l: 'Chicken', v: 17 }, { l: 'Fish', v: 19 }, { l: 'Goat', v: 19 }, { l: 'Lamb', v: 19 }, { l: 'Shrimp', v: 19 }] },
+      { name: 'Satti Babu Pulav', desc: 'Andhra-style pulav with traditional spices & robust flavors', prices: [{ l: 'Paneer', v: 17 }, { l: 'Chicken', v: 17 }, { l: 'Fish', v: 19 }, { l: 'Goat', v: 19 }, { l: 'Goat Kheema', v: 19 }, { l: 'Lamb', v: 19 }, { l: 'Shrimp', v: 19 }] },
+      { name: 'HH Signature Biryani', desc: 'Our signature biryani prepared with aromatic spices and herbs', prices: [{ l: 'Veg', v: 15 }, { l: 'Paneer', v: 17 }, { l: 'Egg', v: 17 }, { l: 'Chicken', v: 17 }, { l: 'Fish', v: 19 }, { l: 'Goat', v: 19 }, { l: 'Lamb', v: 19 }, { l: 'Shrimp', v: 19 }, { l: 'Goat Kheema', v: 20 }], tags: [SIG] },
     ],
   },
   {
@@ -218,6 +237,8 @@ const sections = [
     options: {
       title: 'Choice of Protein',
       prices: [
+        { l: 'Veg', v: 15 },
+        { l: 'Egg', v: 16 },
         { l: 'Tofu', v: 16 },
         { l: 'Paneer', v: 16 },
         { l: 'Chicken', v: 17 },
@@ -252,13 +273,13 @@ const sections = [
     items: [
       { name: 'Plain Naan', price: 4, tags: [VEG] },
       { name: 'Butter Naan', price: 5, tags: [VEG] },
-      { name: 'Garlic Naan', price: 6, tags: [VEG] },
-      { name: 'Roti', price: 5, tags: [VEG] },
       { name: 'Chapathi', price: 5, tags: [VEG] },
-      { name: 'Mixed Basket', note: 'mix of all naan', price: 20, tags: [VEG] },
+      { name: 'Roti', price: 5, tags: [VEG] },
+      { name: 'Garlic Naan', price: 6, tags: [VEG] },
       { name: 'Chole Bhature', price: 14, tags: [VEG] },
       { name: 'Chole Puri', price: 14, tags: [VEG] },
       { name: 'Puri Bhaji', price: 14, tags: [VEG] },
+      { name: 'Mixed Basket', note: 'mix of all naan', price: 20, tags: [VEG] },
     ],
   },
   {
@@ -315,6 +336,29 @@ const sections = [
       { name: 'Strawberry & Banana Shake', price: 8, tags: [VEG] },
       { name: 'Rose Milk Shake', price: 8, tags: [VEG] },
       { name: 'Almond Saffron Shake', price: 8, tags: [VEG] },
+    ],
+  },
+  {
+    id: 'hotdrinks',
+    label: 'Hot Beverages',
+    intro: 'To warm you up',
+    items: [
+      { name: 'Kumbakonam Coffee', price: 5.99, tags: [VEG] },
+      { name: 'Tea', price: 4.99, tags: [VEG] },
+    ],
+  },
+  {
+    id: 'colddrinks',
+    label: 'Cold Beverages',
+    intro: 'Chilled and refreshing',
+    items: [
+      { name: 'Mango Lassi', price: 5.99, tags: [VEG] },
+      { name: 'Salt Lassi', price: 5.99, tags: [VEG] },
+      { name: 'Sweet Lassi', price: 5.99, tags: [VEG] },
+      { name: 'Fizz', flavors: ['Lime', 'Pineapple', 'Watermelon'], price: 3.99, tags: [VEG] },
+      { name: 'Iced Tea', price: 3.99, tags: [VEG] },
+      { name: 'Lemonade', price: 3.99, tags: [VEG] },
+      { name: 'Soda', flavors: ['Coke', 'Diet Coke', 'Sprite', 'Dr Pepper', 'Root Beer', 'Pepsi', 'Thums Up'], price: 2.99, tags: [VEG] },
     ],
   },
   {
@@ -496,6 +540,19 @@ function Item({ item }) {
           <span className="menu-item__name">
             {item.name}
             {item.note && <span className="menu-item__note">{item.note}</span>}
+            {item.flavors && item.flavors.length > 0 && (() => {
+              if (item.flavors.length <= 4) {
+                return <span className="menu-item__flavors">({item.flavors.join(' / ')})</span>
+              }
+              const mid = Math.ceil(item.flavors.length / 2)
+              return (
+                <span className="menu-item__flavors">
+                  ({item.flavors.slice(0, mid).join(' / ')}
+                  <br />
+                  {item.flavors.slice(mid).join(' / ')})
+                </span>
+              )
+            })()}
           </span>
           {hasPrice && !multi && <span className="menu-item__price">{money(item.price)}</span>}
         </div>
