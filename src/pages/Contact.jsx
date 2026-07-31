@@ -70,18 +70,43 @@ const reasons = [
   { title: 'Feedback & Questions', desc: 'Share your experience or ask us anything about our menu, hours, or specials.' },
 ]
 
+// Format a raw phone string into (XXX) XXX-XXXX as the user types,
+// capped at 10 US digits.
+const formatPhone = (raw) => {
+  const d = String(raw).replace(/\D/g, '').slice(0, 10)
+  if (d.length === 0) return ''
+  if (d.length <= 3) return `(${d}`
+  if (d.length <= 6) return `(${d.slice(0, 3)}) ${d.slice(3)}`
+  return `(${d.slice(0, 3)}) ${d.slice(3, 6)}-${d.slice(6)}`
+}
+
 export default function Contact() {
   const [form, setForm] = useState({ firstName: '', lastName: '', email: '', phone: '', topic: '', message: '' })
   const [status, setStatus] = useState('idle') // idle | sending | sent | error
   const [errorMsg, setErrorMsg] = useState('')
   useScrollReveal()
 
-  const handle = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }))
+  const handle = e => {
+    const { name, value } = e.target
+    if (name === 'phone') {
+      setForm(f => ({ ...f, phone: formatPhone(value) }))
+      return
+    }
+    setForm(f => ({ ...f, [name]: value }))
+  }
 
   const submit = async e => {
     e.preventDefault()
     // Honeypot: bots typically fill every field. Real users leave this empty.
     const botcheck = e.target.botcheck?.value || ''
+
+    // Phone is optional, but if provided it must be a full 10-digit US number.
+    const phoneDigits = form.phone.replace(/\D/g, '')
+    if (form.phone && phoneDigits.length !== 10) {
+      setStatus('error')
+      setErrorMsg('Please enter a valid 10-digit phone number, or leave the field empty.')
+      return
+    }
 
     setStatus('sending')
     setErrorMsg('')
@@ -223,8 +248,18 @@ export default function Contact() {
                     <input name="email" type="email" placeholder="you@example.com" value={form.email} onChange={handle} required />
                   </div>
                   <div className="contact-form__field">
-                    <label>Phone</label>
-                    <input name="phone" placeholder="(402) 000-0000" value={form.phone} onChange={handle} />
+                    <label>Phone <span className="contact-form__hint">(optional)</span></label>
+                    <input
+                      name="phone"
+                      type="tel"
+                      inputMode="tel"
+                      autoComplete="tel-national"
+                      placeholder="(402) 000-0000"
+                      value={form.phone}
+                      onChange={handle}
+                      maxLength={14}
+                      aria-describedby="phone-hint"
+                    />
                   </div>
                 </div>
                 <div className="contact-form__field">

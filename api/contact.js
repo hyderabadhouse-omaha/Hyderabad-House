@@ -154,6 +154,10 @@ export default async function handler(req, res) {
   if (!firstName.trim()) errors.push('First name is required.')
   if (!lastName.trim()) errors.push('Last name is required.')
   if (!/^\S+@\S+\.\S+$/.test(email)) errors.push('A valid email is required.')
+  // Phone is optional. If provided, must be a 10-digit US number.
+  if (phone && phone.replace(/\D/g, '').length !== 10) {
+    errors.push('Phone number must be 10 digits.')
+  }
   if (!topic) errors.push('Please select a topic.')
   if (!message.trim() || message.trim().length < 5) errors.push('Please include a message.')
   if (message.length > 5000) errors.push('Message is too long.')
