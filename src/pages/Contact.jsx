@@ -72,15 +72,42 @@ const reasons = [
 
 export default function Contact() {
   const [form, setForm] = useState({ firstName: '', lastName: '', email: '', phone: '', topic: '', message: '' })
-  const [sent, setSent] = useState(false)
+  const [status, setStatus] = useState('idle') // idle | sending | sent | error
+  const [errorMsg, setErrorMsg] = useState('')
   useScrollReveal()
 
   const handle = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }))
-  const submit = e => {
+
+  const submit = async e => {
     e.preventDefault()
-    setSent(true)
-    setForm({ firstName: '', lastName: '', email: '', phone: '', topic: '', message: '' })
+    // Honeypot: bots typically fill every field. Real users leave this empty.
+    const botcheck = e.target.botcheck?.value || ''
+
+    setStatus('sending')
+    setErrorMsg('')
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ ...form, botcheck }),
+      })
+      const data = await res.json().catch(() => ({}))
+      if (res.ok && data.success) {
+        setStatus('sent')
+        setForm({ firstName: '', lastName: '', email: '', phone: '', topic: '', message: '' })
+      } else {
+        setStatus('error')
+        setErrorMsg(data.error || 'Something went wrong. Please try again or call us at +1 (402) 505-9209.')
+      }
+    } catch (_err) {
+      setStatus('error')
+      setErrorMsg('Network error. Please check your connection and try again.')
+    }
   }
+
+  const sent = status === 'sent'
+  const sending = status === 'sending'
 
   return (
     <main className="contact-page">
@@ -166,11 +193,20 @@ export default function Contact() {
                 </div>
                 <h3 className="heading contact-success__title">Message Sent</h3>
                 <p className="body-lg">Thank you! We'll get back to you within 24 hours.</p>
-                <button className="btn btn-outline" onClick={() => setSent(false)}>Send Another</button>
+                <button className="btn btn-outline" onClick={() => setStatus('idle')}>Send Another</button>
               </div>
             ) : (
-              <form className="contact-form" onSubmit={submit}>
+              <form className="contact-form" onSubmit={submit} noValidate>
                 <span className="label contact-form__lbl">Send us a message</span>
+                {/* Honeypot — hidden from real users, catches automated bots */}
+                <input
+                  type="text"
+                  name="botcheck"
+                  tabIndex="-1"
+                  autoComplete="off"
+                  aria-hidden="true"
+                  style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, opacity: 0, pointerEvents: 'none' }}
+                />
                 <div className="contact-form__row">
                   <div className="contact-form__field">
                     <label>First Name</label>
@@ -205,11 +241,18 @@ export default function Contact() {
                   <label>Message</label>
                   <textarea name="message" placeholder="Tell us more…" rows={5} value={form.message} onChange={handle} required />
                 </div>
-                <button type="submit" className="btn btn-primary contact-form__submit">
-                  Send Message
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="14" height="14">
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
+                {status === 'error' && (
+                  <p className="contact-form__error" role="alert">
+                    {errorMsg}
+                  </p>
+                )}
+                <button type="submit" className="btn btn-primary contact-form__submit" disabled={sending}>
+                  {sending ? 'Sending…' : 'Send Message'}
+                  {!sending && (
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="14" height="14">
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  )}
                 </button>
               </form>
             )}

@@ -262,6 +262,17 @@
   box-shadow: 0 0 0 4px rgba(224,123,24,0.1);
 }
 .contact-form__submit { margin-top: 8px; align-self: flex-start; }
+.contact-form__submit:disabled { opacity: 0.6; cursor: not-allowed; }
+.contact-form__error {
+  margin: 4px 0 0;
+  padding: 12px 14px;
+  background: rgba(224,55,24,0.08);
+  border: 1px solid rgba(224,55,24,0.28);
+  border-radius: var(--r-sm);
+  color: #c74a20;
+  font-size: 13px;
+  line-height: 1.5;
+}
 
 .contact-success {
   text-align: center;
