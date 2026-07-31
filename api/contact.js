@@ -3,7 +3,7 @@
 //
 // Env vars required in Vercel dashboard (Project → Settings → Environment Variables):
 //   RESEND_API_KEY   — created in the Resend dashboard
-//   CONTACT_TO       — destination inbox (default: hhbiryani.dm@gmail.com)
+//   CONTACT_TO       — destination inbox (default: hhbiryani.oma@gmail.com)
 //   CONTACT_FROM     — sender address (default: 'Hyderabad House <noreply@hhoma.com>')
 
 const TOPIC_LABELS = {
@@ -13,7 +13,7 @@ const TOPIC_LABELS = {
   other: 'Other',
 }
 
-const DEFAULT_TO = 'hhbiryani.dm@gmail.com'
+const DEFAULT_TO = 'hhbiryani.oma@gmail.com'
 const DEFAULT_FROM = 'Hyderabad House Omaha <noreply@hhoma.com>'
 
 const escape = (s = '') =>
