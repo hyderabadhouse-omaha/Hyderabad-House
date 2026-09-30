@@ -137,7 +137,8 @@ export default function BiryaniUtsav() {
     setCalOpen(false)
   }
 
-  // Close the calendar or time modal on Escape and lock body scroll while open.
+  // Close the calendar or time modal on Escape (page scroll stays enabled
+  // so users can move the page around while the picker is open).
   useEffect(() => {
     if (!calOpen && !timeOpen) return
     const onKey = e => {
@@ -146,12 +147,7 @@ export default function BiryaniUtsav() {
       if (timeOpen) setTimeOpen(false)
     }
     document.addEventListener('keydown', onKey)
-    const prev = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
-    return () => {
-      document.removeEventListener('keydown', onKey)
-      document.body.style.overflow = prev
-    }
+    return () => document.removeEventListener('keydown', onKey)
   }, [calOpen, timeOpen])
 
   const handle = e => {
