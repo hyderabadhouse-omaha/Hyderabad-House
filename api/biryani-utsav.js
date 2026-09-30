@@ -20,7 +20,7 @@ const escape = (s = '') =>
     .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;').replace(/'/g, '&#39;')
 
-function renderHtml({ fullName, email, phone, dateDisplay, biryani, kind }) {
+function renderHtml({ fullName, email, phone, dateDisplay, pickupTimeDisplay, biryani, kind }) {
   const kindTag = kind === 'veg'
     ? '<span style="background:#e6f2df;color:#4b8a3e;border:1px solid #b7dbaa;padding:3px 9px;border-radius:6px;font-size:10px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;">Veg</span>'
     : '<span style="background:#fbe1d8;color:#c74a20;border:1px solid #f2b8a3;padding:3px 9px;border-radius:6px;font-size:10px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;">Non-Veg</span>'
@@ -56,6 +56,10 @@ function renderHtml({ fullName, email, phone, dateDisplay, biryani, kind }) {
             <td style="padding:10px 0;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#8c7a63;font-weight:700;vertical-align:top;">Pickup Date</td>
             <td style="padding:10px 0;font-size:15px;color:#1c1208;vertical-align:top;font-weight:700;">${escape(dateDisplay)}</td>
           </tr>
+          <tr>
+            <td style="padding:10px 0;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#8c7a63;font-weight:700;vertical-align:top;">Pickup Time</td>
+            <td style="padding:10px 0;font-size:15px;color:#1c1208;vertical-align:top;font-weight:700;">${escape(pickupTimeDisplay)}</td>
+          </tr>
         </table>
       </td></tr>
 
@@ -84,7 +88,7 @@ function renderHtml({ fullName, email, phone, dateDisplay, biryani, kind }) {
 </table></body></html>`
 }
 
-function renderText({ fullName, email, phone, dateDisplay, biryani, kind }) {
+function renderText({ fullName, email, phone, dateDisplay, pickupTimeDisplay, biryani, kind }) {
   return [
     `New October Biryani Utsav booking from ${fullName}`,
     '',
@@ -92,6 +96,7 @@ function renderText({ fullName, email, phone, dateDisplay, biryani, kind }) {
     `Email:   ${email}`,
     `Phone:   ${phone}`,
     `Date:    ${dateDisplay}`,
+    `Time:    ${pickupTimeDisplay}`,
     `Biryani: ${biryani} (${kind === 'veg' ? 'Veg' : 'Non-Veg'})`,
     '',
     'Half-tray, designed for gatherings.',
@@ -111,7 +116,8 @@ export default async function handler(req, res) {
   const body = req.body || {}
   const {
     firstName = '', lastName = '', email = '',
-    phone = '', date = '', biryani = '', botcheck = '',
+    phone = '', date = '', pickupTime = '',
+    biryani = '', botcheck = '',
   } = body
 
   if (botcheck) return res.status(200).json({ success: true })
@@ -140,6 +146,22 @@ export default async function handler(req, res) {
     }
   }
 
+  // Pickup time must be HH:MM in 15-min increments between 11:00 and 20:45.
+  let pickupTimeDisplay = ''
+  if (!/^\d{2}:\d{2}$/.test(pickupTime)) {
+    errors.push('Please select a pickup time.')
+  } else {
+    const [hh, mm] = pickupTime.split(':').map(Number)
+    const totalMin = hh * 60 + mm
+    if (totalMin < 11 * 60 || totalMin > 20 * 60 + 45 || mm % 15 !== 0) {
+      errors.push('Pickup time must be between 11:00 AM and 8:45 PM in 15-min slots.')
+    } else {
+      const period = hh >= 12 ? 'PM' : 'AM'
+      const h12 = hh === 12 ? 12 : hh > 12 ? hh - 12 : hh
+      pickupTimeDisplay = `${h12}:${String(mm).padStart(2, '0')} ${period}`
+    }
+  }
+
   // Biryani must match the weekday's veg or non-veg option (guards against tampered payloads).
   let kind = null
   if (menu) {
@@ -165,9 +187,9 @@ export default async function handler(req, res) {
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${apiKey}` },
       body: JSON.stringify({
         from, to: [to], reply_to: email,
-        subject: `Biryani Utsav booking · ${dateDisplay} · ${fullName}`,
-        html: renderHtml({ fullName, email, phone, dateDisplay, biryani, kind }),
-        text: renderText({ fullName, email, phone, dateDisplay, biryani, kind }),
+        subject: `Biryani Utsav booking · ${dateDisplay} at ${pickupTimeDisplay} · ${fullName}`,
+        html: renderHtml({ fullName, email, phone, dateDisplay, pickupTimeDisplay, biryani, kind }),
+        text: renderText({ fullName, email, phone, dateDisplay, pickupTimeDisplay, biryani, kind }),
       }),
     })
     const data = await r.json().catch(() => ({}))

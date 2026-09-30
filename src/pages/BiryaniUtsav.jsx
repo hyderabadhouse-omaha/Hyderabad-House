@@ -5,6 +5,22 @@ import useScrollReveal from '../hooks/useScrollReveal'
 import { WEEKLY_MENU, getAvailableDates, isOfferLive, UTSAV_START, UTSAV_END } from '../data/biryaniUtsav'
 import './BiryaniUtsav.css'
 
+// Pickup time slots, 15-min intervals, restaurant open 11 AM to 9 PM
+// (last slot is 8:45 PM so there's time to hand off before close).
+function buildTimeSlots(startHour = 11, endHour = 21, stepMin = 15) {
+  const slots = []
+  for (let h = startHour; h < endHour; h++) {
+    for (let m = 0; m < 60; m += stepMin) {
+      const t24 = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`
+      const period = h >= 12 ? 'PM' : 'AM'
+      const h12 = h === 12 ? 12 : h > 12 ? h - 12 : h
+      slots.push({ value: t24, label: `${h12}:${String(m).padStart(2, '0')} ${period}` })
+    }
+  }
+  return slots
+}
+const TIME_SLOTS = buildTimeSlots()
+
 // Build a full month grid (weeks of 7 cells, Sun–Sat) for the given year/month.
 // availableSet is a Set of ISO date strings that should be selectable.
 function buildMonthGrid(year, month, availableSet) {
@@ -33,7 +49,7 @@ const formatPhone = (raw) => {
 export default function BiryaniUtsav() {
   const [form, setForm] = useState({
     firstName: '', lastName: '', email: '', phone: '',
-    date: '', biryani: '',
+    date: '', pickupTime: '', biryani: '',
   })
   const [status, setStatus] = useState('idle')
   const [errorMsg, setErrorMsg] = useState('')
@@ -49,6 +65,7 @@ export default function BiryaniUtsav() {
     if (!f.phone.trim()) errs.phone = 'Phone number is required.'
     else if (f.phone.replace(/\D/g, '').length !== 10) errs.phone = 'Please enter a 10-digit phone number.'
     if (!f.date) errs.date = 'Please pick a pickup date.'
+    if (!f.pickupTime) errs.pickupTime = 'Please pick a pickup time.'
     if (!f.biryani) errs.biryani = 'Please choose a biryani.'
     return errs
   }
@@ -148,7 +165,7 @@ export default function BiryaniUtsav() {
       const data = await res.json().catch(() => ({}))
       if (res.ok && data.success) {
         setStatus('sent')
-        setForm({ firstName: '', lastName: '', email: '', phone: '', date: '', biryani: '' })
+        setForm({ firstName: '', lastName: '', email: '', phone: '', date: '', pickupTime: '', biryani: '' })
       } else {
         setStatus('error')
         setErrorMsg(data.error || 'Something went wrong. Please try again or call us at +1 (402) 505-9209.')
@@ -235,7 +252,15 @@ export default function BiryaniUtsav() {
                 <div className="utsav-form__head">
                   <span className="label utsav-form__lbl">Book Your Half-Tray</span>
                   <h3 className="heading utsav-form__title">Pick a Day, Pick a Biryani</h3>
-                  <p className="utsav-form__lead">One half-tray per booking. We'll call you to confirm pickup time.</p>
+                </div>
+
+                <div className="utsav-form__note-banner" role="note">
+                  <svg className="utsav-form__note-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="16" x2="12" y2="12" />
+                    <line x1="12" y1="8" x2="12.01" y2="8" />
+                  </svg>
+                  <span><strong>One half-tray per booking.</strong> Need more than one? Book again after this or give us a call at <a href="tel:+14025059209">(402) 505-9209</a>.</span>
                 </div>
 
                 {/* Honeypot */}
@@ -306,6 +331,7 @@ export default function BiryaniUtsav() {
                   </div>
                 </div>
 
+                <div className="utsav-form__row">
                 <div className={`utsav-form__field utsav-form__field--date${fieldErrors.date ? ' has-error' : ''}`} ref={calRef}>
                   <label>Pickup Date</label>
                   <button
@@ -382,6 +408,28 @@ export default function BiryaniUtsav() {
                       </div>
                     </>
                   )}
+                </div>
+
+                <div className={`utsav-form__field${fieldErrors.pickupTime ? ' has-error' : ''}`}>
+                  <label htmlFor="utsav-pickupTime">Pickup Time</label>
+                  <select
+                    id="utsav-pickupTime"
+                    name="pickupTime"
+                    value={form.pickupTime}
+                    onChange={handle}
+                    onBlur={onBlur}
+                    aria-invalid={!!fieldErrors.pickupTime}
+                    aria-describedby={fieldErrors.pickupTime ? 'utsav-pickupTime-err' : undefined}
+                  >
+                    <option value="">Select a time…</option>
+                    {TIME_SLOTS.map(t => (
+                      <option key={t.value} value={t.value}>{t.label}</option>
+                    ))}
+                  </select>
+                  {fieldErrors.pickupTime && (
+                    <span id="utsav-pickupTime-err" className="utsav-form__field-err">{fieldErrors.pickupTime}</span>
+                  )}
+                </div>
                 </div>
 
                 {selected && (
