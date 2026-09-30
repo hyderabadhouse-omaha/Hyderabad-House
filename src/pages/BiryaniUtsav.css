@@ -512,7 +512,13 @@
   .utsav-form-panel { padding: 36px 26px; }
 }
 @media (max-width: 560px) {
-  .utsav-grid { grid-template-columns: 1fr; }
+  /* Keep the 4 days in a compact 2x2 grid on phones */
+  .utsav-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .utsav-card { padding: 18px 14px; }
+  .utsav-card__day { font-size: 1rem; margin-bottom: 10px; padding-bottom: 8px; }
+  .utsav-card__row { padding: 5px 0; gap: 8px; }
+  .utsav-card__name { font-size: 12.5px; line-height: 1.35; }
+
   .utsav-form__row { grid-template-columns: 1fr; }
   .utsav-choose__opts { grid-template-columns: 1fr; }
   .utsav-form-panel { padding: 28px 22px; }
