@@ -654,7 +654,7 @@
   .utsav-grid { grid-template-columns: repeat(2, 1fr); }
   .utsav-form-panel { padding: 36px 26px; }
 }
-@media (max-width: 560px) {
+@media (max-width: 640px) {
   /* Keep the 4 days in a compact 2x2 grid on phones */
   .utsav-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .utsav-card { padding: 18px 14px; }
@@ -666,4 +666,38 @@
   .utsav-choose__opts { grid-template-columns: 1fr; }
   .utsav-form-panel { padding: 28px 22px; }
   .utsav-cal__cell { font-size: 13px; }
+
+  /* Calendar and time picker become bottom sheets on phones —
+     always fully visible, no chance of getting clipped mid-viewport. */
+  .utsav-cal,
+  .utsav-time {
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: none;
+    width: 100%;
+    max-width: none;
+    max-height: 85vh;
+    border-radius: 20px 20px 0 0;
+    padding-bottom: calc(22px + env(safe-area-inset-bottom, 0px));
+    animation: utsav-sheet-up 0.28s var(--ease-out);
+    box-shadow: 0 -20px 48px rgba(28,18,8,0.28);
+  }
+  @keyframes utsav-sheet-up {
+    from { transform: translateY(100%); }
+    to   { transform: translateY(0); }
+  }
+  /* A visible drag handle so it reads as a sheet */
+  .utsav-cal::before,
+  .utsav-time::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(140,122,99,0.35);
+    margin: 0 auto 12px;
+  }
+  .utsav-time__col-list { height: 240px; }
 }
