@@ -9,6 +9,7 @@ import Testimonials from './pages/Testimonials'
 import Contact from './pages/Contact'
 import Blogs from './pages/Blogs'
 import BlogPost from './pages/BlogPost'
+import BiryaniUtsav from './pages/BiryaniUtsav'
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/blogs/:slug" element={<BlogPost />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/biryani-utsav" element={<BiryaniUtsav />} />
       </Routes>
       <Footer />
     </>

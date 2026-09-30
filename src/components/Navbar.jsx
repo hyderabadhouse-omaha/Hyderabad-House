@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import liquidGlass from '../lib/liquidGlass'
+import { isOfferLive } from '../data/biryaniUtsav'
 import './Navbar.css'
 
 const links = [
@@ -55,6 +56,8 @@ export default function Navbar() {
 
   useEffect(() => { setOpen(false); window.scrollTo(0, 0) }, [pathname])
 
+  const utsavLive = isOfferLive()
+
   // Lock body scroll when drawer is open
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
@@ -80,6 +83,12 @@ export default function Navbar() {
           </nav>
 
           <div className="navbar__right">
+            {utsavLive && (
+              <Link to="/biryani-utsav" className="navbar__utsav" aria-label="October Biryani Utsav">
+                <span className="navbar__utsav-dot" aria-hidden="true" />
+                <span className="navbar__utsav-label">Biryani Utsav</span>
+              </Link>
+            )}
             <a href="https://hyderabadhouse.hungerrush.com/Order/OrderType"
               target="_blank" rel="noreferrer"
               className="navbar__order btn btn-primary">
@@ -120,6 +129,14 @@ export default function Navbar() {
               </NavLink>
             ))}
           </nav>
+
+          {utsavLive && (
+            <Link to="/biryani-utsav" className="navbar__drawer-utsav">
+              <span className="navbar__utsav-dot" aria-hidden="true" />
+              <span>October Biryani Utsav</span>
+              <span className="navbar__drawer-arrow">→</span>
+            </Link>
+          )}
 
           <a href="https://hyderabadhouse.hungerrush.com/Order/OrderType"
             target="_blank" rel="noreferrer"
