@@ -237,35 +237,39 @@
 .utsav-date-trigger.has-value { color: var(--text); font-weight: 500; }
 .utsav-date-trigger__icon { width: 18px; height: 18px; color: var(--saffron); flex-shrink: 0; }
 
-/* Popover backdrop, dimmed on mobile so the modal reads clearly */
+/* Modal backdrop, covers the viewport so the calendar reads on any screen */
 .utsav-cal__backdrop {
-  display: none;
   position: fixed;
   inset: 0;
-  background: rgba(28,18,8,0.45);
-  z-index: 60;
+  background: rgba(28,18,8,0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 100;
   animation: utsav-cal-fade 0.18s ease-out;
 }
 @keyframes utsav-cal-fade { from { opacity: 0 } to { opacity: 1 } }
 
-/* Popover: floats below the trigger on desktop, centered modal on mobile */
+/* Centered modal — same behavior on desktop and mobile so it never
+   clips or overlaps the footer no matter where the trigger sits. */
 .utsav-cal {
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 0;
-  z-index: 61;
-  width: 340px;
-  max-width: calc(100vw - 40px);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 101;
+  width: min(360px, calc(100vw - 32px));
+  max-height: calc(100vh - 64px);
+  overflow: auto;
   background: var(--bg);
   border: 1px solid var(--border-s);
-  border-radius: 14px;
-  padding: 18px 20px 20px;
-  box-shadow: 0 24px 48px rgba(28,18,8,0.18);
+  border-radius: 16px;
+  padding: 20px 22px 22px;
+  box-shadow: 0 32px 64px rgba(28,18,8,0.24);
   animation: utsav-cal-pop 0.2s var(--ease-out);
 }
 @keyframes utsav-cal-pop {
-  from { opacity: 0; transform: translateY(-6px) scale(0.98); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.96); }
+  to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 }
 .utsav-cal__head {
   display: flex;
@@ -483,19 +487,5 @@
   .utsav-form__row { grid-template-columns: 1fr; }
   .utsav-choose__opts { grid-template-columns: 1fr; }
   .utsav-form-panel { padding: 28px 22px; }
-
-  /* Calendar becomes a centered modal on phones */
-  .utsav-cal__backdrop { display: block; }
-  .utsav-cal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: min(340px, calc(100vw - 32px));
-  }
-  @keyframes utsav-cal-pop {
-    from { opacity: 0; transform: translate(-50%, -50%) scale(0.96); }
-    to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-  }
   .utsav-cal__cell { font-size: 13px; }
 }

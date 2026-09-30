@@ -64,18 +64,16 @@ export default function BiryaniUtsav() {
     setCalOpen(false)
   }
 
-  // Close the calendar popover on outside click or Escape.
+  // Close the calendar modal on Escape and lock body scroll while open.
   useEffect(() => {
     if (!calOpen) return
-    const onClick = e => {
-      if (calRef.current && !calRef.current.contains(e.target)) setCalOpen(false)
-    }
     const onKey = e => { if (e.key === 'Escape') setCalOpen(false) }
-    document.addEventListener('mousedown', onClick)
     document.addEventListener('keydown', onKey)
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
     return () => {
-      document.removeEventListener('mousedown', onClick)
       document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = prev
     }
   }, [calOpen])
 
@@ -251,7 +249,11 @@ export default function BiryaniUtsav() {
                   )}
                   {calOpen && (
                     <>
-                      <div className="utsav-cal__backdrop" aria-hidden="true" />
+                      <div
+                        className="utsav-cal__backdrop"
+                        onClick={() => setCalOpen(false)}
+                        aria-hidden="true"
+                      />
                       <div className="utsav-cal" role="dialog" aria-label="Pickup date calendar">
                         <div className="utsav-cal__head">
                           <span className="utsav-cal__month">{monthLabel}</span>
