@@ -2,8 +2,25 @@ import { useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import SEO from '../components/SEO'
 import useScrollReveal from '../hooks/useScrollReveal'
-import { WEEKLY_MENU, getAvailableDates, isOfferLive } from '../data/biryaniUtsav'
+import { WEEKLY_MENU, getAvailableDates, isOfferLive, UTSAV_START, UTSAV_END } from '../data/biryaniUtsav'
 import './BiryaniUtsav.css'
+
+// Build a full month grid (weeks of 7 cells, Sun–Sat) for the given year/month.
+// availableSet is a Set of ISO date strings that should be selectable.
+function buildMonthGrid(year, month, availableSet) {
+  const first = new Date(year, month, 1)
+  const startPad = first.getDay() // 0=Sun
+  const daysInMonth = new Date(year, month + 1, 0).getDate()
+
+  const cells = []
+  for (let i = 0; i < startPad; i++) cells.push({ blank: true })
+  for (let d = 1; d <= daysInMonth; d++) {
+    const iso = `${year}-${String(month + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`
+    cells.push({ day: d, iso, available: availableSet.has(iso) })
+  }
+  while (cells.length % 7 !== 0) cells.push({ blank: true })
+  return cells
+}
 
 const formatPhone = (raw) => {
   const d = String(raw).replace(/\D/g, '').slice(0, 10)
@@ -24,10 +41,22 @@ export default function BiryaniUtsav() {
 
   const live = useMemo(() => isOfferLive(), [])
   const dates = useMemo(() => getAvailableDates(), [])
+  const availableSet = useMemo(() => new Set(dates.map(d => d.iso)), [dates])
   const selected = useMemo(
     () => dates.find(d => d.iso === form.date) || null,
     [dates, form.date],
   )
+  // Calendar is fixed to the Utsav month (October 2026).
+  const utsavYear = Number(UTSAV_START.slice(0, 4))
+  const utsavMonth = Number(UTSAV_START.slice(5, 7)) - 1
+  const monthCells = useMemo(
+    () => buildMonthGrid(utsavYear, utsavMonth, availableSet),
+    [utsavYear, utsavMonth, availableSet],
+  )
+  const monthLabel = new Date(utsavYear, utsavMonth, 1)
+    .toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
+
+  const pickDate = iso => setForm(f => ({ ...f, date: iso, biryani: '' }))
 
   const handle = e => {
     const { name, value } = e.target
@@ -181,15 +210,39 @@ export default function BiryaniUtsav() {
 
                 <div className="utsav-form__field">
                   <label>Pickup Date</label>
-                  <select name="date" value={form.date} onChange={handle} required>
-                    <option value="">Select a date…</option>
-                    {dates.map(d => (
-                      <option key={d.iso} value={d.iso}>{d.display}</option>
-                    ))}
-                  </select>
-                  {dates.length === 0 && (
-                    <span className="utsav-form__note">No dates left in the Utsav window. See you next year.</span>
-                  )}
+                  <div className="utsav-cal" role="group" aria-label="Pickup date calendar">
+                    <div className="utsav-cal__head">
+                      <span className="utsav-cal__month">{monthLabel}</span>
+                      <span className="utsav-cal__legend">
+                        <span className="utsav-cal__legend-dot" /> Mon – Thu only
+                      </span>
+                    </div>
+                    <div className="utsav-cal__grid" role="grid">
+                      {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((d, i) => (
+                        <div key={`h${i}`} className="utsav-cal__dow" aria-hidden="true">{d}</div>
+                      ))}
+                      {monthCells.map((c, i) => {
+                        if (c.blank) return <div key={`b${i}`} className="utsav-cal__cell utsav-cal__cell--blank" />
+                        const isSel = form.date === c.iso
+                        return (
+                          <button
+                            key={c.iso}
+                            type="button"
+                            className={`utsav-cal__cell${c.available ? '' : ' is-disabled'}${isSel ? ' is-selected' : ''}`}
+                            onClick={() => c.available && pickDate(c.iso)}
+                            disabled={!c.available}
+                            aria-pressed={isSel}
+                            aria-label={c.iso}
+                          >
+                            {c.day}
+                          </button>
+                        )
+                      })}
+                    </div>
+                    {dates.length === 0 && (
+                      <span className="utsav-form__note">No dates left in the Utsav window. See you next year.</span>
+                    )}
+                  </div>
                 </div>
 
                 {selected && (

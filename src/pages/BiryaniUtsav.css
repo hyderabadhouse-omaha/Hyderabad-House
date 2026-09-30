@@ -205,6 +205,96 @@
   margin-top: 4px;
 }
 
+/* Inline calendar picker */
+.utsav-cal {
+  background: var(--bg-1);
+  border: 1px solid var(--border-s);
+  border-radius: var(--r-sm);
+  padding: 18px 20px 20px;
+}
+.utsav-cal__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.utsav-cal__month {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  color: var(--text);
+  font-weight: 700;
+}
+.utsav-cal__legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--text-m);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.utsav-cal__legend-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--saffron);
+}
+
+.utsav-cal__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+.utsav-cal__dow {
+  text-align: center;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: var(--text-m);
+  padding: 6px 0 10px;
+  text-transform: uppercase;
+}
+.utsav-cal__cell {
+  aspect-ratio: 1;
+  border: 1px solid transparent;
+  background: transparent;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.15s;
+  font-family: inherit;
+  padding: 0;
+}
+.utsav-cal__cell:not(:disabled):hover {
+  background: rgba(224,123,24,0.1);
+  border-color: rgba(224,123,24,0.35);
+  transform: translateY(-1px);
+}
+.utsav-cal__cell.is-disabled {
+  color: rgba(140, 122, 99, 0.4);
+  cursor: not-allowed;
+  text-decoration: line-through;
+  text-decoration-color: rgba(140, 122, 99, 0.25);
+}
+.utsav-cal__cell.is-selected {
+  background: linear-gradient(135deg, var(--saffron-l), var(--saffron-d));
+  border-color: var(--saffron-d);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(224,123,24,0.32);
+}
+.utsav-cal__cell--blank {
+  cursor: default;
+  background: transparent;
+  border: none;
+}
+
 /* Biryani chooser */
 .utsav-choose {
   padding: 20px;
