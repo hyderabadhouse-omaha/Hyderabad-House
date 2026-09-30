@@ -1,6 +1,5 @@
 import { useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import PageHero from '../components/PageHero'
 import SEO from '../components/SEO'
 import useScrollReveal from '../hooks/useScrollReveal'
 import { WEEKLY_MENU, getAvailableDates, isOfferLive } from '../data/biryaniUtsav'
@@ -81,20 +80,17 @@ export default function BiryaniUtsav() {
         image="/images/biryani.webp"
         keywords="October biryani offer Omaha, biryani utsav Omaha, half tray biryani Omaha, biryani for gatherings Omaha, Chicken Dum Biryani Omaha, Thalapakatti Goat Biryani Omaha, Vijayawada Chicken Biryani Omaha, Pachimirchi Paneer Biryani Omaha"
       />
-      <PageHero
-        title="October Biryani Utsav"
-        subtitle="Fall for biryani. Half-tray feasts designed for gatherings, Monday through Thursday."
-        bgImage="/images/biryani.webp"
-      />
-
-      {/* ── Offer schedule ─────────────────────── */}
-      <section className="section utsav-schedule">
+      {/* ── Offer schedule (landing top) ────────── */}
+      <section className="section utsav-schedule utsav-schedule--top">
         <div className="container">
           <div className="utsav-head reveal">
-            <span className="accent-bar center" />
-            <span className="label" style={{ display: 'block', textAlign: 'center', marginBottom: 16 }}>Share the Pot</span>
-            <h2 className="heading utsav-title">A Different Biryani Every Weekday</h2>
-            <p className="body-lg utsav-sub">Every half-tray is cooked fresh the day of, sealed at the pot, and ready for you to pick up. Available through October 31, 2026.</p>
+            <span className="utsav-eyebrow">
+              <span className="utsav-eyebrow__dot" aria-hidden="true" />
+              October 1 – 31, 2026
+            </span>
+            <h1 className="heading utsav-title">October Biryani Utsav</h1>
+            <p className="utsav-tagline">Fall for biryani. Half-tray feasts designed for gatherings.</p>
+            <p className="body-lg utsav-sub">A different biryani every Monday through Thursday, cooked fresh the day of, sealed at the pot, and ready for you to pick up.</p>
           </div>
 
           <div className="utsav-grid">

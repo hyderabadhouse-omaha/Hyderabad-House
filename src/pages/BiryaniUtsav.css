@@ -2,8 +2,67 @@
 
 /* ── Schedule ────────────────────────────── */
 .utsav-schedule { background: var(--bg); }
+
+/* Landing top variant: adds room for the fixed navbar and a radial saffron wash */
+.utsav-schedule--top {
+  padding-top: 140px;
+  position: relative;
+  overflow: hidden;
+}
+.utsav-schedule--top::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 420px;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(224,123,24,0.14) 0%, transparent 60%),
+    linear-gradient(180deg, rgba(224,123,24,0.05), transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+.utsav-schedule--top .container { position: relative; z-index: 1; }
+
 .utsav-head { text-align: center; margin-bottom: 48px; }
-.utsav-title { font-size: clamp(1.8rem, 3vw, 2.6rem); margin: 0 0 14px; }
+
+.utsav-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(224,123,24,0.08);
+  border: 1px solid rgba(224,123,24,0.28);
+  border-radius: 100px;
+  color: var(--saffron-d);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.utsav-eyebrow__dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--saffron);
+  box-shadow: 0 0 8px var(--saffron);
+  animation: utsav-eyebrow-pulse 2s ease-in-out infinite;
+}
+@keyframes utsav-eyebrow-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
+.utsav-title {
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  margin: 0 0 12px;
+  line-height: 1.05;
+}
+.utsav-tagline {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  color: var(--saffron-d);
+  margin: 0 0 18px;
+}
 .utsav-sub { color: var(--text-m); max-width: 620px; margin: 0 auto; }
 
 .utsav-grid {
