@@ -1,0 +1,703 @@
+.utsav-page { padding-top: 0; }
+
+/* ── Schedule ────────────────────────────── */
+.utsav-schedule { background: var(--bg); }
+
+/* Landing top variant: adds room for the fixed navbar and a radial saffron wash */
+.utsav-schedule--top {
+  padding-top: 140px;
+  position: relative;
+  overflow: hidden;
+}
+.utsav-schedule--top::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 420px;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(224,123,24,0.14) 0%, transparent 60%),
+    linear-gradient(180deg, rgba(224,123,24,0.05), transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+.utsav-schedule--top .container { position: relative; z-index: 1; }
+
+.utsav-head { text-align: center; margin-bottom: 48px; }
+
+.utsav-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(224,123,24,0.08);
+  border: 1px solid rgba(224,123,24,0.28);
+  border-radius: 100px;
+  color: var(--saffron-d);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.utsav-eyebrow__dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--saffron);
+  box-shadow: 0 0 8px var(--saffron);
+  animation: utsav-eyebrow-pulse 2s ease-in-out infinite;
+}
+@keyframes utsav-eyebrow-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
+.utsav-title {
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  margin: 0 0 12px;
+  line-height: 1.05;
+}
+.utsav-tagline {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  color: var(--saffron-d);
+  margin: 0 0 18px;
+}
+.utsav-sub { color: var(--text-m); max-width: 620px; margin: 0 auto; }
+
+.utsav-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.utsav-card {
+  background: var(--bg-1);
+  border: 1px solid var(--border-s);
+  border-radius: var(--r-lg);
+  padding: 26px 24px;
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.4s var(--ease-out),
+    box-shadow 0.4s var(--ease-out),
+    border-color 0.35s;
+  box-shadow: 0 2px 18px rgba(28,18,8,0.06);
+}
+.utsav-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--saffron-d), var(--saffron-l));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s var(--ease-out);
+}
+.utsav-card:hover::before { transform: scaleX(1); }
+.utsav-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 28px 52px rgba(224,123,24,0.14);
+  border-color: rgba(224,123,24,0.28);
+}
+
+.utsav-card__day {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  color: var(--saffron);
+  font-weight: 800;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-s);
+}
+
+.utsav-card__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 0;
+}
+
+/* Standard Indian veg / non-veg label:
+   a small outlined square with a filled dot in the middle.
+   Green = veg, red = non-veg. */
+.food-mark {
+  flex-shrink: 0;
+  display: inline-block;
+  position: relative;
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  margin-top: 4px;
+  background: #fff;
+}
+.food-mark::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+.food-mark--veg { border: 1.5px solid #4b8a3e; }
+.food-mark--veg::after { background: #4b8a3e; }
+.food-mark--nv { border: 1.5px solid #c74a20; }
+.food-mark--nv::after { background: #c74a20; }
+
+.utsav-card__name {
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* ── Form section ───────────────────────── */
+.utsav-form-section { background: var(--bg-1); }
+
+.utsav-form-panel {
+  max-width: 720px;
+  margin: 0 auto;
+  background: var(--bg);
+  border: 1px solid var(--border-s);
+  border-radius: var(--r-lg);
+  padding: 48px 44px;
+  box-shadow: 0 20px 60px rgba(28,18,8,0.08);
+}
+
+.utsav-form { display: flex; flex-direction: column; gap: 18px; }
+
+.utsav-form__head { margin-bottom: 8px; }
+.utsav-form__lbl { display: block; margin-bottom: 12px; color: var(--saffron); }
+.utsav-form__title { font-size: clamp(1.5rem, 2.4vw, 2rem); margin: 0 0 8px; }
+.utsav-form__lead { color: var(--text-m); font-size: 14px; margin: 0; }
+
+/* Prominent info banner: 'One half-tray per booking' */
+.utsav-form__note-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  background: linear-gradient(135deg, rgba(224,123,24,0.1), rgba(224,123,24,0.03));
+  border: 1px solid rgba(224,123,24,0.28);
+  border-left: 3px solid var(--saffron);
+  border-radius: var(--r-sm);
+  color: var(--text);
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+.utsav-form__note-banner strong { color: var(--saffron-d); font-weight: 800; }
+.utsav-form__note-banner a { color: var(--saffron-d); text-decoration: underline; font-weight: 700; }
+.utsav-form__note-icon {
+  width: 20px; height: 20px;
+  color: var(--saffron);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.utsav-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.utsav-form__field { display: flex; flex-direction: column; gap: 8px; }
+.utsav-form__field label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text-m);
+  text-transform: uppercase;
+}
+.utsav-form__field input,
+.utsav-form__field select {
+  padding: 14px 16px;
+  border: 1px solid var(--border-s);
+  border-radius: var(--r-sm);
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--text);
+  background: var(--bg-1);
+  transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
+  width: 100%;
+}
+.utsav-form__field input:focus,
+.utsav-form__field select:focus {
+  outline: none;
+  border-color: var(--saffron);
+  background: var(--bg);
+  box-shadow: 0 0 0 4px rgba(224,123,24,0.1);
+}
+.utsav-form__note {
+  font-size: 12px;
+  color: var(--text-m);
+  margin-top: 4px;
+}
+
+/* Per-field error styling */
+.utsav-form__field.has-error input,
+.utsav-form__field.has-error select {
+  border-color: #d94a1e;
+  background: rgba(224,55,24,0.04);
+  box-shadow: 0 0 0 4px rgba(224,55,24,0.08);
+}
+.utsav-form__field.has-error label {
+  color: #c74a20;
+}
+.utsav-date-trigger.is-error {
+  border-color: #d94a1e;
+  background: rgba(224,55,24,0.04);
+  box-shadow: 0 0 0 4px rgba(224,55,24,0.08);
+}
+.utsav-choose.has-error {
+  border-color: #d94a1e;
+  background: rgba(224,55,24,0.04);
+}
+.utsav-form__field-err {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #c74a20;
+  margin-top: 4px;
+  font-weight: 600;
+}
+.utsav-form__field-err::before {
+  content: '!';
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px; height: 14px;
+  background: #c74a20;
+  color: #fff;
+  font-weight: 800;
+  font-size: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Date trigger button (mimics the other form inputs) */
+.utsav-form__field--date { position: relative; }
+.utsav-date-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--border-s);
+  border-radius: var(--r-sm);
+  background: var(--bg-1);
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--text-m);
+  cursor: pointer;
+  transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
+  text-align: left;
+}
+.utsav-date-trigger:hover {
+  border-color: rgba(224,123,24,0.5);
+}
+.utsav-date-trigger:focus-visible,
+.utsav-form__field--date:has(.utsav-cal) .utsav-date-trigger {
+  outline: none;
+  border-color: var(--saffron);
+  background: var(--bg);
+  box-shadow: 0 0 0 4px rgba(224,123,24,0.1);
+}
+.utsav-date-trigger.has-value { color: var(--text); font-weight: 500; }
+.utsav-date-trigger__icon { width: 18px; height: 18px; color: var(--saffron); flex-shrink: 0; }
+
+/* Modal backdrop, covers the viewport so the calendar reads on any screen */
+.utsav-cal__backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(28,18,8,0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 100;
+  animation: utsav-cal-fade 0.18s ease-out;
+}
+@keyframes utsav-cal-fade { from { opacity: 0 } to { opacity: 1 } }
+
+/* Centered modal — same behavior on desktop and mobile so it never
+   clips or overlaps the footer no matter where the trigger sits. */
+.utsav-cal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 101;
+  width: min(360px, calc(100vw - 32px));
+  max-height: calc(100vh - 64px);
+  overflow: auto;
+  background: var(--bg);
+  border: 1px solid var(--border-s);
+  border-radius: 16px;
+  padding: 20px 22px 22px;
+  box-shadow: 0 32px 64px rgba(28,18,8,0.24);
+  animation: utsav-cal-pop 0.2s var(--ease-out);
+}
+@keyframes utsav-cal-pop {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.96); }
+  to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+.utsav-cal__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.utsav-cal__month {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  color: var(--text);
+  font-weight: 700;
+}
+.utsav-cal__close {
+  width: 30px; height: 30px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 8px;
+  border: 1px solid var(--border-s);
+  background: transparent;
+  color: var(--text-m);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.utsav-cal__close svg { width: 14px; height: 14px; }
+.utsav-cal__close:hover {
+  background: rgba(224,123,24,0.08);
+  border-color: rgba(224,123,24,0.32);
+  color: var(--saffron-d);
+}
+.utsav-cal__legend-row { margin-bottom: 10px; }
+.utsav-cal__legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  color: var(--text-m);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.utsav-cal__legend-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--saffron);
+}
+
+.utsav-cal__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+.utsav-cal__dow {
+  text-align: center;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: var(--text-m);
+  padding: 6px 0 10px;
+  text-transform: uppercase;
+}
+.utsav-cal__cell {
+  aspect-ratio: 1;
+  border: 1px solid transparent;
+  background: transparent;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.15s;
+  font-family: inherit;
+  padding: 0;
+}
+.utsav-cal__cell:not(:disabled):hover {
+  background: rgba(224,123,24,0.1);
+  border-color: rgba(224,123,24,0.35);
+  transform: translateY(-1px);
+}
+.utsav-cal__cell.is-disabled {
+  color: rgba(140, 122, 99, 0.4);
+  cursor: not-allowed;
+  text-decoration: line-through;
+  text-decoration-color: rgba(140, 122, 99, 0.25);
+}
+.utsav-cal__cell.is-selected {
+  background: linear-gradient(135deg, var(--saffron-l), var(--saffron-d));
+  border-color: var(--saffron-d);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(224,123,24,0.32);
+}
+.utsav-cal__cell--blank {
+  cursor: default;
+  background: transparent;
+  border: none;
+}
+
+/* Wheel-style time picker (Hours + Minutes columns, Cancel + OK) */
+.utsav-form__field--time { position: relative; }
+.utsav-time {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 101;
+  width: min(320px, calc(100vw - 32px));
+  background: var(--bg);
+  border: 1px solid var(--border-s);
+  border-radius: 16px;
+  padding: 18px 20px 16px;
+  box-shadow: 0 32px 64px rgba(28,18,8,0.24);
+  animation: utsav-cal-pop 0.2s var(--ease-out);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.utsav-time__cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.utsav-time__col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.utsav-time__col-head {
+  text-align: center;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-m);
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border-s);
+}
+.utsav-time__col-list {
+  height: 200px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 4px 2px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(140,122,99,0.4) transparent;
+}
+.utsav-time__col-list::-webkit-scrollbar { width: 6px; }
+.utsav-time__col-list::-webkit-scrollbar-thumb {
+  background: rgba(140,122,99,0.35);
+  border-radius: 4px;
+}
+.utsav-time__opt {
+  padding: 10px 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  text-align: center;
+  flex-shrink: 0;
+}
+.utsav-time__opt:hover {
+  background: rgba(224,123,24,0.08);
+  border-color: rgba(224,123,24,0.28);
+}
+.utsav-time__opt.is-selected {
+  background: linear-gradient(135deg, var(--saffron-l), var(--saffron-d));
+  border-color: var(--saffron-d);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(224,123,24,0.28);
+}
+.utsav-time__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border-s);
+}
+.utsav-time__cancel,
+.utsav-time__ok {
+  padding: 9px 20px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.15s;
+}
+.utsav-time__cancel {
+  background: transparent;
+  border: 1px solid var(--border-s);
+  color: var(--text-m);
+}
+.utsav-time__cancel:hover {
+  border-color: rgba(224,123,24,0.4);
+  color: var(--saffron-d);
+}
+.utsav-time__ok {
+  background: linear-gradient(135deg, var(--saffron-l), var(--saffron-d));
+  border: 1px solid var(--saffron-d);
+  color: #fff;
+}
+.utsav-time__ok:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(224,123,24,0.32);
+}
+.utsav-time__ok:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Biryani chooser */
+.utsav-choose {
+  padding: 20px;
+  background: rgba(224,123,24,0.05);
+  border: 1px dashed rgba(224,123,24,0.32);
+  border-radius: var(--r-sm);
+}
+.utsav-choose__head {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: var(--text);
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+.utsav-choose__opts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.utsav-opt {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 16px 18px;
+  background: var(--bg);
+  border: 1px solid var(--border-s);
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  transition: border-color 0.25s, background 0.25s, transform 0.25s;
+}
+.utsav-opt input { position: absolute; opacity: 0; pointer-events: none; }
+.utsav-opt:hover {
+  border-color: rgba(224,123,24,0.5);
+  background: rgba(224,123,24,0.02);
+}
+.utsav-opt.active {
+  border-color: var(--saffron);
+  background: rgba(224,123,24,0.06);
+  box-shadow: 0 0 0 4px rgba(224,123,24,0.1);
+}
+.utsav-opt__name {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.utsav-form__error {
+  margin: 4px 0 0;
+  padding: 12px 14px;
+  background: rgba(224,55,24,0.08);
+  border: 1px solid rgba(224,55,24,0.28);
+  border-radius: var(--r-sm);
+  color: #c74a20;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.utsav-form__submit { margin-top: 8px; align-self: flex-start; }
+.utsav-form__submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* Success + closed states */
+.utsav-success,
+.utsav-closed {
+  text-align: center;
+  padding: 24px 0;
+}
+.utsav-success__icon,
+.utsav-closed__icon {
+  width: 72px; height: 72px;
+  border-radius: 20px;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+}
+.utsav-success__icon {
+  background: linear-gradient(135deg, rgba(110,224,102,0.14), rgba(110,224,102,0.04));
+  border: 1px solid rgba(110,224,102,0.3);
+  color: #4ea847;
+}
+.utsav-success__icon svg { width: 40px; height: 40px; }
+.utsav-closed__icon {
+  background: rgba(28,18,8,0.05);
+  border: 1px solid var(--border-s);
+  color: var(--text-m);
+}
+.utsav-closed__icon svg { width: 32px; height: 32px; }
+.utsav-success__title { margin-bottom: 12px; }
+
+/* ── Responsive ──────────────────────────── */
+@media (max-width: 900px) {
+  .utsav-grid { grid-template-columns: repeat(2, 1fr); }
+  .utsav-form-panel { padding: 36px 26px; }
+}
+@media (max-width: 640px) {
+  /* Keep the 4 days in a compact 2x2 grid on phones */
+  .utsav-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .utsav-card { padding: 18px 14px; }
+  .utsav-card__day { font-size: 1rem; margin-bottom: 10px; padding-bottom: 8px; }
+  .utsav-card__row { padding: 5px 0; gap: 8px; }
+  .utsav-card__name { font-size: 12.5px; line-height: 1.35; }
+
+  .utsav-form__row { grid-template-columns: 1fr; }
+  .utsav-choose__opts { grid-template-columns: 1fr; }
+  .utsav-form-panel { padding: 28px 22px; }
+  .utsav-cal__cell { font-size: 13px; }
+
+  /* Calendar and time picker become bottom sheets on phones —
+     always fully visible, no chance of getting clipped mid-viewport. */
+  .utsav-cal,
+  .utsav-time {
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: none;
+    width: 100%;
+    max-width: none;
+    max-height: 85vh;
+    border-radius: 20px 20px 0 0;
+    padding-bottom: calc(22px + env(safe-area-inset-bottom, 0px));
+    animation: utsav-sheet-up 0.28s var(--ease-out);
+    box-shadow: 0 -20px 48px rgba(28,18,8,0.28);
+  }
+  @keyframes utsav-sheet-up {
+    from { transform: translateY(100%); }
+    to   { transform: translateY(0); }
+  }
+  /* A visible drag handle so it reads as a sheet */
+  .utsav-cal::before,
+  .utsav-time::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(140,122,99,0.35);
+    margin: 0 auto 12px;
+  }
+  .utsav-time__col-list { height: 240px; }
+}
