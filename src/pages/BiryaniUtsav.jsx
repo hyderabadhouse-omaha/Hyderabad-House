@@ -190,7 +190,7 @@ export default function BiryaniUtsav() {
             ) : (
               <form className="utsav-form" onSubmit={submit} noValidate>
                 <div className="utsav-form__head">
-                  <span className="label utsav-form__lbl">Reserve Your Half-Tray</span>
+                  <span className="label utsav-form__lbl">Book Your Half-Tray</span>
                   <h3 className="heading utsav-form__title">Pick a Day, Pick a Biryani</h3>
                   <p className="utsav-form__lead">One half-tray per booking. We'll call you to confirm pickup time.</p>
                 </div>
@@ -329,7 +329,7 @@ export default function BiryaniUtsav() {
                 )}
 
                 <button type="submit" className="btn btn-primary utsav-form__submit" disabled={sending}>
-                  {sending ? 'Reserving…' : 'Reserve My Half-Tray'}
+                  {sending ? 'Booking…' : 'Book My Half-Tray'}
                   {!sending && (
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="14" height="14">
                       <path d="M5 12h14M12 5l7 7-7 7" />
