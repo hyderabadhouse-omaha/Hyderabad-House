@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import SEO from '../components/SEO'
 import useScrollReveal from '../hooks/useScrollReveal'
@@ -56,7 +56,28 @@ export default function BiryaniUtsav() {
   const monthLabel = new Date(utsavYear, utsavMonth, 1)
     .toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
 
-  const pickDate = iso => setForm(f => ({ ...f, date: iso, biryani: '' }))
+  const [calOpen, setCalOpen] = useState(false)
+  const calRef = useRef(null)
+
+  const pickDate = iso => {
+    setForm(f => ({ ...f, date: iso, biryani: '' }))
+    setCalOpen(false)
+  }
+
+  // Close the calendar popover on outside click or Escape.
+  useEffect(() => {
+    if (!calOpen) return
+    const onClick = e => {
+      if (calRef.current && !calRef.current.contains(e.target)) setCalOpen(false)
+    }
+    const onKey = e => { if (e.key === 'Escape') setCalOpen(false) }
+    document.addEventListener('mousedown', onClick)
+    document.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('mousedown', onClick)
+      document.removeEventListener('keydown', onKey)
+    }
+  }, [calOpen])
 
   const handle = e => {
     const { name, value } = e.target
@@ -208,41 +229,73 @@ export default function BiryaniUtsav() {
                   </div>
                 </div>
 
-                <div className="utsav-form__field">
+                <div className="utsav-form__field utsav-form__field--date" ref={calRef}>
                   <label>Pickup Date</label>
-                  <div className="utsav-cal" role="group" aria-label="Pickup date calendar">
-                    <div className="utsav-cal__head">
-                      <span className="utsav-cal__month">{monthLabel}</span>
-                      <span className="utsav-cal__legend">
-                        <span className="utsav-cal__legend-dot" /> Mon – Thu only
-                      </span>
-                    </div>
-                    <div className="utsav-cal__grid" role="grid">
-                      {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((d, i) => (
-                        <div key={`h${i}`} className="utsav-cal__dow" aria-hidden="true">{d}</div>
-                      ))}
-                      {monthCells.map((c, i) => {
-                        if (c.blank) return <div key={`b${i}`} className="utsav-cal__cell utsav-cal__cell--blank" />
-                        const isSel = form.date === c.iso
-                        return (
+                  <button
+                    type="button"
+                    className={`utsav-date-trigger${form.date ? ' has-value' : ''}`}
+                    onClick={() => setCalOpen(o => !o)}
+                    aria-haspopup="dialog"
+                    aria-expanded={calOpen}
+                  >
+                    <span className="utsav-date-trigger__text">
+                      {selected ? selected.display : 'Select a date…'}
+                    </span>
+                    <svg className="utsav-date-trigger__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="3" y="5" width="18" height="16" rx="2" />
+                      <path d="M3 10h18M8 3v4M16 3v4" />
+                    </svg>
+                  </button>
+                  {dates.length === 0 && (
+                    <span className="utsav-form__note">No dates left in the Utsav window. See you next year.</span>
+                  )}
+                  {calOpen && (
+                    <>
+                      <div className="utsav-cal__backdrop" aria-hidden="true" />
+                      <div className="utsav-cal" role="dialog" aria-label="Pickup date calendar">
+                        <div className="utsav-cal__head">
+                          <span className="utsav-cal__month">{monthLabel}</span>
                           <button
-                            key={c.iso}
                             type="button"
-                            className={`utsav-cal__cell${c.available ? '' : ' is-disabled'}${isSel ? ' is-selected' : ''}`}
-                            onClick={() => c.available && pickDate(c.iso)}
-                            disabled={!c.available}
-                            aria-pressed={isSel}
-                            aria-label={c.iso}
+                            className="utsav-cal__close"
+                            onClick={() => setCalOpen(false)}
+                            aria-label="Close calendar"
                           >
-                            {c.day}
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                              <path d="M6 6l12 12M18 6L6 18" />
+                            </svg>
                           </button>
-                        )
-                      })}
-                    </div>
-                    {dates.length === 0 && (
-                      <span className="utsav-form__note">No dates left in the Utsav window. See you next year.</span>
-                    )}
-                  </div>
+                        </div>
+                        <div className="utsav-cal__legend-row">
+                          <span className="utsav-cal__legend">
+                            <span className="utsav-cal__legend-dot" /> Mon – Thu only
+                          </span>
+                        </div>
+                        <div className="utsav-cal__grid" role="grid">
+                          {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((d, i) => (
+                            <div key={`h${i}`} className="utsav-cal__dow" aria-hidden="true">{d}</div>
+                          ))}
+                          {monthCells.map((c, i) => {
+                            if (c.blank) return <div key={`b${i}`} className="utsav-cal__cell utsav-cal__cell--blank" />
+                            const isSel = form.date === c.iso
+                            return (
+                              <button
+                                key={c.iso}
+                                type="button"
+                                className={`utsav-cal__cell${c.available ? '' : ' is-disabled'}${isSel ? ' is-selected' : ''}`}
+                                onClick={() => c.available && pickDate(c.iso)}
+                                disabled={!c.available}
+                                aria-pressed={isSel}
+                                aria-label={c.iso}
+                              >
+                                {c.day}
+                              </button>
+                            )
+                          })}
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </div>
 
                 {selected && (
