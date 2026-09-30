@@ -37,7 +37,27 @@ export default function BiryaniUtsav() {
   })
   const [status, setStatus] = useState('idle')
   const [errorMsg, setErrorMsg] = useState('')
+  const [fieldErrors, setFieldErrors] = useState({})
   useScrollReveal()
+
+  const validate = (f = form) => {
+    const errs = {}
+    if (!f.firstName.trim()) errs.firstName = 'First name is required.'
+    if (!f.lastName.trim()) errs.lastName = 'Last name is required.'
+    if (!f.email.trim()) errs.email = 'Email is required.'
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email)) errs.email = 'Please enter a valid email address.'
+    if (!f.phone.trim()) errs.phone = 'Phone number is required.'
+    else if (f.phone.replace(/\D/g, '').length !== 10) errs.phone = 'Please enter a 10-digit phone number.'
+    if (!f.date) errs.date = 'Please pick a pickup date.'
+    if (!f.biryani) errs.biryani = 'Please choose a biryani.'
+    return errs
+  }
+
+  const clearError = name => setFieldErrors(prev => {
+    if (!prev[name]) return prev
+    const { [name]: _drop, ...rest } = prev
+    return rest
+  })
 
   const live = useMemo(() => isOfferLive(), [])
   const dates = useMemo(() => getAvailableDates(), [])
@@ -61,6 +81,8 @@ export default function BiryaniUtsav() {
 
   const pickDate = iso => {
     setForm(f => ({ ...f, date: iso, biryani: '' }))
+    clearError('date')
+    clearError('biryani')
     setCalOpen(false)
   }
 
@@ -79,23 +101,44 @@ export default function BiryaniUtsav() {
 
   const handle = e => {
     const { name, value } = e.target
+    clearError(name)
+    if (name === 'biryani') clearError('biryani')
     if (name === 'phone') return setForm(f => ({ ...f, phone: formatPhone(value) }))
     if (name === 'date') return setForm(f => ({ ...f, date: value, biryani: '' }))
+    if (name === 'firstName' || name === 'lastName') {
+      // Letters, spaces, hyphens, apostrophes only (blocks digits).
+      const clean = value.replace(/[^A-Za-z\s'-]/g, '')
+      return setForm(f => ({ ...f, [name]: clean }))
+    }
     setForm(f => ({ ...f, [name]: value }))
+  }
+
+  const onBlur = e => {
+    const errs = validate()
+    const key = e.target.name
+    if (errs[key]) setFieldErrors(prev => ({ ...prev, [key]: errs[key] }))
   }
 
   const submit = async e => {
     e.preventDefault()
     const botcheck = e.target.botcheck?.value || ''
 
-    if (form.phone.replace(/\D/g, '').length !== 10) {
-      setStatus('error'); setErrorMsg('Please enter a valid 10-digit phone number.'); return
-    }
-    if (!form.date || !form.biryani) {
-      setStatus('error'); setErrorMsg('Please pick a date and a biryani.'); return
+    const errs = validate()
+    if (Object.keys(errs).length) {
+      setFieldErrors(errs)
+      setStatus('error')
+      setErrorMsg('Please fix the highlighted fields.')
+      // Focus the first invalid field
+      const order = ['firstName', 'lastName', 'email', 'phone', 'date', 'biryani']
+      const firstBad = order.find(k => errs[k])
+      if (firstBad) {
+        const el = document.querySelector(`[name="${firstBad}"]`)
+        if (el?.focus) el.focus()
+      }
+      return
     }
 
-    setStatus('sending'); setErrorMsg('')
+    setStatus('sending'); setErrorMsg(''); setFieldErrors({})
     try {
       const res = await fetch('/api/biryani-utsav', {
         method: 'POST',
@@ -202,39 +245,77 @@ export default function BiryaniUtsav() {
                 />
 
                 <div className="utsav-form__row">
-                  <div className="utsav-form__field">
-                    <label>First Name</label>
-                    <input name="firstName" placeholder="John" value={form.firstName} onChange={handle} required />
+                  <div className={`utsav-form__field${fieldErrors.firstName ? ' has-error' : ''}`}>
+                    <label htmlFor="utsav-firstName">First Name</label>
+                    <input
+                      id="utsav-firstName" name="firstName" placeholder="John"
+                      value={form.firstName} onChange={handle} onBlur={onBlur}
+                      autoComplete="given-name"
+                      aria-invalid={!!fieldErrors.firstName}
+                      aria-describedby={fieldErrors.firstName ? 'utsav-firstName-err' : undefined}
+                    />
+                    {fieldErrors.firstName && (
+                      <span id="utsav-firstName-err" className="utsav-form__field-err">{fieldErrors.firstName}</span>
+                    )}
                   </div>
-                  <div className="utsav-form__field">
-                    <label>Last Name</label>
-                    <input name="lastName" placeholder="Doe" value={form.lastName} onChange={handle} required />
+                  <div className={`utsav-form__field${fieldErrors.lastName ? ' has-error' : ''}`}>
+                    <label htmlFor="utsav-lastName">Last Name</label>
+                    <input
+                      id="utsav-lastName" name="lastName" placeholder="Doe"
+                      value={form.lastName} onChange={handle} onBlur={onBlur}
+                      autoComplete="family-name"
+                      aria-invalid={!!fieldErrors.lastName}
+                      aria-describedby={fieldErrors.lastName ? 'utsav-lastName-err' : undefined}
+                    />
+                    {fieldErrors.lastName && (
+                      <span id="utsav-lastName-err" className="utsav-form__field-err">{fieldErrors.lastName}</span>
+                    )}
                   </div>
                 </div>
 
                 <div className="utsav-form__row">
-                  <div className="utsav-form__field">
-                    <label>Email</label>
-                    <input name="email" type="email" placeholder="you@example.com" value={form.email} onChange={handle} required />
-                  </div>
-                  <div className="utsav-form__field">
-                    <label>Phone</label>
+                  <div className={`utsav-form__field${fieldErrors.email ? ' has-error' : ''}`}>
+                    <label htmlFor="utsav-email">Email</label>
                     <input
-                      name="phone" type="tel" inputMode="tel" autoComplete="tel-national"
-                      placeholder="(402) 000-0000" value={form.phone} onChange={handle}
-                      maxLength={14} required
+                      id="utsav-email" name="email" type="email"
+                      placeholder="you@example.com" value={form.email}
+                      onChange={handle} onBlur={onBlur}
+                      autoComplete="email"
+                      aria-invalid={!!fieldErrors.email}
+                      aria-describedby={fieldErrors.email ? 'utsav-email-err' : undefined}
                     />
+                    {fieldErrors.email && (
+                      <span id="utsav-email-err" className="utsav-form__field-err">{fieldErrors.email}</span>
+                    )}
+                  </div>
+                  <div className={`utsav-form__field${fieldErrors.phone ? ' has-error' : ''}`}>
+                    <label htmlFor="utsav-phone">Phone</label>
+                    <input
+                      id="utsav-phone" name="phone" type="tel"
+                      inputMode="numeric" pattern="[0-9]*"
+                      autoComplete="tel-national"
+                      placeholder="(402) 000-0000" value={form.phone}
+                      onChange={handle} onBlur={onBlur}
+                      maxLength={14}
+                      aria-invalid={!!fieldErrors.phone}
+                      aria-describedby={fieldErrors.phone ? 'utsav-phone-err' : undefined}
+                    />
+                    {fieldErrors.phone && (
+                      <span id="utsav-phone-err" className="utsav-form__field-err">{fieldErrors.phone}</span>
+                    )}
                   </div>
                 </div>
 
-                <div className="utsav-form__field utsav-form__field--date" ref={calRef}>
+                <div className={`utsav-form__field utsav-form__field--date${fieldErrors.date ? ' has-error' : ''}`} ref={calRef}>
                   <label>Pickup Date</label>
                   <button
                     type="button"
-                    className={`utsav-date-trigger${form.date ? ' has-value' : ''}`}
+                    name="date"
+                    className={`utsav-date-trigger${form.date ? ' has-value' : ''}${fieldErrors.date ? ' is-error' : ''}`}
                     onClick={() => setCalOpen(o => !o)}
                     aria-haspopup="dialog"
                     aria-expanded={calOpen}
+                    aria-invalid={!!fieldErrors.date}
                   >
                     <span className="utsav-date-trigger__text">
                       {selected ? selected.display : 'Select a date…'}
@@ -246,6 +327,9 @@ export default function BiryaniUtsav() {
                   </button>
                   {dates.length === 0 && (
                     <span className="utsav-form__note">No dates left in the Utsav window. See you next year.</span>
+                  )}
+                  {fieldErrors.date && (
+                    <span className="utsav-form__field-err">{fieldErrors.date}</span>
                   )}
                   {calOpen && (
                     <>
@@ -301,7 +385,7 @@ export default function BiryaniUtsav() {
                 </div>
 
                 {selected && (
-                  <div className="utsav-choose">
+                  <div className={`utsav-choose${fieldErrors.biryani ? ' has-error' : ''}`}>
                     <div className="utsav-choose__head">Choose your biryani for {selected.display}</div>
                     <div className="utsav-choose__opts">
                       <label className={`utsav-opt${form.biryani === selected.veg ? ' active' : ''}`}>
@@ -321,6 +405,9 @@ export default function BiryaniUtsav() {
                         <span className="utsav-opt__name">{selected.nonveg}</span>
                       </label>
                     </div>
+                    {fieldErrors.biryani && (
+                      <span className="utsav-form__field-err">{fieldErrors.biryani}</span>
+                    )}
                   </div>
                 )}
 

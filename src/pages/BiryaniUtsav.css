@@ -211,6 +211,48 @@
   margin-top: 4px;
 }
 
+/* Per-field error styling */
+.utsav-form__field.has-error input,
+.utsav-form__field.has-error select {
+  border-color: #d94a1e;
+  background: rgba(224,55,24,0.04);
+  box-shadow: 0 0 0 4px rgba(224,55,24,0.08);
+}
+.utsav-form__field.has-error label {
+  color: #c74a20;
+}
+.utsav-date-trigger.is-error {
+  border-color: #d94a1e;
+  background: rgba(224,55,24,0.04);
+  box-shadow: 0 0 0 4px rgba(224,55,24,0.08);
+}
+.utsav-choose.has-error {
+  border-color: #d94a1e;
+  background: rgba(224,55,24,0.04);
+}
+.utsav-form__field-err {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #c74a20;
+  margin-top: 4px;
+  font-weight: 600;
+}
+.utsav-form__field-err::before {
+  content: '!';
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px; height: 14px;
+  background: #c74a20;
+  color: #fff;
+  font-weight: 800;
+  font-size: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
 /* Date trigger button (mimics the other form inputs) */
 .utsav-form__field--date { position: relative; }
 .utsav-date-trigger {
