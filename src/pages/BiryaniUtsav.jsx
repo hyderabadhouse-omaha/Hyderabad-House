@@ -146,11 +146,11 @@ export default function BiryaniUtsav() {
               <article key={dow} className={`utsav-card reveal delay-${i + 1}`}>
                 <div className="utsav-card__day">{m.label}</div>
                 <div className="utsav-card__row">
-                  <span className="utsav-card__tag utsav-card__tag--veg">Veg</span>
+                  <span className="food-mark food-mark--veg" role="img" aria-label="Vegetarian" />
                   <span className="utsav-card__name">{m.veg}</span>
                 </div>
                 <div className="utsav-card__row">
-                  <span className="utsav-card__tag utsav-card__tag--nv">Non-Veg</span>
+                  <span className="food-mark food-mark--nv" role="img" aria-label="Non-vegetarian" />
                   <span className="utsav-card__name">{m.nonveg}</span>
                 </div>
               </article>
@@ -309,7 +309,7 @@ export default function BiryaniUtsav() {
                           type="radio" name="biryani" value={selected.veg}
                           checked={form.biryani === selected.veg} onChange={handle}
                         />
-                        <span className="utsav-opt__tag utsav-opt__tag--veg">Veg</span>
+                        <span className="food-mark food-mark--veg" role="img" aria-label="Vegetarian" />
                         <span className="utsav-opt__name">{selected.veg}</span>
                       </label>
                       <label className={`utsav-opt${form.biryani === selected.nonveg ? ' active' : ''}`}>
@@ -317,7 +317,7 @@ export default function BiryaniUtsav() {
                           type="radio" name="biryani" value={selected.nonveg}
                           checked={form.biryani === selected.nonveg} onChange={handle}
                         />
-                        <span className="utsav-opt__tag utsav-opt__tag--nv">Non-Veg</span>
+                        <span className="food-mark food-mark--nv" role="img" aria-label="Non-vegetarian" />
                         <span className="utsav-opt__name">{selected.nonveg}</span>
                       </label>
                     </div>

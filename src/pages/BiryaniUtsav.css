@@ -118,27 +118,33 @@
   padding: 8px 0;
 }
 
-.utsav-card__tag {
+/* Standard Indian veg / non-veg label:
+   a small outlined square with a filled dot in the middle.
+   Green = veg, red = non-veg. */
+.food-mark {
   flex-shrink: 0;
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 2px 6px;
-  border-radius: 4px;
-  line-height: 1.3;
-  margin-top: 3px;
+  display: inline-block;
+  position: relative;
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  margin-top: 4px;
+  background: #fff;
 }
-.utsav-card__tag--veg {
-  background: rgba(110, 176, 96, 0.1);
-  color: #4b8a3e;
-  border: 1px solid rgba(110, 176, 96, 0.22);
+.food-mark::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
 }
-.utsav-card__tag--nv {
-  background: rgba(224, 55, 24, 0.08);
-  color: #c74a20;
-  border: 1px solid rgba(224, 55, 24, 0.2);
-}
+.food-mark--veg { border: 1.5px solid #4b8a3e; }
+.food-mark--veg::after { background: #4b8a3e; }
+.food-mark--nv { border: 1.5px solid #c74a20; }
+.food-mark--nv::after { background: #c74a20; }
 
 .utsav-card__name {
   font-size: 14px;
@@ -410,25 +416,6 @@
   border-color: var(--saffron);
   background: rgba(224,123,24,0.06);
   box-shadow: 0 0 0 4px rgba(224,123,24,0.1);
-}
-.utsav-opt__tag {
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 2px 6px;
-  border-radius: 4px;
-  line-height: 1.3;
-}
-.utsav-opt__tag--veg {
-  background: rgba(110, 176, 96, 0.1);
-  color: #4b8a3e;
-  border: 1px solid rgba(110, 176, 96, 0.22);
-}
-.utsav-opt__tag--nv {
-  background: rgba(224, 55, 24, 0.08);
-  color: #c74a20;
-  border: 1px solid rgba(224, 55, 24, 0.2);
 }
 .utsav-opt__name {
   font-size: 14px;
