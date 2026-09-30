@@ -441,6 +441,126 @@
   border: none;
 }
 
+/* Wheel-style time picker (Hours + Minutes columns, Cancel + OK) */
+.utsav-form__field--time { position: relative; }
+.utsav-time {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 101;
+  width: min(320px, calc(100vw - 32px));
+  background: var(--bg);
+  border: 1px solid var(--border-s);
+  border-radius: 16px;
+  padding: 18px 20px 16px;
+  box-shadow: 0 32px 64px rgba(28,18,8,0.24);
+  animation: utsav-cal-pop 0.2s var(--ease-out);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.utsav-time__cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.utsav-time__col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.utsav-time__col-head {
+  text-align: center;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-m);
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border-s);
+}
+.utsav-time__col-list {
+  height: 200px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 4px 2px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(140,122,99,0.4) transparent;
+}
+.utsav-time__col-list::-webkit-scrollbar { width: 6px; }
+.utsav-time__col-list::-webkit-scrollbar-thumb {
+  background: rgba(140,122,99,0.35);
+  border-radius: 4px;
+}
+.utsav-time__opt {
+  padding: 10px 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  text-align: center;
+  flex-shrink: 0;
+}
+.utsav-time__opt:hover {
+  background: rgba(224,123,24,0.08);
+  border-color: rgba(224,123,24,0.28);
+}
+.utsav-time__opt.is-selected {
+  background: linear-gradient(135deg, var(--saffron-l), var(--saffron-d));
+  border-color: var(--saffron-d);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(224,123,24,0.28);
+}
+.utsav-time__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border-s);
+}
+.utsav-time__cancel,
+.utsav-time__ok {
+  padding: 9px 20px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.15s;
+}
+.utsav-time__cancel {
+  background: transparent;
+  border: 1px solid var(--border-s);
+  color: var(--text-m);
+}
+.utsav-time__cancel:hover {
+  border-color: rgba(224,123,24,0.4);
+  color: var(--saffron-d);
+}
+.utsav-time__ok {
+  background: linear-gradient(135deg, var(--saffron-l), var(--saffron-d));
+  border: 1px solid var(--saffron-d);
+  color: #fff;
+}
+.utsav-time__ok:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(224,123,24,0.32);
+}
+.utsav-time__ok:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 /* Biryani chooser */
 .utsav-choose {
   padding: 20px;

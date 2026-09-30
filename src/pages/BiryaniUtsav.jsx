@@ -5,21 +5,23 @@ import useScrollReveal from '../hooks/useScrollReveal'
 import { WEEKLY_MENU, getAvailableDates, isOfferLive, UTSAV_START, UTSAV_END } from '../data/biryaniUtsav'
 import './BiryaniUtsav.css'
 
-// Pickup time slots, 15-min intervals, restaurant open 11 AM to 9 PM
-// (last slot is 8:45 PM so there's time to hand off before close).
-function buildTimeSlots(startHour = 11, endHour = 21, stepMin = 15) {
-  const slots = []
-  for (let h = startHour; h < endHour; h++) {
-    for (let m = 0; m < 60; m += stepMin) {
-      const t24 = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`
-      const period = h >= 12 ? 'PM' : 'AM'
-      const h12 = h === 12 ? 12 : h > 12 ? h - 12 : h
-      slots.push({ value: t24, label: `${h12}:${String(m).padStart(2, '0')} ${period}` })
-    }
-  }
-  return slots
+// Pickup hour options (restaurant open 11 AM to 9 PM, last slot 8:45 PM).
+const HOUR_OPTIONS = [
+  { value: 11, label: '11 AM' }, { value: 12, label: '12 PM' },
+  { value: 13, label: '1 PM' },  { value: 14, label: '2 PM' },
+  { value: 15, label: '3 PM' },  { value: 16, label: '4 PM' },
+  { value: 17, label: '5 PM' },  { value: 18, label: '6 PM' },
+  { value: 19, label: '7 PM' },  { value: 20, label: '8 PM' },
+]
+const MINUTE_OPTIONS = [0, 15, 30, 45]
+
+const formatTime12 = t24 => {
+  if (!t24) return ''
+  const [h, m] = t24.split(':').map(Number)
+  const period = h >= 12 ? 'PM' : 'AM'
+  const h12 = h === 12 ? 12 : h > 12 ? h - 12 : h
+  return `${h12}:${String(m).padStart(2, '0')} ${period}`
 }
-const TIME_SLOTS = buildTimeSlots()
 
 // Build a full month grid (weeks of 7 cells, Sun–Sat) for the given year/month.
 // availableSet is a Set of ISO date strings that should be selectable.
@@ -96,6 +98,38 @@ export default function BiryaniUtsav() {
   const [calOpen, setCalOpen] = useState(false)
   const calRef = useRef(null)
 
+  const [timeOpen, setTimeOpen] = useState(false)
+  const [tempHour, setTempHour] = useState(null)
+  const [tempMinute, setTempMinute] = useState(null)
+
+  // Scroll the picked hour/minute into view when the picker opens.
+  useEffect(() => {
+    if (!timeOpen) return
+    requestAnimationFrame(() => {
+      document.querySelector('.utsav-time__col-list[aria-label="Hour"] .is-selected')
+        ?.scrollIntoView({ block: 'center' })
+      document.querySelector('.utsav-time__col-list[aria-label="Minute"] .is-selected')
+        ?.scrollIntoView({ block: 'center' })
+    })
+  }, [timeOpen])
+
+  const openTime = () => {
+    if (form.pickupTime) {
+      const [h, m] = form.pickupTime.split(':').map(Number)
+      setTempHour(h); setTempMinute(m)
+    } else {
+      setTempHour(null); setTempMinute(null)
+    }
+    setTimeOpen(true)
+  }
+  const confirmTime = () => {
+    if (tempHour == null || tempMinute == null) return
+    const t24 = `${String(tempHour).padStart(2, '0')}:${String(tempMinute).padStart(2, '0')}`
+    setForm(f => ({ ...f, pickupTime: t24 }))
+    clearError('pickupTime')
+    setTimeOpen(false)
+  }
+
   const pickDate = iso => {
     setForm(f => ({ ...f, date: iso, biryani: '' }))
     clearError('date')
@@ -103,10 +137,14 @@ export default function BiryaniUtsav() {
     setCalOpen(false)
   }
 
-  // Close the calendar modal on Escape and lock body scroll while open.
+  // Close the calendar or time modal on Escape and lock body scroll while open.
   useEffect(() => {
-    if (!calOpen) return
-    const onKey = e => { if (e.key === 'Escape') setCalOpen(false) }
+    if (!calOpen && !timeOpen) return
+    const onKey = e => {
+      if (e.key !== 'Escape') return
+      if (calOpen) setCalOpen(false)
+      if (timeOpen) setTimeOpen(false)
+    }
     document.addEventListener('keydown', onKey)
     const prev = document.body.style.overflow
     document.body.style.overflow = 'hidden'
@@ -114,7 +152,7 @@ export default function BiryaniUtsav() {
       document.removeEventListener('keydown', onKey)
       document.body.style.overflow = prev
     }
-  }, [calOpen])
+  }, [calOpen, timeOpen])
 
   const handle = e => {
     const { name, value } = e.target
@@ -260,7 +298,7 @@ export default function BiryaniUtsav() {
                     <line x1="12" y1="16" x2="12" y2="12" />
                     <line x1="12" y1="8" x2="12.01" y2="8" />
                   </svg>
-                  <span><strong>One half-tray per booking.</strong> Need more than one? Book again after this or give us a call at <a href="tel:+14025059209">(402) 505-9209</a>.</span>
+                  <span><strong>Only one half-tray can be ordered per booking.</strong></span>
                 </div>
 
                 {/* Honeypot */}
@@ -410,24 +448,98 @@ export default function BiryaniUtsav() {
                   )}
                 </div>
 
-                <div className={`utsav-form__field${fieldErrors.pickupTime ? ' has-error' : ''}`}>
-                  <label htmlFor="utsav-pickupTime">Pickup Time</label>
-                  <select
-                    id="utsav-pickupTime"
+                <div className={`utsav-form__field utsav-form__field--time${fieldErrors.pickupTime ? ' has-error' : ''}`}>
+                  <label>Pickup Time</label>
+                  <button
+                    type="button"
                     name="pickupTime"
-                    value={form.pickupTime}
-                    onChange={handle}
-                    onBlur={onBlur}
+                    className={`utsav-date-trigger${form.pickupTime ? ' has-value' : ''}${fieldErrors.pickupTime ? ' is-error' : ''}`}
+                    onClick={openTime}
+                    aria-haspopup="dialog"
+                    aria-expanded={timeOpen}
                     aria-invalid={!!fieldErrors.pickupTime}
-                    aria-describedby={fieldErrors.pickupTime ? 'utsav-pickupTime-err' : undefined}
                   >
-                    <option value="">Select a time…</option>
-                    {TIME_SLOTS.map(t => (
-                      <option key={t.value} value={t.value}>{t.label}</option>
-                    ))}
-                  </select>
+                    <span className="utsav-date-trigger__text">
+                      {form.pickupTime ? formatTime12(form.pickupTime) : 'Select a time…'}
+                    </span>
+                    <svg className="utsav-date-trigger__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="12" r="9" />
+                      <path d="M12 7v5l3 2" />
+                    </svg>
+                  </button>
                   {fieldErrors.pickupTime && (
-                    <span id="utsav-pickupTime-err" className="utsav-form__field-err">{fieldErrors.pickupTime}</span>
+                    <span className="utsav-form__field-err">{fieldErrors.pickupTime}</span>
+                  )}
+                  {timeOpen && (
+                    <>
+                      <div
+                        className="utsav-cal__backdrop"
+                        onClick={() => setTimeOpen(false)}
+                        aria-hidden="true"
+                      />
+                      <div className="utsav-time" role="dialog" aria-label="Pickup time picker">
+                        <div className="utsav-cal__head">
+                          <span className="utsav-cal__month">Pickup Time</span>
+                          <button
+                            type="button"
+                            className="utsav-cal__close"
+                            onClick={() => setTimeOpen(false)}
+                            aria-label="Close time picker"
+                          >
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                              <path d="M6 6l12 12M18 6L6 18" />
+                            </svg>
+                          </button>
+                        </div>
+                        <div className="utsav-time__cols">
+                          <div className="utsav-time__col">
+                            <div className="utsav-time__col-head">Hour</div>
+                            <div className="utsav-time__col-list" role="listbox" aria-label="Hour">
+                              {HOUR_OPTIONS.map(h => (
+                                <button
+                                  key={h.value}
+                                  type="button"
+                                  className={`utsav-time__opt${tempHour === h.value ? ' is-selected' : ''}`}
+                                  onClick={() => setTempHour(h.value)}
+                                  aria-selected={tempHour === h.value}
+                                >
+                                  {h.label}
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                          <div className="utsav-time__col">
+                            <div className="utsav-time__col-head">Minute</div>
+                            <div className="utsav-time__col-list" role="listbox" aria-label="Minute">
+                              {MINUTE_OPTIONS.map(m => (
+                                <button
+                                  key={m}
+                                  type="button"
+                                  className={`utsav-time__opt${tempMinute === m ? ' is-selected' : ''}`}
+                                  onClick={() => setTempMinute(m)}
+                                  aria-selected={tempMinute === m}
+                                >
+                                  {String(m).padStart(2, '0')}
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="utsav-time__actions">
+                          <button type="button" className="utsav-time__cancel" onClick={() => setTimeOpen(false)}>
+                            Cancel
+                          </button>
+                          <button
+                            type="button"
+                            className="utsav-time__ok"
+                            onClick={confirmTime}
+                            disabled={tempHour == null || tempMinute == null}
+                          >
+                            OK
+                          </button>
+                        </div>
+                      </div>
+                    </>
                   )}
                 </div>
                 </div>
