@@ -26,7 +26,6 @@ const utsavSlide = {
   bgPos: 'center center',
   cta: [
     { label: 'Book Your Utsav', to: '/biryani-utsav', variant: 'primary' },
-    { label: 'View Full Menu', to: '/menu', variant: 'outline' },
   ],
 }
 
