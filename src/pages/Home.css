@@ -136,6 +136,31 @@
   to   { transform: scaleX(1); }
 }
 
+/* Utsav slide accent: pulsing dot pill on the eyebrow */
+.hero__eyebrow--utsav {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px 6px 12px;
+  background: rgba(224,123,24,0.16);
+  border: 1px solid rgba(224,123,24,0.42);
+  border-radius: 100px;
+  color: #ffd8a8;
+  font-weight: 800;
+}
+.hero__eyebrow--utsav::before { display: none; } /* hide the standard accent line */
+.hero__eyebrow-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--saffron-l);
+  box-shadow: 0 0 10px var(--saffron-l);
+  animation: heroUtsavPulse 2s ease-in-out infinite;
+}
+@keyframes heroUtsavPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.82); }
+}
+
 .hero__title {
   display: flex;
   flex-direction: column;

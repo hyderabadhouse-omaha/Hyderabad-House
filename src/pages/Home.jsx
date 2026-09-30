@@ -1,7 +1,8 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import useScrollReveal from '../hooks/useScrollReveal'
 import SEO from '../components/SEO'
+import { isOfferLive } from '../data/biryaniUtsav'
 import './Home.css'
 
 const homeJsonLd = {
@@ -15,7 +16,21 @@ const homeJsonLd = {
   ],
 }
 
-const slides = [
+const utsavSlide = {
+  eyebrow: 'October Biryani Utsav',
+  eyebrowAccent: true,
+  title: 'A Different\nBiryani Every\nWeekday',
+  desc: 'Half-tray feasts designed for gatherings, Monday through Thursday. Pick a day, pick a biryani, and pick it up hot. Available all October.',
+  bg: '/images/biryani.webp',
+  bgSm: '/images/biryani-sm.webp',
+  bgPos: 'center center',
+  cta: [
+    { label: 'Book Your Utsav', to: '/biryani-utsav', variant: 'primary' },
+    { label: 'View Full Menu', to: '/menu', variant: 'outline' },
+  ],
+}
+
+const baseSlides = [
   {
     eyebrow: 'Royal Experience',
     title: 'Rich Flavors,\nRoyal Tradition',
@@ -152,6 +167,11 @@ function CountUp({ to, suffix = '', decimals = 0, duration = 1600 }) {
 }
 
 function HeroSlider() {
+  // Prepend the utsav slide while the offer is live.
+  const slides = useMemo(
+    () => (isOfferLive() ? [utsavSlide, ...baseSlides] : baseSlides),
+    [],
+  )
   const [current, setCurrent] = useState(0)
   // Only slide 0 has its background loaded immediately for a fast LCP.
   // The other slides get their backgrounds after LCP so they don't fight
@@ -207,7 +227,10 @@ function HeroSlider() {
       <div className="container hero__content-wrap">
         {slides.map((s, i) => (
           <div key={i} className={`hero__content${i === current ? ' active' : ''}`} aria-hidden={i !== current}>
-            <span className="label hero__eyebrow">{s.eyebrow}</span>
+            <span className={`label hero__eyebrow${s.eyebrowAccent ? ' hero__eyebrow--utsav' : ''}`}>
+              {s.eyebrowAccent && <span className="hero__eyebrow-dot" aria-hidden="true" />}
+              {s.eyebrow}
+            </span>
             <h1 className="display on-dark hero__title">
               {s.title.split('\n').map((l, j) => (
                 <span key={j} className="hero__title-line" style={{ '--i': j }}>
@@ -217,9 +240,20 @@ function HeroSlider() {
             </h1>
             <p className="body-lg on-dark hero__desc">{s.desc}</p>
             <div className="hero__cta">
-              <Link to="/menu" className="btn btn-primary">Explore Menu</Link>
-              <a href="https://hyderabadhouse.hungerrush.com/Order/OrderType" target="_blank" rel="noreferrer"
-                className="btn btn-outline-light">Order Online</a>
+              {s.cta ? (
+                s.cta.map((c, k) => {
+                  const cls = c.variant === 'outline' ? 'btn btn-outline-light' : 'btn btn-primary'
+                  return c.to.startsWith('http')
+                    ? <a key={k} href={c.to} target="_blank" rel="noreferrer" className={cls}>{c.label}</a>
+                    : <Link key={k} to={c.to} className={cls}>{c.label}</Link>
+                })
+              ) : (
+                <>
+                  <Link to="/menu" className="btn btn-primary">Explore Menu</Link>
+                  <a href="https://hyderabadhouse.hungerrush.com/Order/OrderType" target="_blank" rel="noreferrer"
+                    className="btn btn-outline-light">Order Online</a>
+                </>
+              )}
             </div>
           </div>
         ))}
