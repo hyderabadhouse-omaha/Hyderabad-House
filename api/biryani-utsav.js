@@ -63,12 +63,22 @@ function renderHtml({ fullName, email, phone, dateDisplay, pickupTimeDisplay, bi
         </table>
       </td></tr>
 
-      <tr><td style="padding:8px 36px 32px;">
+      <tr><td style="padding:8px 36px 24px;">
         <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#8c7a63;font-weight:700;margin-bottom:12px;">Biryani Selected</div>
-        <div style="background:#f8f0dc;border-left:3px solid #e07b18;border-radius:0 8px 8px 0;padding:20px 22px;display:flex;align-items:center;gap:12px;">
+        <div style="background:#f8f0dc;border-left:3px solid #e07b18;border-radius:0 8px 8px 0;padding:20px 22px;">
           <div style="margin-bottom:8px;">${kindTag}</div>
           <div style="font-family:Georgia,'Times New Roman',serif;font-size:20px;font-weight:700;color:#1c1208;margin-top:4px;">${escape(biryani)}</div>
           <div style="font-size:12px;color:#8c7a63;margin-top:6px;">Half-tray, designed for gatherings.</div>
+        </div>
+      </td></tr>
+
+      <tr><td style="padding:0 36px 28px;">
+        <div style="background:linear-gradient(135deg,#f6e0bb 0%,#f0cf96 100%);border:1px solid #e2b06b;border-radius:10px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px;">
+          <div>
+            <div style="font-size:10px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:#8f5a0f;">Collect at Pickup</div>
+            <div style="font-family:Georgia,'Times New Roman',serif;font-size:24px;font-weight:800;color:#8f3b00;margin-top:4px;line-height:1;">$50.00</div>
+          </div>
+          <div style="font-size:12px;color:#8f5a0f;font-weight:700;text-align:right;max-width:180px;line-height:1.4;">Payable in cash or card when the customer picks up.</div>
         </div>
       </td></tr>
 
@@ -98,6 +108,7 @@ function renderText({ fullName, email, phone, dateDisplay, pickupTimeDisplay, bi
     `Date:    ${dateDisplay}`,
     `Time:    ${pickupTimeDisplay}`,
     `Biryani: ${biryani} (${kind === 'veg' ? 'Veg' : 'Non-Veg'})`,
+    `Total:   $50.00 — collect at pickup (cash or card)`,
     '',
     'Half-tray, designed for gatherings.',
     '',

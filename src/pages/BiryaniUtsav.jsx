@@ -571,6 +571,20 @@ export default function BiryaniUtsav() {
                   <p className="utsav-form__error" role="alert">{errorMsg}</p>
                 )}
 
+                <div className="utsav-form__total">
+                  <div className="utsav-form__total-row">
+                    <span className="utsav-form__total-label">Total</span>
+                    <span className="utsav-form__total-amount">$50<span className="utsav-form__total-unit"> / half-tray</span></span>
+                  </div>
+                  <span className="utsav-form__total-note">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="2" y="6" width="20" height="13" rx="2" />
+                      <line x1="2" y1="10" x2="22" y2="10" />
+                    </svg>
+                    Pay in cash or card at pickup.
+                  </span>
+                </div>
+
                 <button type="submit" className="btn btn-primary utsav-form__submit" disabled={sending}>
                   {sending ? 'Booking…' : 'Book My Half-Tray'}
                   {!sending && (

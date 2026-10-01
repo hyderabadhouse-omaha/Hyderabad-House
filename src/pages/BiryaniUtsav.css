@@ -5,7 +5,8 @@
 
 /* Landing top variant: adds room for the fixed navbar and a radial saffron wash */
 .utsav-schedule--top {
-  padding-top: 140px;
+  padding-top: 110px;
+  padding-bottom: 36px;
   position: relative;
   overflow: hidden;
 }
@@ -13,7 +14,7 @@
   content: '';
   position: absolute;
   inset: 0 0 auto 0;
-  height: 420px;
+  height: 320px;
   background:
     radial-gradient(ellipse at 50% 0%, rgba(224,123,24,0.14) 0%, transparent 60%),
     linear-gradient(180deg, rgba(224,123,24,0.05), transparent 60%);
@@ -22,7 +23,7 @@
 }
 .utsav-schedule--top .container { position: relative; z-index: 1; }
 
-.utsav-head { text-align: center; margin-bottom: 48px; }
+.utsav-head { text-align: center; margin-bottom: 28px; }
 
 .utsav-eyebrow {
   display: inline-flex;
@@ -52,30 +53,30 @@
 }
 
 .utsav-title {
-  font-size: clamp(2.2rem, 5vw, 3.6rem);
-  margin: 0 0 12px;
-  line-height: 1.05;
+  font-size: clamp(1.8rem, 3.6vw, 2.6rem);
+  margin: 0 0 8px;
+  line-height: 1.1;
 }
 .utsav-tagline {
   font-family: 'Playfair Display', serif;
   font-style: italic;
-  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
   color: var(--saffron-d);
-  margin: 0 0 18px;
+  margin: 0 0 10px;
 }
-.utsav-sub { color: var(--text-m); max-width: 620px; margin: 0 auto; }
+.utsav-sub { color: var(--text-m); max-width: 580px; margin: 0 auto; font-size: 14px; }
 
 .utsav-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: 14px;
 }
 
 .utsav-card {
   background: var(--bg-1);
   border: 1px solid var(--border-s);
   border-radius: var(--r-lg);
-  padding: 26px 24px;
+  padding: 18px 18px 16px;
   position: relative;
   overflow: hidden;
   transition:
@@ -103,20 +104,21 @@
 
 .utsav-card__day {
   font-family: 'Playfair Display', serif;
-  font-size: 1.25rem;
+  font-size: 1.05rem;
   color: var(--saffron);
   font-weight: 800;
-  margin-bottom: 16px;
-  padding-bottom: 12px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
   border-bottom: 1px solid var(--border-s);
 }
 
 .utsav-card__row {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
-  padding: 8px 0;
+  gap: 8px;
+  padding: 4px 0;
 }
+.utsav-card__name { font-size: 13px; line-height: 1.4; }
 
 /* Standard Indian veg / non-veg label:
    a small outlined square with a filled dot in the middle.
@@ -154,7 +156,11 @@
 }
 
 /* ── Form section ───────────────────────── */
-.utsav-form-section { background: var(--bg-1); }
+.utsav-form-section {
+  background: var(--bg-1);
+  padding-top: 40px;
+  padding-bottom: 60px;
+}
 
 .utsav-form-panel {
   max-width: 720px;
@@ -619,6 +625,55 @@
   font-size: 13px;
   line-height: 1.5;
 }
+/* Price total above the booking button */
+.utsav-form__total {
+  background: linear-gradient(135deg, rgba(224,123,24,0.1), rgba(224,123,24,0.02));
+  border: 1px solid rgba(224,123,24,0.28);
+  border-radius: var(--r-sm);
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 4px;
+}
+.utsav-form__total-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.utsav-form__total-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-m);
+}
+.utsav-form__total-amount {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: var(--saffron-d);
+  line-height: 1;
+}
+.utsav-form__total-unit {
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-m);
+  letter-spacing: 0;
+  text-transform: none;
+}
+.utsav-form__total-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-m);
+  font-weight: 600;
+}
+.utsav-form__total-note svg { width: 14px; height: 14px; color: var(--saffron); }
+
 .utsav-form__submit { margin-top: 8px; align-self: flex-start; }
 .utsav-form__submit:disabled { opacity: 0.6; cursor: not-allowed; }
 
