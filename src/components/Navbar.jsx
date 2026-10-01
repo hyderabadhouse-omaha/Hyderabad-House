@@ -133,8 +133,7 @@ export default function Navbar() {
           {utsavLive && (
             <Link to="/biryani-utsav" className="navbar__drawer-utsav">
               <span className="navbar__utsav-dot" aria-hidden="true" />
-              <span>October Biryani Utsav</span>
-              <span className="navbar__drawer-arrow">→</span>
+              <span>Biryani Utsav</span>
             </Link>
           )}
 
