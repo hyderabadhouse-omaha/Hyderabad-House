@@ -231,8 +231,7 @@ export default function BiryaniUtsav() {
               October 1 – 31, 2026
             </span>
             <h1 className="heading utsav-title">October Biryani Utsav</h1>
-            <p className="utsav-tagline">Fall for biryani. Half-tray feasts designed for gatherings.</p>
-            <p className="body-lg utsav-sub">A different biryani every Monday through Thursday, cooked fresh the day of, sealed at the pot, and ready for you to pick up.</p>
+            <p className="utsav-sub">Half-tray feasts for gatherings, a different biryani every Monday through Thursday.</p>
           </div>
 
           <div className="utsav-grid">
