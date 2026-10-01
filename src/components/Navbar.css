@@ -213,26 +213,27 @@
 
 /* Mobile drawer variant */
 .navbar__drawer-utsav {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 12px;
-  padding: 16px 20px;
-  margin-bottom: 12px;
-  background: linear-gradient(135deg, rgba(224,123,24,0.14), rgba(224,123,24,0.04));
+  justify-content: center;
+  gap: 10px;
+  padding: 11px 20px;
+  margin-bottom: 14px;
+  background: rgba(224,123,24,0.1);
   border: 1px solid rgba(224,123,24,0.32);
-  border-radius: 12px;
+  border-radius: 8px;
   color: var(--saffron);
-  font-size: 14px;
+  font-size: 11px;
   font-weight: 800;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   transition: background 0.25s, border-color 0.25s;
 }
 .navbar__drawer-utsav:hover {
-  background: linear-gradient(135deg, rgba(224,123,24,0.2), rgba(224,123,24,0.08));
+  background: rgba(224,123,24,0.16);
   border-color: rgba(224,123,24,0.5);
 }
-.navbar__drawer-utsav .navbar__drawer-arrow { margin-left: auto; }
+.navbar__drawer-utsav .navbar__drawer-arrow { display: none; }
 
 /* ─── Burger button ──────────────────────────────────── */
 .navbar__burger {
@@ -398,7 +399,7 @@
 
 /* ─── CTA button ─────────────────────────────────────── */
 .navbar__drawer-cta {
-  padding: 15px 44px;
+  padding: 11px 28px;
   font-size: 11px;
   letter-spacing: 0.2em;
   opacity: 0;
