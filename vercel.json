@@ -2,6 +2,15 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
     { "source": "/api/:path*", "destination": "/api/:path*" },
+    { "source": "/biryani-utsav", "destination": "/biryani-utsav/index.html" },
+    { "source": "/biryani-utsav/", "destination": "/biryani-utsav/index.html" },
+    { "source": "/menu", "destination": "/menu/index.html" },
+    { "source": "/menu/", "destination": "/menu/index.html" },
+    { "source": "/about-us", "destination": "/about-us/index.html" },
+    { "source": "/about-us/", "destination": "/about-us/index.html" },
+    { "source": "/contact", "destination": "/contact/index.html" },
+    { "source": "/contact/", "destination": "/contact/index.html" },
     { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]
 }
+

@@ -597,6 +597,76 @@ export default function BiryaniUtsav() {
           </div>
         </div>
       </section>
+
+      {/* ── Below the form: context + FAQ + CTAs ─ */}
+      <section className="section utsav-extra">
+        <div className="container utsav-extra__grid">
+
+          <div className="utsav-extra__story reveal">
+            <span className="label">The Idea</span>
+            <h2 className="heading utsav-extra__title">Why we built an utsav around biryani</h2>
+            <p className="body-lg utsav-extra__lead">
+              An utsav is not an event you organise. It is the feeling that spills out of a kitchen when something special is being cooked, the kind that only comes around once a year. For October, we are turning our kitchen into one.
+            </p>
+            <p className="utsav-extra__p">
+              India does not have one biryani. It has thirty, each one belonging to a place. Hyderabad, Chennai, Vijayawada, Mangalore, and the small coastal towns of Andhra all cook theirs differently. Most menus only show you the one. For a month, we wanted to show you eight.
+            </p>
+            <Link to="/blogs/october-biryani-utsav" className="utsav-extra__read">
+              Read the full story
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="14" height="14">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </Link>
+          </div>
+
+          <div className="utsav-faq reveal">
+            <span className="label">Good to Know</span>
+            <h3 className="heading utsav-faq__title">Common questions</h3>
+            <div className="utsav-faq__list">
+              {[
+                { q: 'How many people does a half-tray feed?', a: 'Comfortably four to six people, depending on how much everyone eats and what else is on the table. We recommend one tray per four hungry adults.' },
+                { q: 'Can I order more than one tray?', a: 'Each booking is one tray so we can plan the pot schedule fairly. If you need more than one, just place a second booking right after this one, or call the restaurant at (402) 505-9209 and we will set it up directly.' },
+                { q: 'When do I pay?', a: 'Nothing is charged online. You pay the flat $50 in cash or card when you pick the tray up at the restaurant.' },
+                { q: 'Is pickup the only option?', a: 'Yes, Utsav trays are pickup only. They are cooked fresh and sealed the day of your pickup, which does not travel well through delivery apps. If you need delivery, our regular menu is on all the usual services.' },
+                { q: 'What about dietary restrictions?', a: 'Every weekday has both a Veg and a Non-Veg half-tray so there is always a vegetarian option. All our meat is halal. If you have specific allergy or ingredient concerns, please mention them when we call to confirm.' },
+                { q: 'Do I get a confirmation?', a: 'You will see a success message right after booking. We will also call the number you provide a day in advance to confirm pickup time.' },
+              ].map((f, i) => (
+                <details key={i} className="utsav-faq__item">
+                  <summary className="utsav-faq__q">
+                    <span>{f.q}</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="16" height="16" className="utsav-faq__chev">
+                      <path d="M6 9l6 6 6-6" />
+                    </svg>
+                  </summary>
+                  <p className="utsav-faq__a">{f.a}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ── Prefer to call CTA band ─────────── */}
+      <section className="utsav-contact-band">
+        <div className="utsav-contact-band__bg" />
+        <div className="utsav-contact-band__overlay" />
+        <div className="container utsav-contact-band__inner reveal">
+          <div>
+            <span className="label on-dark">Prefer to Talk?</span>
+            <h2 className="heading on-dark utsav-contact-band__title">
+              Call us and we will book your tray for you
+            </h2>
+            <p className="utsav-contact-band__sub">
+              We are at the restaurant daily from 11 AM to 9 PM. Takes two minutes.
+            </p>
+          </div>
+          <div className="utsav-contact-band__actions">
+            <a href="tel:+14025059209" className="btn btn-primary">Call (402) 505-9209</a>
+            <a href="https://maps.app.goo.gl/QKEtXfahv64saDYD6" target="_blank" rel="noreferrer" className="btn btn-outline-light">Get Directions</a>
+          </div>
+        </div>
+      </section>
     </main>
   )
 }
