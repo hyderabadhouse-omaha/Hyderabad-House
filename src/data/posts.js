@@ -3,6 +3,70 @@
 
 export const posts = [
   {
+    slug: 'october-biryani-utsav',
+    title: 'October Biryani Utsav, A Month of Eight Biryanis',
+    date: 'October 1, 2026',
+    readTime: '7 min read',
+    cat: 'Events',
+    author: 'The Hyderabad House Kitchen',
+    img: '/images/biryani.webp',
+    excerpt: "This October we are turning our kitchen into a small festival. One biryani on Monday, another on Tuesday, Wednesday, Thursday, each one from a different corner of South India, served as a half-tray built for people to share.",
+    body: [
+      { type: 'p', text: "In our part of the world, an utsav is not an event you organise. It is a feeling that spills out of a kitchen when something is being cooked that only comes around once a year. The courtyard fills up, children lose interest in whatever they were doing, and the clock quietly stops meaning what it usually means. For a few days, the house runs on the smell of what is in the pot." },
+      { type: 'p', text: "That is what we wanted to bring to Omaha this October. Not a promotion. An actual month-long celebration, where the biryani on the menu changes with the weekday, where every tray carries the signature of a different cook, a different city, a different family memory, and where eating one is less about ordering lunch and more about sitting down together." },
+
+      { type: 'h2', text: 'Why Biryani, Why an Utsav' },
+      { type: 'p', text: "Biryani is the one dish that holds a whole table together. The rice has to be perfect. The meat has to be marinated the night before. The spices have to be fresh. And the pot, when it is finally opened at the table, has to feel like an occasion. Nothing on an Indian menu asks more of a kitchen, and nothing rewards a kitchen more when it is done right." },
+      { type: 'p', text: "The problem is that most restaurants only cook one biryani. The one most people recognise. The one that sells. What that misses is that India has dozens of them. The dum biryanis of Hyderabad are only the beginning. There are the layered pots of Thalapakatti in Tamil Nadu. The fiery red Pachimirchi plates of coastal Andhra. The gentle, lightly spiced beach-style pulavs of the Rayalaseema belt. The jack-fruit biryani of coastal Karnataka, a dish most Americans have never heard of and most Indians have not tasted outside their own grandmother's kitchen." },
+      { type: 'quote', text: 'A country this big does not have one biryani. It has thirty, and each one belongs to a place.' },
+      { type: 'p', text: "So we built an utsav around that idea. For the whole month of October, Monday through Thursday, we cook eight different biryanis. Four of them vegetarian, four non-vegetarian, each one from a tradition we think more people deserve to taste. Each one served as a half-tray, built for a gathering rather than for one person. Pick a day, pick a biryani, pick it up hot." },
+
+      { type: 'h2', text: 'What a Half-Tray Really Is' },
+      { type: 'p', text: "The half-tray is not a portion size we invented for the website. It is the way biryani is actually served when a family in Hyderabad has friends over. You do not plate biryani for eight people. You bring the pot out, you set it down, and everyone works from the same tray. The person who gets the last of the browned onions wins the round." },
+      { type: 'p', text: "A half-tray from our kitchen feeds roughly four to six people depending on how committed they are. It is cooked fresh the morning of your pickup, sealed and finished to order, and never pre-made. The dough that seals the pot is pressed on by the same cook, every time, which is why we need you to book ahead." },
+
+      { type: 'h2', text: 'The Eight Biryanis, One by One' },
+      { type: 'p', text: "Here is the schedule, with a note on what makes each one worth tasting." },
+
+      { type: 'h2', text: 'Monday, Veg Dum Biryani' },
+      { type: 'p', text: "The classic that most people know and the one most people do not know how to cook properly. Our vegetable dum uses the full Hyderabadi method, meaning the rice is parboiled, layered over marinated vegetables with yogurt, mint, fried onion, saffron milk, and ghee, and finished under a dough-sealed lid on slow heat. It is the version of veg biryani that convinces people who claim they do not like vegetable biryani. There is nothing meek about it." },
+
+      { type: 'h2', text: 'Monday, Chicken Dum Biryani' },
+      { type: 'p', text: "The signature. The Hyderabadi chicken dum biryani is why most of our regulars come back on weekends. Overnight-marinated chicken, long-grain basmati that still has bite, the whole pot sealed with dough so nothing escapes. When the seal breaks at your table, do not stir. Dig in from the top so you get all three layers in one spoon." },
+
+      { type: 'h2', text: 'Tuesday, Pachimirchi Paneer Biryani' },
+      { type: 'p', text: "Pachimirchi means green chilli in Telugu, and this biryani is a love letter to it. Instead of red chilli powder for heat, we use a fresh green chilli paste that keeps the colour of the biryani almost pale, and the heat clean and bright instead of dusty. Paneer cubes are seared, folded in with the rice, and finished in the pot. It is a biryani that tastes like a Guntur summer afternoon, which is to say, hot and herbal and alive." },
+
+      { type: 'h2', text: 'Tuesday, Thalapakatti Goat Biryani' },
+      { type: 'p', text: "Thalapakatti is a small town in Tamil Nadu that gave the world one of the great layered biryanis. It is not a dum biryani. It is a pulav-style cook where the goat and rice are cooked together in the same pot, with a very specific spice blend built around jeera samba rice, star anise, stone flower, and nutmeg. The result is drier than a Hyderabadi biryani, more aromatic, and absolutely spoonable. The goat falls off the bone." },
+
+      { type: 'h2', text: 'Wednesday, Beach Style Paneer Pulav' },
+      { type: 'p', text: "The pulavs served at beach-side kitchens along the Andhra coast are something else entirely. Milder than a biryani, often finished with coconut milk, cooked with curry leaves and fresh ginger. Our beach-style paneer pulav is cooked exactly that way, with soft paneer, a hint of coconut, and the kind of lightness most Americans do not expect from South Indian food. It is the biryani you order when you want flavour without fire." },
+
+      { type: 'h2', text: 'Wednesday, Vijayawada Chicken Biryani' },
+      { type: 'p', text: "If Tuesday is a love letter to green chilli, Wednesday is a love letter to red. The Vijayawada style is unapologetically spicy, built on Guntur red chilli, fried onions, and a slow pulav cook that lets the chicken take on the whole weight of the spice. We temper the heat for Omaha but keep the soul of it, so you still taste the city it comes from. Serve it with a cold raita." },
+
+      { type: 'h2', text: 'Thursday, Panasakkai Biryani' },
+      { type: 'p', text: "Panasakkai is tender raw jack fruit. In coastal Karnataka it is treated almost like meat, slow-cooked until it falls apart, and layered into a biryani with the full spice ritual. The first time most people taste it, they do not believe it is a fruit. It is one of the most under-known biryanis in all of India, and one of the best vegetarian dishes we serve all year. If you only try one biryani on this list, make it this one." },
+
+      { type: 'h2', text: 'Thursday, Pachimirchi Chicken Pulav' },
+      { type: 'p', text: "A cousin of Tuesday's paneer biryani, built on the same fresh green chilli paste but with chicken thigh. Lighter than the goat biryani, hotter than the chicken dum, and finished with a scatter of curry leaves and a squeeze of lime at the end. This is the one most of our cooks personally eat on a Thursday night after the kitchen closes." },
+
+      { type: 'h2', text: 'How It Works' },
+      { type: 'list', items: [
+        'Pick a day, Monday through Thursday, between October 1 and October 31, 2026.',
+        'Choose the veg or non-veg biryani of that day. One half-tray per booking.',
+        'Pick a time between 11 AM and 8:45 PM in 15-minute slots. We will call to confirm.',
+        'Flat $50 per half-tray, paid in cash or card when you collect it from the restaurant.',
+      ] },
+      { type: 'p', text: "You can book your tray at hhoma.com/biryani-utsav, or you can call the restaurant at (402) 505-9209 if you would rather talk to a human. Either works, and either one gets your name in the pot schedule." },
+
+      { type: 'h2', text: 'Come Hungry' },
+      { type: 'p', text: "The Utsav runs through October 31. After that, the pots go back to the regular menu until next year. If you have been meaning to introduce someone to real Hyderabadi biryani, or if you have been curious about the biryanis of Tamil Nadu, Andhra, or Karnataka that you have never seen on an American menu, this is the month." },
+      { type: 'p', text: "Share the pot. Taste the country." },
+    ],
+  },
+  {
     slug: 'art-of-dum-biryani',
     title: 'The Art of Dum Biryani',
     date: 'March 10, 2026',
