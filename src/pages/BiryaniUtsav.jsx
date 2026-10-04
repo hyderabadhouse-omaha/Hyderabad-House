@@ -624,12 +624,10 @@ export default function BiryaniUtsav() {
             <h3 className="heading utsav-faq__title">Common questions</h3>
             <div className="utsav-faq__list">
               {[
-                { q: 'How many people does a half-tray feed?', a: 'Comfortably four to six people, depending on how much everyone eats and what else is on the table. We recommend one tray per four hungry adults.' },
                 { q: 'Can I order more than one tray?', a: 'Each booking is one tray so we can plan the pot schedule fairly. If you need more than one, just place a second booking right after this one, or call the restaurant at (402) 505-9209 and we will set it up directly.' },
                 { q: 'When do I pay?', a: 'Nothing is charged online. You pay the flat $50 in cash or card when you pick the tray up at the restaurant.' },
                 { q: 'Is pickup the only option?', a: 'Yes, Utsav trays are pickup only. They are cooked fresh and sealed the day of your pickup, which does not travel well through delivery apps. If you need delivery, our regular menu is on all the usual services.' },
                 { q: 'What about dietary restrictions?', a: 'Every weekday has both a Veg and a Non-Veg half-tray so there is always a vegetarian option. All our meat is halal. If you have specific allergy or ingredient concerns, please mention them when we call to confirm.' },
-                { q: 'Do I get a confirmation?', a: 'You will see a success message right after booking. We will also call the number you provide a day in advance to confirm pickup time.' },
               ].map((f, i) => (
                 <details key={i} className="utsav-faq__item">
                   <summary className="utsav-faq__q">
