@@ -1,5 +1,15 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "headers": [
+    {
+      "source": "/llms.txt",
+      "headers": [{ "key": "content-type", "value": "text/markdown; charset=utf-8" }]
+    },
+    {
+      "source": "/.well-known/ard.json",
+      "headers": [{ "key": "content-type", "value": "application/json; charset=utf-8" }]
+    }
+  ],
   "rewrites": [
     { "source": "/api/:path*", "destination": "/api/:path*" },
     { "source": "/biryani-utsav", "destination": "/biryani-utsav/index.html" },
@@ -10,7 +20,7 @@
     { "source": "/about-us/", "destination": "/about-us/index.html" },
     { "source": "/contact", "destination": "/contact/index.html" },
     { "source": "/contact/", "destination": "/contact/index.html" },
-    { "source": "/((?!api/).*)", "destination": "/index.html" }
+    { "source": "/((?!api/|llms\\.txt|\\.well-known/|sitemap\\.xml|robots\\.txt|site\\.webmanifest).*)", "destination": "/index.html" }
   ]
 }
 

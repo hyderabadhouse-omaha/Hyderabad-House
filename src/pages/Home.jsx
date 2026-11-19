@@ -525,7 +525,7 @@ export default function Home() {
           {[
             { to: 5000, suffix: '+', decimals: 0, label: 'Happy Guests' },
             { to: 50,   suffix: '+', decimals: 0, label: 'Menu Items' },
-            { to: 4.5,  suffix: '★', decimals: 1, label: 'Google Rating' },
+            { to: 4.6,  suffix: '★', decimals: 1, label: 'Google Rating' },
             { to: 15,   suffix: '+', decimals: 0, label: 'Years of Flavor' },
           ].map((s, i) => (
             <div key={i} className="home-stats__item">
@@ -690,7 +690,14 @@ export default function Home() {
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="16" height="16"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
               </button>
               {Array.from({ length: totalPages }).map((_, i) => (
-                <button key={i} className={`home-testimonials__dot${i === tPage ? ' active' : ''}`} onClick={() => goTPage(i)} />
+                <button
+                  key={i}
+                  type="button"
+                  className={`home-testimonials__dot${i === tPage ? ' active' : ''}`}
+                  onClick={() => goTPage(i)}
+                  aria-label={`Testimonials page ${i + 1}`}
+                  aria-current={i === tPage ? 'page' : undefined}
+                />
               ))}
               <button className="home-testimonials__arrow" onClick={() => goTPage(tPage + 1)} aria-label="Next">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>

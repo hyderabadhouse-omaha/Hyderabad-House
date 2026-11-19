@@ -1,0 +1,107 @@
+{
+  "$schema": "https://schemas.ard.dev/ard-1.0.json",
+  "version": "1.0",
+  "name": "Hyderabad House Omaha",
+  "description": "Authentic Hyderabadi and South Indian restaurant in West Omaha, Nebraska. Dum biryani, tandoori kebabs, Andhra curries, and halal meats. Catering, private party hall, and online ordering available.",
+  "homepage": "https://www.hhoma.com/",
+  "contact": {
+    "email": "hhbiryani.oma@gmail.com",
+    "telephone": "+1-402-505-9209"
+  },
+  "address": {
+    "street": "2537 S 174th Plz",
+    "locality": "Omaha",
+    "region": "NE",
+    "postalCode": "68130",
+    "country": "US"
+  },
+  "openingHours": "Mo-Su 11:00-21:00",
+  "resources": [
+    {
+      "name": "Home",
+      "url": "https://www.hhoma.com/",
+      "type": "WebPage",
+      "description": "Overview of the restaurant, featured dishes, and highlights."
+    },
+    {
+      "name": "Menu",
+      "url": "https://www.hhoma.com/menu",
+      "type": "Menu",
+      "description": "Full menu with biryanis, tandoori, curries, Andhra specials, breads, and desserts."
+    },
+    {
+      "name": "About",
+      "url": "https://www.hhoma.com/about-us",
+      "type": "WebPage",
+      "description": "Story of the restaurant, the kitchen, and the chefs."
+    },
+    {
+      "name": "Contact",
+      "url": "https://www.hhoma.com/contact",
+      "type": "ContactPage",
+      "description": "Address, phone, map, hours, and contact form."
+    },
+    {
+      "name": "Blog",
+      "url": "https://www.hhoma.com/blogs",
+      "type": "Blog",
+      "description": "Articles on Hyderabadi cuisine, biryani, spices, and Indian breads."
+    },
+    {
+      "name": "October Biryani Utsav",
+      "url": "https://www.hhoma.com/biryani-utsav",
+      "type": "Event",
+      "description": "October 2026 campaign offering a different half-tray biryani every Monday through Thursday. Pickup only, $50 per tray."
+    },
+    {
+      "name": "llms.txt",
+      "url": "https://www.hhoma.com/llms.txt",
+      "type": "TextResource",
+      "description": "Plain-text summary of the site contents for AI crawlers."
+    },
+    {
+      "name": "Sitemap",
+      "url": "https://www.hhoma.com/sitemap.xml",
+      "type": "Sitemap",
+      "description": "XML sitemap of indexable pages and images."
+    }
+  ],
+  "actions": [
+    {
+      "name": "Order Online",
+      "url": "https://hyderabadhouse.hungerrush.com/Order/OrderType",
+      "method": "GET",
+      "description": "Place a pickup or delivery order through HungerRush."
+    },
+    {
+      "name": "Call Restaurant",
+      "uri": "tel:+14025059209",
+      "method": "GET",
+      "description": "Call the restaurant for reservations, catering, or party-hall bookings."
+    },
+    {
+      "name": "Book Biryani Utsav",
+      "url": "https://www.hhoma.com/biryani-utsav",
+      "method": "GET",
+      "description": "Reserve a half-tray biryani during the October Utsav."
+    }
+  ],
+  "cuisines": [
+    "Hyderabadi",
+    "South Indian",
+    "Andhra",
+    "North Indian",
+    "Mughlai",
+    "Indo-Chinese"
+  ],
+  "dietary": {
+    "halal": true,
+    "vegetarian": true,
+    "vegan": true
+  },
+  "crawlPolicy": {
+    "allow": true,
+    "training": true,
+    "aiSummarization": true
+  }
+}
