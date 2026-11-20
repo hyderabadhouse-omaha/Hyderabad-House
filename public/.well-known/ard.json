@@ -9,90 +9,105 @@
   },
   "entries": [
     {
+      "identifier": "home",
       "name": "Home",
       "url": "https://www.hhoma.com/",
       "type": "WebPage",
       "description": "Overview of the restaurant, featured dishes, and highlights."
     },
     {
+      "identifier": "menu",
       "name": "Menu",
       "url": "https://www.hhoma.com/menu",
       "type": "Menu",
       "description": "Full menu with biryanis, tandoori, curries, Andhra specials, breads, and desserts."
     },
     {
+      "identifier": "about",
       "name": "About",
       "url": "https://www.hhoma.com/about-us",
       "type": "WebPage",
       "description": "Story of the restaurant, the kitchen, and the chefs."
     },
     {
+      "identifier": "contact",
       "name": "Contact",
       "url": "https://www.hhoma.com/contact",
       "type": "ContactPage",
       "description": "Address, phone, map, hours, and contact form."
     },
     {
+      "identifier": "blog",
       "name": "Blog",
       "url": "https://www.hhoma.com/blogs",
       "type": "Blog",
       "description": "Articles on Hyderabadi cuisine, biryani, spices, and Indian breads."
     },
     {
+      "identifier": "faq",
       "name": "FAQ",
       "url": "https://www.hhoma.com/faq",
       "type": "FAQPage",
       "description": "Common questions about hours, catering, and reservations."
     },
     {
+      "identifier": "testimonials",
       "name": "Testimonials",
       "url": "https://www.hhoma.com/testimonials",
       "type": "WebPage",
       "description": "Customer reviews from Omaha, West Omaha, Elkhorn, Papillion, and Bellevue."
     },
     {
+      "identifier": "biryani-utsav",
       "name": "October Biryani Utsav",
       "url": "https://www.hhoma.com/biryani-utsav",
       "type": "Event",
       "description": "October 2026 campaign offering a different half-tray biryani every Monday through Thursday. Pickup only, $50 per tray."
     },
     {
+      "identifier": "blog-october-biryani-utsav",
       "name": "October Biryani Utsav, A Month of Eight Biryanis",
       "url": "https://www.hhoma.com/blogs/october-biryani-utsav",
       "type": "BlogPosting",
       "description": "The story behind the October Biryani Utsav and all eight regional biryanis served during the campaign."
     },
     {
+      "identifier": "blog-art-of-dum-biryani",
       "name": "The Art of Dum Biryani",
       "url": "https://www.hhoma.com/blogs/art-of-dum-biryani",
       "type": "BlogPosting",
       "description": "How Hyderabadi dum biryani is cooked under a dough-sealed pot."
     },
     {
+      "identifier": "blog-spices-hyderabadi-cuisine",
       "name": "Spices That Define Hyderabadi Cuisine",
       "url": "https://www.hhoma.com/blogs/spices-that-define-hyderabadi-cuisine",
       "type": "BlogPosting",
       "description": "The core spices behind Hyderabadi cooking."
     },
     {
+      "identifier": "blog-guide-to-indian-breads",
       "name": "A Guide to Indian Breads",
       "url": "https://www.hhoma.com/blogs/guide-to-indian-breads",
       "type": "BlogPosting",
       "description": "Naan, roti, kulcha, puri, and how to pair them with curries."
     },
     {
+      "identifier": "order-online",
       "name": "Order Online",
       "url": "https://hyderabadhouse.hungerrush.com/Order/OrderType",
       "type": "OrderAction",
       "description": "Place a pickup or delivery order through HungerRush."
     },
     {
+      "identifier": "llms-txt",
       "name": "llms.txt",
       "url": "https://www.hhoma.com/llms.txt",
       "type": "TextResource",
       "description": "Plain-text summary of the site contents for AI crawlers."
     },
     {
+      "identifier": "sitemap",
       "name": "Sitemap",
       "url": "https://www.hhoma.com/sitemap.xml",
       "type": "Sitemap",
