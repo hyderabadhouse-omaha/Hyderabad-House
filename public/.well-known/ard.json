@@ -1,5 +1,4 @@
 {
-  "$schema": "https://schemas.ard.dev/ard-1.0.json",
   "version": "1.0",
   "name": "Hyderabad House Omaha",
   "description": "Authentic Hyderabadi and South Indian restaurant in West Omaha, Nebraska. Dum biryani, tandoori kebabs, Andhra curries, and halal meats. Catering, private party hall, and online ordering available.",
@@ -8,15 +7,7 @@
     "email": "hhbiryani.oma@gmail.com",
     "telephone": "+1-402-505-9209"
   },
-  "address": {
-    "street": "2537 S 174th Plz",
-    "locality": "Omaha",
-    "region": "NE",
-    "postalCode": "68130",
-    "country": "US"
-  },
-  "openingHours": "Mo-Su 11:00-21:00",
-  "resources": [
+  "entries": [
     {
       "name": "Home",
       "url": "https://www.hhoma.com/",
@@ -48,10 +39,52 @@
       "description": "Articles on Hyderabadi cuisine, biryani, spices, and Indian breads."
     },
     {
+      "name": "FAQ",
+      "url": "https://www.hhoma.com/faq",
+      "type": "FAQPage",
+      "description": "Common questions about hours, catering, and reservations."
+    },
+    {
+      "name": "Testimonials",
+      "url": "https://www.hhoma.com/testimonials",
+      "type": "WebPage",
+      "description": "Customer reviews from Omaha, West Omaha, Elkhorn, Papillion, and Bellevue."
+    },
+    {
       "name": "October Biryani Utsav",
       "url": "https://www.hhoma.com/biryani-utsav",
       "type": "Event",
       "description": "October 2026 campaign offering a different half-tray biryani every Monday through Thursday. Pickup only, $50 per tray."
+    },
+    {
+      "name": "October Biryani Utsav, A Month of Eight Biryanis",
+      "url": "https://www.hhoma.com/blogs/october-biryani-utsav",
+      "type": "BlogPosting",
+      "description": "The story behind the October Biryani Utsav and all eight regional biryanis served during the campaign."
+    },
+    {
+      "name": "The Art of Dum Biryani",
+      "url": "https://www.hhoma.com/blogs/art-of-dum-biryani",
+      "type": "BlogPosting",
+      "description": "How Hyderabadi dum biryani is cooked under a dough-sealed pot."
+    },
+    {
+      "name": "Spices That Define Hyderabadi Cuisine",
+      "url": "https://www.hhoma.com/blogs/spices-that-define-hyderabadi-cuisine",
+      "type": "BlogPosting",
+      "description": "The core spices behind Hyderabadi cooking."
+    },
+    {
+      "name": "A Guide to Indian Breads",
+      "url": "https://www.hhoma.com/blogs/guide-to-indian-breads",
+      "type": "BlogPosting",
+      "description": "Naan, roti, kulcha, puri, and how to pair them with curries."
+    },
+    {
+      "name": "Order Online",
+      "url": "https://hyderabadhouse.hungerrush.com/Order/OrderType",
+      "type": "OrderAction",
+      "description": "Place a pickup or delivery order through HungerRush."
     },
     {
       "name": "llms.txt",
@@ -66,34 +99,7 @@
       "description": "XML sitemap of indexable pages and images."
     }
   ],
-  "actions": [
-    {
-      "name": "Order Online",
-      "url": "https://hyderabadhouse.hungerrush.com/Order/OrderType",
-      "method": "GET",
-      "description": "Place a pickup or delivery order through HungerRush."
-    },
-    {
-      "name": "Call Restaurant",
-      "uri": "tel:+14025059209",
-      "method": "GET",
-      "description": "Call the restaurant for reservations, catering, or party-hall bookings."
-    },
-    {
-      "name": "Book Biryani Utsav",
-      "url": "https://www.hhoma.com/biryani-utsav",
-      "method": "GET",
-      "description": "Reserve a half-tray biryani during the October Utsav."
-    }
-  ],
-  "cuisines": [
-    "Hyderabadi",
-    "South Indian",
-    "Andhra",
-    "North Indian",
-    "Mughlai",
-    "Indo-Chinese"
-  ],
+  "cuisines": ["Hyderabadi", "South Indian", "Andhra", "North Indian", "Mughlai", "Indo-Chinese"],
   "dietary": {
     "halal": true,
     "vegetarian": true,
